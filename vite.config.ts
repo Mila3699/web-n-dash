@@ -33,17 +33,7 @@ export default defineConfig(({ mode }) => ({
       'firefox78',
       'safari14'
     ],
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace']
-      },
-      format: {
-        comments: false
-      }
-    },
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
