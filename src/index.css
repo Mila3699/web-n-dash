@@ -76,6 +76,61 @@ h1, h2, h3, h4, h5, h6 {
               0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
+.shadow-float {
+  box-shadow: 0 20px 50px -12px rgba(25, 60, 46, 0.15),
+              0 8px 16px -8px rgba(25, 60, 46, 0.1);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-dark {
+  background: rgba(25, 60, 46, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Gradient overlays */
+.gradient-radial {
+  background: radial-gradient(circle at center, transparent 0%, rgba(25, 60, 46, 0.05) 100%);
+}
+
+/* Interactive elements */
+.interactive-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--accent));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
 .test-question-options input[type="radio"]:checked::after {
   content: '';
   display: block;

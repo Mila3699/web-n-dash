@@ -5,63 +5,88 @@ import heroImage from "@/assets/hero-bg.jpg";
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-green">
+      {/* Animated background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+      </div>
+      
       {/* Background Image with Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="absolute inset-0 bg-brand-green/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-green/95 via-brand-green/90 to-brand-green/95" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-32 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
-          Академия ERA - раскрытие твоего потенциала
+        {/* Floating badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-accent/20 mb-8 animate-fade-in">
+          <span className="w-2 h-2 bg-accent rounded-full animate-glow"></span>
+          <span className="text-sm text-primary-foreground/80">Метод энерготерапии ERA</span>
+        </div>
+        
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-bold text-primary-foreground mb-8 animate-slide-up leading-tight">
+          Академия ERA<br/>
+          <span className="text-accent">раскрытие твоего</span><br/>
+          потенциала
         </h1>
-        <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 mb-12 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          Единая экосистема для твоего роста, трансформации и обретения баланса. 
-          Откройте для себя силу метода энерготерапии ERA.
+        <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/80 mb-12 max-w-3xl mx-auto animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
+          Единая экосистема для твоего роста, трансформации и обретения баланса
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-          <Link to="/masters">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <Link to="/masters" className="w-full sm:w-auto">
             <Button 
               size="lg" 
-              className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
+              className="w-full group relative bg-accent hover:bg-accent/90 text-accent-foreground shadow-float text-lg px-10 py-7 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-gold"
             >
-              Записаться на энергосессию к Анастасии
+              <span className="relative z-10 flex items-center gap-2">
+                Записаться на энергосессию
+                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
             </Button>
           </Link>
-          <Link to="/masters">
+          <Link to="/masters" className="w-full sm:w-auto">
             <Button 
               size="lg" 
-              variant="outline"
-              className="w-full sm:w-auto border-2 border-accent text-primary-foreground hover:bg-accent hover:text-accent-foreground text-lg px-8 py-6"
+              className="w-full group glass-dark border-2 border-accent/30 text-primary-foreground hover:border-accent hover:bg-accent/10 text-lg px-10 py-7 transition-all duration-300 hover:scale-105 hover:shadow-float"
             >
-              Выбрать энерготерапевта ERA
+              <span className="flex items-center gap-2">
+                Каталог энерготерапевтов
+                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+              </span>
             </Button>
           </Link>
         </div>
 
         {/* Energy System Test */}
-        <div className="mt-16 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <div className="inline-block bg-card/90 backdrop-blur-sm rounded-2xl shadow-soft p-8 max-w-md">
-            <h2 className="text-2xl font-serif font-semibold mb-3">
-              Анализ состояния вашей энергосистемы
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Уровень её потенциала
-            </p>
-            <Link to="/test">
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-              >
-                Пройти тест
-              </Button>
-            </Link>
+        <div className="mt-20 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+          <div className="inline-block glass rounded-3xl shadow-float border border-accent/20 p-10 max-w-xl relative group hover:shadow-gold transition-all duration-500">
+            <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-primary/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
+                <span className="text-3xl">✨</span>
+              </div>
+              <h2 className="text-3xl font-serif font-semibold mb-4 text-foreground">
+                Анализ состояния вашей<br/>энергосистемы
+              </h2>
+              <p className="text-muted-foreground mb-8 text-lg">
+                Узнайте уровень потенциала своей энергосистемы
+              </p>
+              <Link to="/test">
+                <Button 
+                  size="lg"
+                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold hover:shadow-float transition-all duration-300 hover:scale-105 text-lg py-6"
+                >
+                  Пройти тест бесплатно
+                  <span className="ml-2">→</span>
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
