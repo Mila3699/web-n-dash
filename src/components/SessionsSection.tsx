@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Sparkles, Heart, Zap, Brain, Sun } from "lucide-react";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { safeOpenLink } from "@/lib/sanitize";
 
 export const SessionsSection = () => {
   const { checkLimit, isBlocked } = useRateLimit({

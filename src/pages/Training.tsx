@@ -15,6 +15,7 @@ import {
   Award,
   Globe
 } from "lucide-react";
+import { safeOpenLink } from "@/lib/sanitize";
 
 const Training = () => {
   const forWhoPoints = [
@@ -93,7 +94,10 @@ const Training = () => {
             </p>
             <Button 
               size="lg"
-              onClick={() => window.open('https://t.me/era_academy', '_blank')}
+              onClick={(e) => {
+                e.preventDefault();
+                safeOpenLink('https://t.me/era_academy');
+              }}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6 animate-fade-in"
               style={{ animationDelay: '0.4s' }}
             >
@@ -244,7 +248,10 @@ const Training = () => {
             </p>
             <Button 
               size="lg"
-              onClick={() => window.open('https://t.me/era_academy', '_blank')}
+              onClick={(e) => {
+                e.preventDefault();
+                safeOpenLink('https://t.me/era_academy');
+              }}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
             >
               Записаться на обучение в Telegram

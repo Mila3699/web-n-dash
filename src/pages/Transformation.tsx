@@ -5,8 +5,15 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowDown, Users, Brain, Sparkles, Target } from "lucide-react";
+import { useRateLimit } from "@/hooks/useRateLimit";
+import { safeOpenLink } from "@/lib/sanitize";
 
 const Transformation = () => {
+  const { checkLimit } = useRateLimit({
+    key: 'transformation_cta',
+    preset: 'externalLink',
+  });
+
   const targetAudience = [
     {
       icon: ArrowDown,
@@ -137,7 +144,12 @@ const Transformation = () => {
             </p>
             <Button 
               size="lg"
-              onClick={() => window.open('https://t.me/era_academy', '_blank')}
+              onClick={(e) => {
+                e.preventDefault();
+                if (checkLimit()) {
+                  safeOpenLink('https://t.me/era_academy');
+                }
+              }}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6 animate-fade-in"
               style={{ animationDelay: '0.4s' }}
             >
@@ -202,7 +214,12 @@ const Transformation = () => {
               <div className="text-center mt-12">
                 <Button 
                   size="lg"
-                  onClick={() => window.open('https://t.me/era_academy', '_blank')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (checkLimit()) {
+                      safeOpenLink('https://t.me/era_academy');
+                    }
+                  }}
                   className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
                 >
                   Забронировать место в Telegram

@@ -27,11 +27,36 @@ class RateLimiter {
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       if (stored) {
+        // Валидация данных перед использованием
         const data = JSON.parse(stored);
-        this.storage = new Map(Object.entries(data));
+        
+        // Проверяем, что это объект
+        if (typeof data !== 'object' || data === null) {
+          console.warn('Invalid rate limit data format');
+          return;
+        }
+        
+        // Проверяем структуру каждой записи
+        const validatedData = new Map();
+        for (const [key, value] of Object.entries(data)) {
+          if (
+            typeof value === 'object' &&
+            value !== null &&
+            'count' in value &&
+            'firstRequest' in value &&
+            typeof value.count === 'number' &&
+            typeof value.firstRequest === 'number'
+          ) {
+            validatedData.set(key, value);
+          }
+        }
+        
+        this.storage = validatedData;
       }
     } catch (error) {
       console.error('Failed to load rate limit data:', error);
+      // Очищаем поврежденные данные
+      localStorage.removeItem(this.STORAGE_KEY);
     }
   }
 

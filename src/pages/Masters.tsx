@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Star, Calendar } from "lucide-react";
+import { safeOpenLink } from "@/lib/sanitize";
 
 const Masters = () => {
   const masters = [
@@ -122,7 +123,10 @@ const Masters = () => {
                   </div>
 
                   <Button 
-                    onClick={() => window.open('https://t.me/era_academy', '_blank')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      safeOpenLink('https://t.me/era_academy');
+                    }}
                     className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
                   >
                     <Calendar className="w-4 h-4 mr-2" />
@@ -145,7 +149,10 @@ const Masters = () => {
             </p>
             <Button 
               size="lg"
-              onClick={() => window.open('https://t.me/era_academy', '_blank')}
+              onClick={(e) => {
+                e.preventDefault();
+                safeOpenLink('https://t.me/era_academy');
+              }}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
             >
               Узнать об обучении в Telegram
