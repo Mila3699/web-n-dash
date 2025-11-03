@@ -28,7 +28,7 @@ export const SessionsSection = () => {
   ];
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
+    <section id="sessions" className="py-40 bg-background relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full gradient-radial pointer-events-none"></div>
       

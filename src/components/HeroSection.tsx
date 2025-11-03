@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-bg.jpg";
 
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-green">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-green">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-float"></div>
@@ -36,29 +36,18 @@ export const HeroSection = () => {
           Единая экосистема для твоего роста, трансформации и обретения баланса
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        {/* CTA Button - упрощено до 1 главного действия */}
+        <div className="flex justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
           <Link to="/masters" className="w-full sm:w-auto">
             <Button 
               size="lg" 
-              className="w-full group relative bg-accent hover:bg-accent/90 text-accent-foreground shadow-float text-lg px-10 py-7 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-gold"
+              className="w-full group relative bg-accent hover:bg-accent/90 text-accent-foreground shadow-float text-xl px-12 py-8 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-gold"
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center gap-3">
                 Записаться на энергосессию
                 <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-            </Button>
-          </Link>
-          <Link to="/masters" className="w-full sm:w-auto">
-            <Button 
-              size="lg" 
-              className="w-full group glass-dark border-2 border-accent/30 text-primary-foreground hover:border-accent hover:bg-accent/10 text-lg px-10 py-7 transition-all duration-300 hover:scale-105 hover:shadow-float"
-            >
-              <span className="flex items-center gap-2">
-                Каталог энерготерапевтов
-                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
-              </span>
             </Button>
           </Link>
         </div>

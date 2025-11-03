@@ -1,17 +1,55 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import logo from "@/assets/logo.png";
 
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const offset = 100;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+};
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState('hero');
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     setUserRole(localStorage.getItem('userRole'));
-  }, []);
+    
+    if (!isHomePage) return;
+    
+    const handleScroll = () => {
+      const sections = ['hero', 'sessions', 'transformation', 'training'];
+      const scrollPosition = window.scrollY + 200;
+      
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHomePage]);
 
   const handleLogout = () => {
     localStorage.removeItem('userRole');
@@ -35,28 +73,49 @@ const Navigation = () => {
             </Link>
 
           <div className="hidden md:flex items-center space-x-1">
-            <Link to="/" className="px-4 py-2 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group">
-              <span>Главная</span>
-              <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
-            <Link to="/" className="px-4 py-2 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group">
-              <span>Энергосессии</span>
-              <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
-            <Link to="/transformation" className="px-4 py-2 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group">
-              <span>Энергопрактикум</span>
-              <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
-            <Link to="/training" className="px-4 py-2 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group">
-              <span>Обучение</span>
-              <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
+            {isHomePage ? (
+              <>
+                <button 
+                  onClick={() => scrollToSection('hero')}
+                  className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${activeSection === 'hero' ? 'text-brand-gold' : 'text-brand-green'}`}
+                >
+                  <span>Главная</span>
+                  <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${activeSection === 'hero' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </button>
+                <button 
+                  onClick={() => scrollToSection('sessions')}
+                  className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${activeSection === 'sessions' ? 'text-brand-gold' : 'text-brand-green'}`}
+                >
+                  <span>Энергосессии</span>
+                  <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${activeSection === 'sessions' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </button>
+                <button 
+                  onClick={() => scrollToSection('transformation')}
+                  className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${activeSection === 'transformation' ? 'text-brand-gold' : 'text-brand-green'}`}
+                >
+                  <span>Практикум</span>
+                  <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${activeSection === 'transformation' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </button>
+                <button 
+                  onClick={() => scrollToSection('training')}
+                  className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${activeSection === 'training' ? 'text-brand-gold' : 'text-brand-green'}`}
+                >
+                  <span>Обучение</span>
+                  <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${activeSection === 'training' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+                </button>
+              </>
+            ) : (
+              <Link to="/" className="px-4 py-2 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group">
+                <span>Главная</span>
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </Link>
+            )}
             <Link to="/test" className="px-4 py-2 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group">
               <span>Тест</span>
               <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
             </Link>
             <Link to="/masters" className="px-4 py-2 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group">
-              <span>Каталог Мастеров</span>
+              <span>Мастера</span>
               <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
             </Link>
             

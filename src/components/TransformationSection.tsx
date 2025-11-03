@@ -28,14 +28,22 @@ export const TransformationSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            Энергопрактикум "Трансформация"
+    <section id="transformation" className="py-40 bg-muted/30 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6 animate-fade-in">
+            <Target className="w-4 h-4 text-accent" />
+            <span className="text-sm font-medium text-accent">8-недельная программа</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
+            Энергопрактикум<br/>
+            <span className="text-accent">"Трансформация"</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Глубокое 8-недельное погружение для кардинальных изменений в вашей жизни.
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
+            Глубокое погружение для кардинальных изменений в жизни
           </p>
         </div>
 
@@ -75,13 +83,17 @@ export const TransformationSection = () => {
           </Card>
         </div>
 
-        <div className="text-center">
+        <div className="text-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
           <Link to="/transformation">
             <Button 
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
+              variant="outline"
+              className="group border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground text-lg px-10 py-7 transition-all duration-300 hover:scale-105 hover:shadow-float"
             >
-              Узнать подробнее и записаться
+              <span className="flex items-center gap-2">
+                Узнать подробнее
+                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+              </span>
             </Button>
           </Link>
         </div>
