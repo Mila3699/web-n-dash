@@ -1,8 +1,30 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-bg.jpg";
+import { useRateLimit } from "@/hooks/useRateLimit";
+import { useState } from "react";
 
 export const HeroSection = () => {
+  const [isNavigating, setIsNavigating] = useState(false);
+  const { checkLimit, isBlocked } = useRateLimit({
+    key: 'hero_cta',
+    preset: 'bookingButton',
+  });
+
+  const handleMastersClick = (e: React.MouseEvent) => {
+    if (isBlocked || isNavigating) {
+      e.preventDefault();
+      return;
+    }
+
+    if (!checkLimit()) {
+      e.preventDefault();
+      return;
+    }
+
+    setIsNavigating(true);
+  };
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-green">
       {/* Animated background elements */}
@@ -38,11 +60,14 @@ export const HeroSection = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center animate-slide-up mb-24" style={{ animationDelay: '0.2s' }}>
-          <Link to="/masters" className="w-full sm:w-auto max-w-md">
-            <button className="w-full group relative bg-white text-brand-green font-medium text-xl px-12 py-6 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_20px_60px_-15px_rgba(255,255,255,0.3)] hover:shadow-[0_25px_80px_-15px_rgba(255,255,255,0.5)]">
+          <Link to="/masters" onClick={handleMastersClick} className="w-full sm:w-auto max-w-md">
+            <button 
+              disabled={isBlocked || isNavigating}
+              className="w-full group relative bg-white text-brand-green font-medium text-xl px-12 py-6 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_20px_60px_-15px_rgba(255,255,255,0.3)] hover:shadow-[0_25px_80px_-15px_rgba(255,255,255,0.5)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            >
               <span className="relative z-10 flex items-center justify-center gap-3">
-                Записаться на сессию
-                <span className="inline-block transition-transform group-hover:translate-x-1 text-2xl">→</span>
+                {isNavigating ? 'Переход...' : 'Записаться на сессию'}
+                {!isNavigating && <span className="inline-block transition-transform group-hover:translate-x-1 text-2xl">→</span>}
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
             </button>
@@ -71,8 +96,15 @@ export const HeroSection = () => {
                     Узнайте уровень потенциала за 5 минут
                   </p>
                   
-                  <Link to="/test">
-                    <button className="w-full group relative bg-accent hover:bg-accent/90 text-white font-semibold text-xl px-10 py-6 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-[0_15px_40px_-10px_rgba(180,160,104,0.4)] hover:shadow-[0_20px_60px_-10px_rgba(180,160,104,0.6)]">
+                  <Link to="/test" onClick={(e) => {
+                    if (!checkLimit()) {
+                      e.preventDefault();
+                    }
+                  }}>
+                    <button 
+                      disabled={isBlocked}
+                      className="w-full group relative bg-accent hover:bg-accent/90 text-white font-semibold text-xl px-10 py-6 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-[0_15px_40px_-10px_rgba(180,160,104,0.4)] hover:shadow-[0_20px_60px_-10px_rgba(180,160,104,0.6)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       <span className="relative z-10 flex items-center justify-center gap-3">
                         Пройти бесплатный тест
                         <span className="inline-block transition-transform group-hover:translate-x-1 text-2xl">→</span>

@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Sparkles, Heart, Zap, Brain, Sun } from "lucide-react";
+import { useRateLimit } from "@/hooks/useRateLimit";
 
 export const SessionsSection = () => {
+  const { checkLimit, isBlocked } = useRateLimit({
+    key: 'sessions_cta',
+    preset: 'bookingButton',
+  });
+
   const benefits = [
     {
       icon: Brain,
@@ -92,8 +97,15 @@ export const SessionsSection = () => {
         </div>
 
         <div className="text-center animate-slide-up" style={{ animationDelay: '0.5s' }}>
-          <Link to="/masters">
-            <button className="group relative bg-accent hover:bg-accent/90 text-white font-semibold text-xl px-14 py-7 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_15px_40px_-10px_rgba(180,160,104,0.4)] hover:shadow-[0_20px_60px_-10px_rgba(180,160,104,0.6)]">
+          <Link to="/masters" onClick={(e) => {
+            if (!checkLimit()) {
+              e.preventDefault();
+            }
+          }}>
+            <button 
+              disabled={isBlocked}
+              className="group relative bg-accent hover:bg-accent/90 text-white font-semibold text-xl px-14 py-7 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_15px_40px_-10px_rgba(180,160,104,0.4)] hover:shadow-[0_20px_60px_-10px_rgba(180,160,104,0.6)] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <span className="relative z-10 flex items-center gap-3">
                 Записаться к энерготерапевту
                 <span className="inline-block transition-transform group-hover:translate-x-1 text-2xl">→</span>
