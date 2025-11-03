@@ -4,8 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Check, Sparkles, ArrowRight, ArrowLeft, Trophy } from "lucide-react";
+import { Sparkles, ArrowRight, ArrowLeft, Trophy, Zap, Heart, Brain, Star } from "lucide-react";
 import { testQuestions } from "@/data/testQuestions";
 import confetti from "canvas-confetti";
 
@@ -14,6 +13,8 @@ const EnergyTest = () => {
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResult, setShowResult] = useState(false);
   const [score, setScore] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [hoveredValue, setHoveredValue] = useState<number | null>(null);
 
   const questions = testQuestions;
 
@@ -108,20 +109,35 @@ const EnergyTest = () => {
     const newAnswers = [...answers];
     newAnswers[currentQuestion] = value;
     setAnswers(newAnswers);
+    
+    // Автоматический переход на следующий вопрос с задержкой
+    setTimeout(() => {
+      if (currentQuestion < questions.length - 1) {
+        handleNext();
+      }
+    }, 300);
   };
 
   const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      calculateResult();
-    }
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+        setIsTransitioning(false);
+      } else {
+        calculateResult();
+      }
+    }, 200);
   };
 
   const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
-    }
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (currentQuestion > 0) {
+        setCurrentQuestion(currentQuestion - 1);
+        setIsTransitioning(false);
+      }
+    }, 200);
   };
 
   const calculateResult = () => {
@@ -135,7 +151,7 @@ const EnergyTest = () => {
       // Запускаем конфетти при показе результатов
       const duration = 3000;
       const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+      const defaults = { startVelocity: 30, spread: 360, ticks: 80, zIndex: 1000 };
 
       function randomInRange(min: number, max: number) {
         return Math.random() * (max - min) + min;
@@ -148,20 +164,24 @@ const EnergyTest = () => {
           return clearInterval(interval);
         }
 
-        const particleCount = 50 * (timeLeft / duration);
+        const particleCount = 60 * (timeLeft / duration);
         
         // Золотые и зеленые цвета для конфетти
         confetti({
           ...defaults,
           particleCount,
           origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-          colors: ['#b4a068', '#193c2e', '#fdfcf7', '#d4af37']
+          colors: ['#b4a068', '#193c2e', '#fdfcf7', '#d4af37', '#ffffff'],
+          shapes: ['circle', 'square'],
+          scalar: randomInRange(0.8, 1.2)
         });
         confetti({
           ...defaults,
           particleCount,
           origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-          colors: ['#b4a068', '#193c2e', '#fdfcf7', '#d4af37']
+          colors: ['#b4a068', '#193c2e', '#fdfcf7', '#d4af37', '#ffffff'],
+          shapes: ['circle', 'square'],
+          scalar: randomInRange(0.8, 1.2)
         });
       }, 250);
 
@@ -185,54 +205,66 @@ const EnergyTest = () => {
         
         <main className="py-20">
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               {/* Celebration Header */}
               <div className="text-center mb-12 animate-fade-in">
-                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-accent via-accent/80 to-accent/60 mb-6 shadow-gold animate-scale-in">
-                  <Trophy className="w-12 h-12 text-white" />
+                <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-accent via-accent/90 to-accent/70 mb-8 shadow-2xl animate-scale-in relative">
+                  <Trophy className="w-16 h-16 text-white relative z-10" />
+                  <div className="absolute inset-0 rounded-full bg-white/20 animate-pulse"></div>
+                  <div className="absolute -inset-4 rounded-full border-4 border-accent/20 animate-ping"></div>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
                   Ваш результат
                 </h1>
-                <div className="flex items-center justify-center gap-3 mb-2">
-                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
-                  <span className="text-6xl font-bold text-accent animate-scale-in" style={{ animationDelay: '0.2s' }}>
-                    {score}
-                  </span>
-                  <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+                <div className="flex items-center justify-center gap-6 mb-4">
+                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-accent to-accent"></div>
+                  <div className="relative">
+                    <span className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-accent via-accent/90 to-accent/70 bg-clip-text text-transparent animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                      {score}
+                    </span>
+                    <div className="absolute -inset-2 bg-accent/5 blur-2xl rounded-full -z-10"></div>
+                  </div>
+                  <div className="h-px w-20 bg-gradient-to-l from-transparent via-accent to-accent"></div>
                 </div>
-                <p className="text-sm text-muted-foreground">из 57 баллов</p>
+                <p className="text-lg text-muted-foreground font-medium">из 57 баллов</p>
               </div>
 
               {/* Result Card */}
-              <Card className="overflow-hidden border-0 shadow-2xl animate-scale-in" style={{ animationDelay: '0.3s' }}>
-                <div className={`h-2 bg-gradient-to-r ${
-                  score <= 19 ? 'from-red-500 to-orange-500' :
-                  score <= 32 ? 'from-orange-500 to-yellow-500' :
-                  score <= 43 ? 'from-yellow-500 to-green-500' :
-                  score <= 51 ? 'from-green-500 to-blue-500' :
-                  'from-blue-500 to-purple-500'
-                }`}></div>
+              <Card className="overflow-hidden border-0 shadow-2xl backdrop-blur-xl bg-background/95 animate-scale-in mb-8" style={{ animationDelay: '0.3s' }}>
+                {/* Color Status Bar */}
+                <div className={`h-2 bg-gradient-to-r relative ${
+                  score <= 19 ? 'from-red-500 via-red-400 to-orange-500' :
+                  score <= 32 ? 'from-orange-500 via-yellow-400 to-yellow-500' :
+                  score <= 43 ? 'from-yellow-500 via-green-400 to-green-500' :
+                  score <= 51 ? 'from-green-500 via-blue-400 to-blue-500' :
+                  'from-blue-500 via-purple-400 to-purple-500'
+                }`}>
+                  <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
+                </div>
                 
-                <div className="p-8 md:p-12">
-                  {/* Status Badge */}
-                  <div className="flex justify-center mb-8">
-                    <Badge className={`${result.color} text-lg px-6 py-2 shadow-lg`}>
-                      <Sparkles className="w-4 h-4 mr-2" />
+                <div className="p-8 md:p-16">
+                  {/* Status Badge with Icon */}
+                  <div className="flex justify-center mb-10">
+                    <Badge className={`${result.color} text-xl px-8 py-3 shadow-2xl backdrop-blur border-0 gap-2`}>
+                      {score <= 19 ? <Zap className="w-5 h-5" /> :
+                       score <= 32 ? <Heart className="w-5 h-5" /> :
+                       score <= 43 ? <Brain className="w-5 h-5" /> :
+                       score <= 51 ? <Sparkles className="w-5 h-5" /> :
+                       <Star className="w-5 h-5" />}
                       {result.level}
                     </Badge>
                   </div>
 
                   {/* Description */}
-                  <div className="space-y-4 mb-8">
-                    <div className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl p-6 backdrop-blur">
-                      <p className="text-lg leading-relaxed text-foreground/90">
+                  <div className="space-y-6 mb-12">
+                    <div className="bg-gradient-to-br from-muted/60 via-muted/40 to-muted/20 rounded-3xl p-8 backdrop-blur border border-border/50 shadow-inner">
+                      <p className="text-xl md:text-2xl leading-relaxed text-foreground/90 font-light text-center">
                         {result.description}
                       </p>
                     </div>
                     {result.details && (
-                      <div className="bg-accent/5 rounded-2xl p-6 border border-accent/10">
-                        <p className="text-foreground/80 leading-relaxed">
+                      <div className="bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-3xl p-8 border border-accent/20 shadow-lg">
+                        <p className="text-lg md:text-xl text-foreground/80 leading-relaxed font-light text-center">
                           {result.details}
                         </p>
                       </div>
@@ -240,24 +272,26 @@ const EnergyTest = () => {
                   </div>
 
                   {/* Recommendations */}
-                  <div className="mb-8">
-                    <h3 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2">
-                      <div className="w-1 h-8 bg-accent rounded-full"></div>
-                      Персональные рекомендации
-                    </h3>
-                    <div className="space-y-3">
+                  <div className="mb-12">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-2 h-12 bg-gradient-to-b from-accent to-accent/50 rounded-full"></div>
+                      <h3 className="text-3xl md:text-4xl font-serif font-bold">
+                        Персональные рекомендации
+                      </h3>
+                    </div>
+                    <div className="grid gap-4">
                       {result.recommendations.map((rec, index) => (
                         <div 
                           key={index} 
-                          className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-background to-muted/30 border border-border/50 hover:border-accent/30 transition-all duration-300 animate-fade-in"
+                          className="group flex items-start gap-5 p-6 rounded-2xl bg-gradient-to-r from-background via-muted/20 to-background border border-border/50 hover:border-accent/30 hover:shadow-xl transition-all duration-500 animate-fade-in cursor-default"
                           style={{ animationDelay: `${0.1 * index}s` }}
                         >
-                          <div className="flex-shrink-0 mt-1">
-                            <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
-                              <Check className="w-4 h-4 text-accent" />
+                          <div className="flex-shrink-0 mt-1.5">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                              <span className="text-white font-bold text-sm">{index + 1}</span>
                             </div>
                           </div>
-                          <span className="text-foreground/90 leading-relaxed">{rec}</span>
+                          <span className="text-lg text-foreground/90 leading-relaxed font-light flex-1">{rec}</span>
                         </div>
                       ))}
                     </div>
@@ -265,7 +299,7 @@ const EnergyTest = () => {
 
                   {/* Action Links */}
                   {result.links && result.links.length > 0 && (
-                    <div className="space-y-3 mb-8">
+                    <div className="grid md:grid-cols-2 gap-4 mb-12">
                       {result.links.map((link, index) => (
                         <a
                           key={index}
@@ -274,10 +308,11 @@ const EnergyTest = () => {
                           rel="noopener noreferrer"
                           className="block group"
                         >
-                          <div className="p-5 rounded-xl bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-gold">
-                            <div className="flex items-center justify-between">
-                              <span className="font-semibold text-lg">{link.text}</span>
-                              <ArrowRight className="w-5 h-5 text-accent group-hover:translate-x-1 transition-transform" />
+                          <div className="relative p-8 rounded-2xl bg-gradient-to-br from-accent/15 via-accent/10 to-accent/5 border-2 border-accent/20 hover:border-accent/50 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="relative flex items-center justify-between">
+                              <span className="font-semibold text-xl">{link.text}</span>
+                              <ArrowRight className="w-6 h-6 text-accent group-hover:translate-x-2 transition-transform duration-500" />
                             </div>
                           </div>
                         </a>
@@ -286,34 +321,50 @@ const EnergyTest = () => {
                   )}
 
                   {/* Info Note */}
-                  <div className="bg-gradient-to-br from-muted/80 to-muted/50 rounded-2xl p-6 backdrop-blur border border-border/50">
-                    <p className="text-sm text-center text-muted-foreground leading-relaxed italic">
-                      💫 Напоминаем: тест даёт лишь ориентир. Чтобы точно понять свой уровень - приходите хотя бы на одну энергосессию и получите обратную связь от Анастасии.
+                  <div className="relative overflow-hidden bg-gradient-to-br from-muted/90 via-muted/70 to-muted/50 rounded-3xl p-8 backdrop-blur border border-border/50 mb-10">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
+                    <p className="text-base md:text-lg text-center text-muted-foreground leading-relaxed italic relative z-10">
+                      ✨ Тест даёт общий ориентир для понимания вашего текущего состояния. Для точной диагностики и персональных рекомендаций приходите на энергосессию и получите профессиональную обратную связь от Анастасии.
                     </p>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-8">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <Button
                       onClick={restartTest}
                       variant="outline"
                       size="lg"
-                      className="flex-1 h-14 text-lg border-2 hover:border-accent/50 hover:bg-accent/5"
+                      className="h-16 text-lg border-2 hover:border-accent/50 hover:bg-accent/5 transition-all duration-300 group"
                     >
-                      <ArrowLeft className="w-5 h-5 mr-2" />
+                      <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
                       Пройти тест заново
                     </Button>
                     <Button
                       onClick={() => window.location.href = '/masters'}
                       size="lg"
-                      className="flex-1 h-14 text-lg bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 shadow-gold"
+                      className="h-16 text-lg bg-gradient-to-r from-accent via-accent/90 to-accent/80 hover:from-accent/95 hover:via-accent/85 hover:to-accent/75 shadow-2xl shadow-accent/20 group relative overflow-hidden"
                     >
-                      Выбрать энерготерапевта
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                      <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                      <span className="relative flex items-center">
+                        Выбрать энерготерапевта
+                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </span>
                     </Button>
                   </div>
                 </div>
               </Card>
+
+              {/* Social Proof */}
+              <div className="text-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Более 7000 человек уже прошли этот тест
+                </p>
+                <div className="flex justify-center gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="w-4 h-4 fill-accent text-accent" />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </main>
@@ -357,120 +408,206 @@ const EnergyTest = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
               {/* Progress Header */}
-              <div className="mb-8">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Вопрос <span className="text-foreground font-semibold">{currentQuestion + 1}</span> из {questions.length}
-                  </span>
-                  <span className="text-sm font-semibold text-accent">
-                    {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
-                  </span>
+              <div className="mb-10">
+                <div className="flex justify-between items-center mb-4">
+                  <div>
+                    <span className="text-sm font-medium text-muted-foreground">
+                      Вопрос 
+                    </span>
+                    <span className="text-2xl font-bold text-foreground mx-2">{currentQuestion + 1}</span>
+                    <span className="text-sm text-muted-foreground">
+                      из {questions.length}
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">
+                      {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
+                    </div>
+                    <div className="text-xs text-muted-foreground">выполнено</div>
+                  </div>
                 </div>
-                <div className="relative h-2 bg-muted rounded-full overflow-hidden">
+                <div className="relative h-3 bg-gradient-to-r from-muted to-muted/50 rounded-full overflow-hidden shadow-inner">
                   <div 
-                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent to-accent/70 transition-all duration-500 ease-out rounded-full"
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent via-accent/90 to-accent/70 transition-all duration-700 ease-out rounded-full shadow-lg relative"
                     style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
                   >
-                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent animate-pulse"></div>
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg -mr-3 animate-pulse"></div>
                   </div>
                 </div>
               </div>
 
               {/* Question Card */}
-              <Card className="overflow-hidden border-0 shadow-2xl backdrop-blur">
-                <div className="h-1 bg-gradient-to-r from-accent via-accent/80 to-accent"></div>
+              <Card className="overflow-hidden border-0 shadow-2xl backdrop-blur-xl bg-background/95 transition-all duration-500">
+                <div className="h-1.5 bg-gradient-to-r from-accent via-accent/80 to-accent relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent animate-pulse"></div>
+                </div>
                 
-                <div className="p-8 md:p-12">
+                <div className="p-8 md:p-12 lg:p-16">
                   {/* Scale Guide */}
-                  <div className="mb-8 p-6 bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl border border-border/50">
-                    <p className="text-sm text-center font-semibold mb-4 text-foreground/90">
-                      Оцените утверждение по шкале:
+                  <div className="mb-10 p-8 bg-gradient-to-br from-muted/60 via-muted/40 to-muted/20 rounded-3xl border border-border/50 shadow-inner">
+                    <p className="text-base text-center font-semibold mb-6 text-foreground/90">
+                      Оцените утверждение по шкале от 0 до 3
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {[
-                        { num: 0, text: 'Нет, не про меня' },
-                        { num: 1, text: 'Иногда так бывает' },
-                        { num: 2, text: 'Часто замечаю' },
-                        { num: 3, text: 'Про меня постоянно' }
+                        { num: 0, text: 'Нет, не про меня', color: 'from-red-500/10 to-red-500/5' },
+                        { num: 1, text: 'Иногда так бывает', color: 'from-yellow-500/10 to-yellow-500/5' },
+                        { num: 2, text: 'Часто замечаю', color: 'from-green-500/10 to-green-500/5' },
+                        { num: 3, text: 'Про меня постоянно', color: 'from-blue-500/10 to-blue-500/5' }
                       ].map((item) => (
-                        <div key={item.num} className="text-center p-3 bg-background/50 rounded-xl border border-border/30">
-                          <div className="font-bold text-accent text-lg mb-1">{item.num}</div>
-                          <div className="text-muted-foreground leading-tight">{item.text}</div>
+                        <div 
+                          key={item.num} 
+                          className={`text-center p-4 bg-gradient-to-br ${item.color} rounded-2xl border border-border/30 transition-all duration-300 ${
+                            hoveredValue === item.num ? 'scale-105 shadow-lg' : ''
+                          }`}
+                          onMouseEnter={() => setHoveredValue(item.num)}
+                          onMouseLeave={() => setHoveredValue(null)}
+                        >
+                          <div className="font-bold text-accent text-2xl mb-2">{item.num}</div>
+                          <div className="text-muted-foreground text-sm leading-tight">{item.text}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Question */}
-                  <div className="mb-10">
-                    <h3 className="text-2xl md:text-3xl font-serif font-semibold leading-relaxed text-foreground/95 animate-fade-in">
+                  <div className={`mb-12 transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                    <div className="inline-block px-4 py-2 bg-accent/10 rounded-full mb-6">
+                      <span className="text-sm font-medium text-accent">Вопрос {currentQuestion + 1}</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-semibold leading-relaxed text-foreground mb-4">
                       {questions[currentQuestion]}
                     </h3>
+                    <div className="h-1 w-24 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
                   </div>
 
                   {/* Answer Buttons */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-                    {[0, 1, 2, 3].map((value, index) => (
-                      <Button
-                        key={value}
-                        onClick={() => handleAnswer(value)}
-                        variant={answers[currentQuestion] === value ? "default" : "outline"}
-                        className={`group relative h-24 text-2xl font-bold transition-all duration-300 overflow-hidden ${
-                          answers[currentQuestion] === value 
-                            ? "bg-gradient-to-br from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-white border-0 shadow-gold scale-105" 
-                            : "hover:border-accent/50 hover:bg-accent/5 border-2"
-                        }`}
-                        style={{ 
-                          animationDelay: `${0.1 + index * 0.05}s`,
-                          transform: answers[currentQuestion] === value ? 'scale(1.05)' : 'scale(1)'
-                        }}
-                      >
-                        <span className="relative z-10">{value}</span>
-                        {answers[currentQuestion] === value && (
-                          <div className="absolute inset-0 bg-white/10 animate-pulse"></div>
-                        )}
-                      </Button>
-                    ))}
+                  <div className={`grid grid-cols-2 md:grid-cols-4 gap-5 mb-12 transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                    {[0, 1, 2, 3].map((value, index) => {
+                      const isSelected = answers[currentQuestion] === value;
+                      const isHovered = hoveredValue === value;
+                      
+                      return (
+                        <Button
+                          key={value}
+                          onClick={() => handleAnswer(value)}
+                          onMouseEnter={() => setHoveredValue(value)}
+                          onMouseLeave={() => setHoveredValue(null)}
+                          variant={isSelected ? "default" : "outline"}
+                          className={`group relative h-32 text-3xl font-bold transition-all duration-500 overflow-hidden ${
+                            isSelected
+                              ? "bg-gradient-to-br from-accent via-accent/90 to-accent/80 text-white border-0 shadow-2xl shadow-accent/30 scale-105" 
+                              : isHovered
+                              ? "border-accent/60 bg-accent/10 border-2 scale-105 shadow-xl"
+                              : "hover:border-accent/40 hover:bg-accent/5 border-2 hover:scale-105 shadow-lg"
+                          }`}
+                          style={{ 
+                            animationDelay: `${0.1 + index * 0.05}s`
+                          }}
+                        >
+                          <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+                            {value}
+                          </span>
+                          
+                          {isSelected && (
+                            <>
+                              <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                              <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-transparent animate-shimmer"></div>
+                            </>
+                          )}
+                          
+                          {isHovered && !isSelected && (
+                            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          )}
+                          
+                          <div className={`absolute bottom-2 left-1/2 -translate-x-1/2 text-xs font-medium transition-opacity duration-300 ${
+                            isHovered || isSelected ? 'opacity-100' : 'opacity-0'
+                          }`}>
+                            {['Нет', 'Иногда', 'Часто', 'Постоянно'][value]}
+                          </div>
+                        </Button>
+                      );
+                    })}
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex gap-4">
+                  <div className="flex gap-6">
                     <Button
                       onClick={handlePrevious}
                       variant="outline"
                       disabled={currentQuestion === 0}
                       size="lg"
-                      className="flex-1 h-14 text-lg border-2 hover:border-accent/50 disabled:opacity-30"
+                      className="flex-1 h-16 text-lg border-2 hover:border-accent/50 hover:bg-accent/5 disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300 group"
                     >
-                      <ArrowLeft className="w-5 h-5 mr-2" />
-                      Назад
+                      <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                      <span className="hidden sm:inline">Предыдущий вопрос</span>
+                      <span className="sm:hidden">Назад</span>
                     </Button>
                     <Button
                       onClick={handleNext}
                       disabled={answers[currentQuestion] === undefined}
                       size="lg"
-                      className="flex-1 h-14 text-lg bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 disabled:opacity-50 shadow-gold"
+                      className="flex-1 h-16 text-lg bg-gradient-to-r from-accent via-accent/90 to-accent/80 hover:from-accent/95 hover:via-accent/85 hover:to-accent/75 disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-accent/20 transition-all duration-300 group relative overflow-hidden"
                     >
-                      {currentQuestion === questions.length - 1 ? (
-                        <>
-                          Показать результат
-                          <Trophy className="w-5 h-5 ml-2" />
-                        </>
-                      ) : (
-                        <>
-                          Далее
-                          <ArrowRight className="w-5 h-5 ml-2" />
-                        </>
-                      )}
+                      <div className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                      <span className="relative flex items-center">
+                        {currentQuestion === questions.length - 1 ? (
+                          <>
+                            <Trophy className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                            <span className="hidden sm:inline">Показать результат</span>
+                            <span className="sm:hidden">Результат</span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="hidden sm:inline">Следующий вопрос</span>
+                            <span className="sm:hidden">Далее</span>
+                            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                          </>
+                        )}
+                      </span>
                     </Button>
+                  </div>
+
+                  {/* Progress Dots */}
+                  <div className="flex justify-center gap-2 mt-10">
+                    {questions.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`h-2 rounded-full transition-all duration-500 ${
+                          index === currentQuestion 
+                            ? 'w-12 bg-gradient-to-r from-accent to-accent/70' 
+                            : index < currentQuestion
+                            ? 'w-2 bg-accent/50'
+                            : 'w-2 bg-muted'
+                        }`}
+                      />
+                    ))}
                   </div>
                 </div>
               </Card>
 
-              {/* Encouragement Text */}
-              <p className="text-center text-sm text-muted-foreground mt-8 animate-fade-in">
-                ✨ Отвечайте интуитивно, первое что приходит в голову
-              </p>
+              {/* Encouragement & Tips */}
+              <div className="mt-10 space-y-4">
+                <div className="text-center animate-fade-in">
+                  <p className="text-base text-muted-foreground">
+                    💫 Отвечайте интуитивно, доверяйте первому ощущению
+                  </p>
+                </div>
+                
+                <div className="grid md:grid-cols-3 gap-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                  {[
+                    { icon: Zap, text: 'Нет правильных ответов' },
+                    { icon: Heart, text: 'Будьте честны с собой' },
+                    { icon: Brain, text: 'Это займет ~3 минуты' }
+                  ].map((tip, index) => (
+                    <div key={index} className="flex items-center justify-center gap-3 p-4 rounded-2xl bg-muted/30 border border-border/30">
+                      <tip.icon className="w-5 h-5 text-accent" />
+                      <span className="text-sm text-foreground/80">{tip.text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
