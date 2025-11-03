@@ -93,10 +93,11 @@ const Training = () => {
             </p>
             <Button 
               size="lg"
+              onClick={() => window.open('https://t.me/era_academy', '_blank')}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6 animate-fade-in"
               style={{ animationDelay: '0.4s' }}
             >
-              Записаться на обучение
+              Записаться на обучение в Telegram
             </Button>
 
             {/* Author Info */}
@@ -243,9 +244,10 @@ const Training = () => {
             </p>
             <Button 
               size="lg"
+              onClick={() => window.open('https://t.me/era_academy', '_blank')}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
             >
-              Записаться на обучение
+              Записаться на обучение в Telegram
             </Button>
           </div>
         </section>

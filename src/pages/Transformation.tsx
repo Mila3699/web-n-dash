@@ -137,10 +137,11 @@ const Transformation = () => {
             </p>
             <Button 
               size="lg"
+              onClick={() => window.open('https://t.me/era_academy', '_blank')}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6 animate-fade-in"
               style={{ animationDelay: '0.4s' }}
             >
-              Принять участие
+              Записаться в Telegram
             </Button>
           </div>
         </section>
@@ -201,9 +202,10 @@ const Transformation = () => {
               <div className="text-center mt-12">
                 <Button 
                   size="lg"
+                  onClick={() => window.open('https://t.me/era_academy', '_blank')}
                   className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
                 >
-                  Забронировать место
+                  Забронировать место в Telegram
                 </Button>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, Instagram, Facebook, Youtube } from "lucide-react";
+import { Mail, Phone, Instagram, Youtube } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 export const Footer = () => {
@@ -27,17 +27,21 @@ export const Footer = () => {
               Единая экосистема для вашего роста, трансформации и обретения баланса через метод энерготерапии ERA
             </p>
             <div className="flex gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" 
+              <a href="https://instagram.com/era.academy" target="_blank" rel="noopener noreferrer" 
                 className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://vk.com/era_academy" target="_blank" rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
-                <Facebook className="w-5 h-5" />
+                <span className="font-bold text-sm">VK</span>
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://youtube.com/@era_academy" target="_blank" rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
                 <Youtube className="w-5 h-5" />
+              </a>
+              <a href="https://t.me/era_academy" target="_blank" rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
+                <span className="font-bold text-xs">TG</span>
               </a>
             </div>
           </div>
@@ -79,19 +83,27 @@ export const Footer = () => {
             <h4 className="text-lg font-serif font-semibold mb-6">Контакты</h4>
             <ul className="space-y-4">
               <li>
-                <a href="mailto:info@era-academy.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group">
+                <a href="mailto:hello@era-academy.ru" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group">
                   <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-all">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span>info@era-academy.com</span>
+                  <span>hello@era-academy.ru</span>
                 </a>
               </li>
               <li>
-                <a href="tel:+1234567890" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group">
+                <a href="tel:+79999999999" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group">
                   <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-all">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <span>+7 (XXX) XXX-XX-XX</span>
+                  <span>+7 (999) 999-99-99</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://t.me/era_academy" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group">
+                  <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-all">
+                    <span className="text-sm font-bold">TG</span>
+                  </div>
+                  <span>Telegram-канал</span>
                 </a>
               </li>
             </ul>
