@@ -32,6 +32,7 @@ const Navigation = () => {
             <Link to="/" className="text-brand-green hover:text-brand-gold transition-colors">Энергосессии</Link>
             <Link to="/transformation" className="text-brand-green hover:text-brand-gold transition-colors">Энергопрактикум</Link>
             <Link to="/training" className="text-brand-green hover:text-brand-gold transition-colors">Обучение</Link>
+            <Link to="/test" className="text-brand-green hover:text-brand-gold transition-colors">Тест</Link>
             <Link to="/masters" className="text-brand-green hover:text-brand-gold transition-colors">Каталог Мастеров</Link>
             
             {!userRole ? (
@@ -59,6 +60,7 @@ const Navigation = () => {
               <Link to="/" className="text-brand-green hover:text-brand-gold transition-colors" onClick={() => setIsOpen(false)}>Главная</Link>
               <Link to="/transformation" className="text-brand-green hover:text-brand-gold transition-colors" onClick={() => setIsOpen(false)}>Энергопрактикум</Link>
               <Link to="/training" className="text-brand-green hover:text-brand-gold transition-colors" onClick={() => setIsOpen(false)}>Обучение</Link>
+              <Link to="/test" className="text-brand-green hover:text-brand-gold transition-colors" onClick={() => setIsOpen(false)}>Тест</Link>
               <Link to="/masters" className="text-brand-green hover:text-brand-gold transition-colors" onClick={() => setIsOpen(false)}>Каталог Мастеров</Link>
             </div>
           </div>
