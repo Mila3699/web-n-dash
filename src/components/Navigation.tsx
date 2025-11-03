@@ -20,17 +20,17 @@ export const Navigation = () => {
             <Link to="/" className="text-foreground hover:text-accent transition-colors">
               Главная
             </Link>
-            <Link to="/sessions" className="text-foreground hover:text-accent transition-colors">
-              Энергосессии
-            </Link>
-            <Link to="/transformation" className="text-foreground hover:text-accent transition-colors">
-              Энергопрактикум
+            <Link to="/masters" className="text-foreground hover:text-accent transition-colors">
+              Мастера
             </Link>
             <Link to="/training" className="text-foreground hover:text-accent transition-colors">
               Обучение
             </Link>
-            <Link to="/masters" className="text-foreground hover:text-accent transition-colors">
-              Каталог Мастеров
+            <Link to="/transformation" className="text-foreground hover:text-accent transition-colors">
+              Практикум
+            </Link>
+            <Link to="/test" className="text-foreground hover:text-accent transition-colors">
+              Тест
             </Link>
           </div>
 
@@ -64,18 +64,11 @@ export const Navigation = () => {
                 Главная
               </Link>
               <Link 
-                to="/sessions" 
+                to="/masters" 
                 className="text-foreground hover:text-accent transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Энергосессии
-              </Link>
-              <Link 
-                to="/transformation" 
-                className="text-foreground hover:text-accent transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Энергопрактикум
+                Мастера
               </Link>
               <Link 
                 to="/training" 
@@ -85,11 +78,18 @@ export const Navigation = () => {
                 Обучение
               </Link>
               <Link 
-                to="/masters" 
+                to="/transformation" 
                 className="text-foreground hover:text-accent transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Каталог Мастеров
+                Практикум
+              </Link>
+              <Link 
+                to="/test" 
+                className="text-foreground hover:text-accent transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Тест
               </Link>
               <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
                 <Button variant="outline" className="w-full border-accent text-accent hover:bg-accent hover:text-accent-foreground">
