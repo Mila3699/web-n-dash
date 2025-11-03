@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Check } from "lucide-react";
 import { testQuestions } from "@/data/testQuestions";
+import confetti from "canvas-confetti";
 
 const EnergyTest = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -129,6 +130,45 @@ const EnergyTest = () => {
     setShowResult(true);
   };
 
+  useEffect(() => {
+    if (showResult) {
+      // Запускаем конфетти при показе результатов
+      const duration = 3000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+      function randomInRange(min: number, max: number) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval: any = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        
+        // Золотые и зеленые цвета для конфетти
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          colors: ['#b4a068', '#193c2e', '#fdfcf7', '#d4af37']
+        });
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          colors: ['#b4a068', '#193c2e', '#fdfcf7', '#d4af37']
+        });
+      }, 250);
+
+      return () => clearInterval(interval);
+    }
+  }, [showResult]);
+
   const restartTest = () => {
     setShowResult(false);
     setCurrentQuestion(0);
@@ -146,7 +186,7 @@ const EnergyTest = () => {
         <main className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-3xl mx-auto">
-              <Card className="p-8 shadow-soft border-border/50">
+              <Card className="p-8 shadow-soft border-border/50 animate-scale-in">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10 mb-4">
                     <span className="text-3xl font-bold text-accent">{score}</span>
@@ -284,21 +324,22 @@ const EnergyTest = () => {
                 </div>
               </div>
 
-              <h3 className="text-xl font-semibold mb-8">
+              <h3 className="text-xl font-semibold mb-8 animate-fade-in">
                 {questions[currentQuestion]}
               </h3>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-                {[0, 1, 2, 3].map((value) => (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+                {[0, 1, 2, 3].map((value, index) => (
                   <Button
                     key={value}
                     onClick={() => handleAnswer(value)}
                     variant={answers[currentQuestion] === value ? "default" : "outline"}
-                    className={`h-auto py-6 text-lg font-bold ${
+                    className={`h-auto py-6 text-lg font-bold transition-all duration-300 hover-scale ${
                       answers[currentQuestion] === value 
-                        ? "bg-accent hover:bg-accent/90" 
+                        ? "bg-accent hover:bg-accent/90 shadow-gold" 
                         : ""
                     }`}
+                    style={{ animationDelay: `${0.1 + index * 0.05}s` }}
                   >
                     {value}
                   </Button>
