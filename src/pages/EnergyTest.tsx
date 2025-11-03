@@ -5,107 +5,115 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Sparkles, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
+import { testQuestions } from "@/data/testQuestions";
 
 const EnergyTest = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [showResults, setShowResults] = useState(false);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const [showResult, setShowResult] = useState(false);
+  const [score, setScore] = useState(0);
 
-  const questions = [
-    {
-      id: 1,
-      question: "Как часто вы чувствуете усталость без видимых причин?",
-      options: [
-        { value: "1", label: "Редко или никогда", points: 1 },
-        { value: "2", label: "Иногда", points: 2 },
-        { value: "3", label: "Часто", points: 3 },
-        { value: "4", label: "Постоянно", points: 4 }
-      ]
-    },
-    {
-      id: 2,
-      question: "Насколько легко вам концентрироваться на важных задачах?",
-      options: [
-        { value: "1", label: "Очень легко", points: 1 },
-        { value: "2", label: "Достаточно легко", points: 2 },
-        { value: "3", label: "С трудом", points: 3 },
-        { value: "4", label: "Очень сложно", points: 4 }
-      ]
-    },
-    {
-      id: 3,
-      question: "Как вы оцениваете качество своего сна?",
-      options: [
-        { value: "1", label: "Отличное", points: 1 },
-        { value: "2", label: "Хорошее", points: 2 },
-        { value: "3", label: "Удовлетворительное", points: 3 },
-        { value: "4", label: "Плохое", points: 4 }
-      ]
-    },
-    {
-      id: 4,
-      question: "Насколько вы удовлетворены своими отношениями с окружающими?",
-      options: [
-        { value: "1", label: "Полностью удовлетворен", points: 1 },
-        { value: "2", label: "В основном удовлетворен", points: 2 },
-        { value: "3", label: "Не очень удовлетворен", points: 3 },
-        { value: "4", label: "Совсем не удовлетворен", points: 4 }
-      ]
-    },
-    {
-      id: 5,
-      question: "Как часто вы испытываете тревогу или беспокойство?",
-      options: [
-        { value: "1", label: "Редко", points: 1 },
-        { value: "2", label: "Иногда", points: 2 },
-        { value: "3", label: "Часто", points: 3 },
-        { value: "4", label: "Постоянно", points: 4 }
-      ]
-    },
-    {
-      id: 6,
-      question: "Чувствуете ли вы, что реализуете свой потенциал?",
-      options: [
-        { value: "1", label: "Да, полностью", points: 1 },
-        { value: "2", label: "В основном да", points: 2 },
-        { value: "3", label: "Не совсем", points: 3 },
-        { value: "4", label: "Нет", points: 4 }
-      ]
-    },
-    {
-      id: 7,
-      question: "Как вы оцениваете свой уровень жизненной энергии?",
-      options: [
-        { value: "1", label: "Очень высокий", points: 1 },
-        { value: "2", label: "Средний", points: 2 },
-        { value: "3", label: "Низкий", points: 3 },
-        { value: "4", label: "Очень низкий", points: 4 }
-      ]
-    },
-    {
-      id: 8,
-      question: "Насколько легко вам принимать важные решения?",
-      options: [
-        { value: "1", label: "Очень легко", points: 1 },
-        { value: "2", label: "Достаточно легко", points: 2 },
-        { value: "3", label: "С трудом", points: 3 },
-        { value: "4", label: "Очень сложно", points: 4 }
-      ]
+  const questions = testQuestions;
+
+  const getResultInterpretation = (score: number) => {
+    if (score <= 19) {
+      return {
+        level: "Кундалини пока «спит»",
+        description: "Канал закрыт, тело зажато, энергия течёт слабо. Возможно, вы даже не чувствуете связь со своим телом и интуицией. Скорее всего, подавляете эмоции, закрываете сердце, чтобы не чувствовать боли, есть эмоциональные блоки, подсознательные страхи.",
+        details: "У вас огромный потенциал и ваша энергоемкость и внутренняя сила практически не раскрыты. Активировав энергию кундалини - свою жизненную энергию, вы сможете в своей жизни запустить большие изменения во всех ее сферах.",
+        recommendations: [
+          "Начните с нескольких энергосессий активации Кундалини, чтобы постепенно пробудить энергию.",
+          "Каждая сессия будет мягко убирать блоки, возвращать чувствительность, раскрывать сердце и включать естественные процессы в теле.",
+          "Вы заметите первые изменения: больше энергии, спокойствия, улучшение сна и состояния здоровья, сердце начнет открываться любви."
+        ],
+        links: [
+          { text: "Онлайн-энергосессия", url: "https://anastasiasolo.ru/kundalini-activation" },
+          { text: "Энергопрактикум «Трансформация»", url: "https://era-academy.com/transformation" }
+        ],
+        color: "text-red-600"
+      };
+    } else if (score <= 32) {
+      return {
+        level: "Частичная чувствительность",
+        description: "У вас уже есть определённая чувствительность и движение энергии, но пока она идёт рывками. Частично активируются только верхние или только нижние центры, баланс не выстроен.",
+        details: "У вас большой потенциал в раскрытии своих способностей и активации своей внутренней силы.",
+        recommendations: [
+          "Приходите на сессию активации кундалини, несколько сессий помогут вам выровнять поток, раскрыть сердце, усилить интуицию.",
+          "Энергия начнёт циркулировать равномерно, ее станет заметно больше, перестанете часто уставать, уйдёт внутреннее напряжение, усилится контакт с телом и сердцем.",
+          "Если вы работаете с людьми (помогающий практик), вы начнете сильнее их чувствовать и читать их поле. Усилите свою энергию и научитесь управлять ей, чтобы не выгорать."
+        ],
+        links: [
+          { text: "Онлайн-энергосессия", url: "https://anastasiasolo.ru/kundalini-activation" },
+          { text: "Энергопрактикум «Трансформация»", url: "https://era-academy.com/transformation" }
+        ],
+        color: "text-orange-600"
+      };
+    } else if (score <= 43) {
+      return {
+        level: "Кундалини частично активирована",
+        description: "Но есть куда расширять свой канал и усилить ее. Вы уже проходили внутренние трансформации и чувствовали движение энергии, но оно нестабильно. Поток легко сбивается стрессом или нагрузкой.",
+        details: "Скорее всего, вы работаете над собой, пробуете разные инструменты, убираете блоки, ищите себя. Это классно! Но ваш потенциал гораздо больше. Вы можете значительно расширить свой энергоканал, активировав кундалини и качественно изменить свою жизнь, ускорив свои трансформации.",
+        recommendations: [
+          "Вам хватит нескольких сессий для расширения своего энергоканала.",
+          "Если вы работаете с людьми (помогающий практик), вы начнете сильнее их чувствовать и читать их поле.",
+          "После сессий вы почувствуете устойчивое чувство внутренней силы, ясное восприятие, рост интуиции и ясночувствования, раскрытие сердца — поток безусловной любви ко всем.",
+          "Из вас получится хороший проводник-фасилитатор энергии кундалини, если вам интересно идти глубже и дальше в свои трансформации и в работу с людьми."
+        ],
+        links: [
+          { text: "Онлайн-энергосессия", url: "https://anastasiasolo.ru/kundalini-activation" },
+          { text: "Энергопрактикум «Трансформация»", url: "https://era-academy.com/transformation" }
+        ],
+        color: "text-yellow-600"
+      };
+    } else if (score <= 51) {
+      return {
+        level: "Кундалини активно проявлена",
+        description: "Канал работает, поток сильный, тело проводит энергию. Скорее всего, вы уже много работали над собой, проходили мощные трансформации и готовы к следующему шагу.",
+        details: "Возможно, для еще более мощной проводимости нужно дораскрыть сердечный центр.",
+        recommendations: [
+          "Обязательно пройдите хотя бы одну сессию у Анастасии, чтобы получить обратную связь о вашей готовности к дальнейшему раскрытию канала.",
+          "Если вы работаете с людьми (помогающий практик), вы начнете еще сильнее их чувствовать и читать их поле.",
+          "Даже одна практика на этом уровне даст очень глубокий эффект: расширение сознания, усиление способностей, ощущение лёгкости и внутренней тишины.",
+          "Из вас получится хороший проводник-фасилитатор энергии кундалини, если вам интересно идти глубже и дальше в свои трансформации и в работу с людьми."
+        ],
+        links: [
+          { text: "Онлайн-энергосессия", url: "https://anastasiasolo.ru/kundalini-activation" },
+          { text: "Энергопрактикум «Трансформация»", url: "https://era-academy.com/transformation" }
+        ],
+        color: "text-green-600"
+      };
+    } else {
+      return {
+        level: "Вы живёте в потоке",
+        description: "У вас прокаченный энергоканал, вы сильный проводник. Ваш канал готов к постоянному проведению энергии. Возможно у вас уже активированы способности — яснознание, ясновидение и др.",
+        details: "Скорее всего, вы уже работаете с людьми, возможно иногда чувствуете выгорание, так как не умеете управлять своей энергией. Возможно, иногда нарушается баланс между духовным и материальным.",
+        recommendations: [
+          "Самый логичный шаг для вас, обучение на энерготерапевта-фасилитатора Кундалини и Non-duality энергии.",
+          "Вы сможете активировать энергию другим, проводить глубокие трансформации, стать сильным проводником.",
+          "Это может стать не просто новой профессией, а новым этапом вашей жизни и развития.",
+          "А если вы работаете с людьми с помощью других инструментов и методов, то обучение на энерготерапевта еще больше расширит ваш канал проводника.",
+          "Обязательно пройдите хотя бы одну энергосессию, чтобы получить обратную связь о вашей готовности к дальнейшему раскрытию канала."
+        ],
+        links: [
+          { text: "Онлайн-энергосессия", url: "https://anastasiasolo.ru/kundalini-activation" }
+        ],
+        color: "text-blue-600"
+      };
     }
-  ];
+  };
 
-  const handleAnswer = (value: string) => {
-    setAnswers({ ...answers, [currentQuestion]: value });
+  const handleAnswer = (value: number) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = value;
+    setAnswers(newAnswers);
   };
 
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setShowResults(true);
+      calculateResult();
     }
   };
 
@@ -115,52 +123,21 @@ const EnergyTest = () => {
     }
   };
 
-  const calculateResults = () => {
-    let totalPoints = 0;
-    Object.entries(answers).forEach(([questionIndex, answerValue]) => {
-      const question = questions[parseInt(questionIndex)];
-      const option = question.options.find(opt => opt.value === answerValue);
-      if (option) {
-        totalPoints += option.points;
-      }
-    });
-    return totalPoints;
+  const calculateResult = () => {
+    const totalScore = answers.reduce((sum, answer) => sum + answer, 0);
+    setScore(totalScore);
+    setShowResult(true);
   };
 
-  const getResultsMessage = (points: number) => {
-    if (points <= 12) {
-      return {
-        level: "Высокий",
-        color: "text-green-600",
-        icon: CheckCircle2,
-        message: "Ваша энергосистема находится в хорошем состоянии! Вы обладаете высоким уровнем энергии и хорошо сбалансированы. Энергосессии ERA помогут вам раскрыть ещё больший потенциал и выйти на новый уровень.",
-        recommendation: "Рекомендуем пройти 1-3 энергосессии для максимального раскрытия потенциала."
-      };
-    } else if (points <= 20) {
-      return {
-        level: "Средний",
-        color: "text-yellow-600",
-        icon: AlertCircle,
-        message: "Ваша энергосистема работает, но есть блоки и зажимы, которые мешают полноценно проявляться. Вы можете чувствовать усталость, сложности с концентрацией или неудовлетворённость в некоторых сферах жизни.",
-        recommendation: "Рекомендуем пройти курс из 5-8 энергосессий для восстановления баланса."
-      };
-    } else {
-      return {
-        level: "Требует внимания",
-        color: "text-red-600",
-        icon: AlertCircle,
-        message: "Ваша энергосистема истощена и требует глубокой работы. Вероятно, вы испытываете хроническую усталость, тревожность, сложности с реализацией. Важно начать работу с энергией как можно скорее.",
-        recommendation: "Рекомендуем пройти интенсивный курс энергосессий (10-15 сессий) и рассмотреть участие в практикуме 'Трансформация'."
-      };
-    }
+  const restartTest = () => {
+    setShowResult(false);
+    setCurrentQuestion(0);
+    setAnswers([]);
+    setScore(0);
   };
 
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
-
-  if (showResults) {
-    const totalPoints = calculateResults();
-    const results = getResultsMessage(totalPoints);
-    const ResultIcon = results.icon;
+  if (showResult) {
+    const result = getResultInterpretation(score);
 
     return (
       <div className="min-h-screen">
@@ -169,54 +146,78 @@ const EnergyTest = () => {
         <main className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-3xl mx-auto">
-              <Card className="p-8 md:p-12 shadow-soft border-border/50">
+              <Card className="p-8 shadow-soft border-border/50">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10 mb-4">
-                    <ResultIcon className={`w-10 h-10 ${results.color}`} />
+                    <span className="text-3xl font-bold text-accent">{score}</span>
                   </div>
-                  <h2 className="text-3xl font-serif font-bold mb-2">
-                    Результаты теста
+                  <p className="text-sm text-muted-foreground mb-2">баллов из 57</p>
+                  <h2 className={`text-3xl font-serif font-bold mb-4 ${result.color}`}>
+                    {result.level}
                   </h2>
-                  <Badge className={`${results.color} text-lg px-4 py-1`}>
-                    Уровень энергии: {results.level}
-                  </Badge>
+                  <p className="text-lg text-foreground/80 mb-4">
+                    {result.description}
+                  </p>
+                  {result.details && (
+                    <p className="text-foreground/70 mb-6">
+                      {result.details}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-6">
-                  <div className="bg-muted/30 rounded-lg p-6">
-                    <p className="text-lg text-foreground/80 leading-relaxed">
-                      {results.message}
-                    </p>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Рекомендации:</h3>
+                    <ul className="space-y-3 mb-6">
+                      {result.recommendations.map((rec, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                          <span className="text-foreground/80">{rec}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {result.links && result.links.length > 0 && (
+                      <div className="space-y-3 mb-6">
+                        {result.links.map((link, index) => (
+                          <a
+                            key={index}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block"
+                          >
+                            <Button
+                              variant="outline"
+                              className="w-full hover:bg-accent/10"
+                            >
+                              {link.text} →
+                            </Button>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+
+                    <div className="p-4 bg-muted/30 rounded-lg">
+                      <p className="text-sm text-center text-muted-foreground italic">
+                        Напоминаем: тест даёт лишь ориентир. Чтобы точно понять свой уровень - приходите хотя бы на одну энергосессию и получите обратную связь от Анастасии.
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="bg-accent/10 rounded-lg p-6 border border-accent/20">
-                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-accent" />
-                      Рекомендации
-                    </h3>
-                    <p className="text-foreground/80 leading-relaxed">
-                      {results.recommendation}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Button 
-                      size="lg"
-                      className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold"
-                    >
-                      Записаться на энергосессию
-                    </Button>
-                    <Button 
-                      size="lg"
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={restartTest}
                       variant="outline"
                       className="flex-1"
-                      onClick={() => {
-                        setShowResults(false);
-                        setCurrentQuestion(0);
-                        setAnswers({});
-                      }}
                     >
                       Пройти тест заново
+                    </Button>
+                    <Button
+                      onClick={() => window.location.href = '/masters'}
+                      className="flex-1 bg-accent hover:bg-accent/90"
+                    >
+                      Выбрать энерготерапевта
                     </Button>
                   </div>
                 </div>
@@ -244,8 +245,11 @@ const EnergyTest = () => {
               <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">
                 Анализ состояния вашей энергосистемы
               </h1>
-              <p className="text-xl text-white/90">
-                Ответьте на {questions.length} вопросов, чтобы узнать уровень потенциала вашей энергосистемы
+              <p className="text-xl text-white/90 mb-4">
+                Уровень её потенциала
+              </p>
+              <p className="text-lg text-white/80">
+                Ответьте на {questions.length} вопросов по шкале от 0 до 3
               </p>
             </div>
           </div>
@@ -257,42 +261,54 @@ const EnergyTest = () => {
 
             <Card className="p-8 shadow-soft border-border/50">
               <div className="mb-6">
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-4">
                   <span className="text-sm text-muted-foreground">
                     Вопрос {currentQuestion + 1} из {questions.length}
                   </span>
-                  <span className="text-sm font-semibold">
-                    {Math.round(progress)}%
+                  <span className="text-sm text-muted-foreground">
+                    {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
                   </span>
                 </div>
-                <Progress value={progress} className="h-2" />
+                <Progress value={((currentQuestion + 1) / questions.length) * 100} className="mb-6" />
               </div>
 
-              <div className="mb-8">
-                <h2 className="text-2xl font-serif font-bold mb-6">
-                  {questions[currentQuestion].question}
-                </h2>
-                
-                <RadioGroup 
-                  value={answers[currentQuestion]} 
-                  onValueChange={handleAnswer}
-                  className="space-y-3"
-                >
-                  {questions[currentQuestion].options.map((option) => (
-                    <div key={option.value} className="flex items-center space-x-3 p-4 rounded-lg border border-border hover:bg-muted/50 transition-colors">
-                      <RadioGroupItem value={option.value} id={option.value} />
-                      <Label htmlFor={option.value} className="flex-1 cursor-pointer">
-                        {option.label}
-                      </Label>
-                    </div>
-                  ))}
-                </RadioGroup>
+              <div className="mb-6 p-4 bg-muted/30 rounded-lg">
+                <p className="text-sm text-center font-medium">
+                  Отвечайте по шкале:
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 text-xs text-muted-foreground">
+                  <div className="text-center">0 — нет, не про меня</div>
+                  <div className="text-center">1 — иногда так бывает</div>
+                  <div className="text-center">2 — часто замечаю</div>
+                  <div className="text-center">3 — это про меня постоянно</div>
+                </div>
+              </div>
+
+              <h3 className="text-xl font-semibold mb-8">
+                {questions[currentQuestion]}
+              </h3>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+                {[0, 1, 2, 3].map((value) => (
+                  <Button
+                    key={value}
+                    onClick={() => handleAnswer(value)}
+                    variant={answers[currentQuestion] === value ? "default" : "outline"}
+                    className={`h-auto py-6 text-lg font-bold ${
+                      answers[currentQuestion] === value 
+                        ? "bg-accent hover:bg-accent/90" 
+                        : ""
+                    }`}
+                  >
+                    {value}
+                  </Button>
+                ))}
               </div>
 
               <div className="flex gap-4">
                 <Button
-                  variant="outline"
                   onClick={handlePrevious}
+                  variant="outline"
                   disabled={currentQuestion === 0}
                   className="flex-1"
                 >
@@ -300,10 +316,10 @@ const EnergyTest = () => {
                 </Button>
                 <Button
                   onClick={handleNext}
-                  disabled={!answers[currentQuestion]}
-                  className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground"
+                  disabled={answers[currentQuestion] === undefined}
+                  className="flex-1 bg-accent hover:bg-accent/90"
                 >
-                  {currentQuestion === questions.length - 1 ? 'Получить результаты' : 'Далее'}
+                  {currentQuestion === questions.length - 1 ? "Показать результат" : "Далее"}
                 </Button>
               </div>
             </Card>
