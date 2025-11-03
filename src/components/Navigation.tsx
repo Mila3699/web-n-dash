@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,8 +25,12 @@ const Navigation = () => {
       <div className="container mx-auto">
         <div className="glass rounded-2xl shadow-float border border-border/50 px-6">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="font-serif text-2xl font-bold text-brand-green relative group">
-              <span className="relative z-10">ERA</span>
+            <Link to="/" className="relative group flex items-center">
+              <img 
+                src={logo} 
+                alt="ERA - Energy Realization Academy" 
+                className="h-12 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105"
+              />
               <span className="absolute inset-0 bg-accent/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
 
