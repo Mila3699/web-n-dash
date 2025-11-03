@@ -3,7 +3,8 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Star, Calendar } from "lucide-react";
+import { MapPin, Star, Calendar, User } from "lucide-react";
+import { Link } from "react-router-dom";
 import { safeOpenLink } from "@/lib/sanitize";
 
 const Masters = () => {
@@ -122,16 +123,12 @@ const Masters = () => {
                     </div>
                   </div>
 
-                  <Button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      safeOpenLink('https://t.me/era_academy');
-                    }}
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
-                  >
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Записаться в Telegram
-                  </Button>
+                  <Link to={`/master/${master.id}`}>
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                      <User className="w-4 h-4 mr-2" />
+                      Смотреть профиль
+                    </Button>
+                  </Link>
                 </Card>
               ))}
             </div>
