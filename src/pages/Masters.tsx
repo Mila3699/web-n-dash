@@ -3,49 +3,34 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Star, Calendar, User } from "lucide-react";
+import { MapPin, Star, User, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
 import { safeOpenLink } from "@/lib/sanitize";
+import { mockMasters } from "@/data/mockMasters";
+import { MastersMap } from "@/components/MastersMap";
+import { useState, useMemo } from "react";
 
 const Masters = () => {
-  const masters = [
-    {
-      id: 1,
-      name: "Анастасия Соло",
-      title: "Основатель метода ERA",
-      location: "Онлайн",
-      experience: "7000+ активаций",
-      rating: 5.0,
-      reviews: 250,
-      specialization: ["Активация Кундалини", "Глубокая трансформация", "Чтение поля"],
-      image: "/placeholder.svg",
-      isFeatured: true
-    },
-    {
-      id: 2,
-      name: "Мария Светлова",
-      title: "Энерготерапевт ERA",
-      location: "Москва / Онлайн",
-      experience: "3 года практики",
-      rating: 4.9,
-      reviews: 120,
-      specialization: ["Энергосессии", "Работа с блоками", "Восстановление энергосистемы"],
-      image: "/placeholder.svg",
-      isFeatured: false
-    },
-    {
-      id: 3,
-      name: "Елена Северная",
-      title: "Энерготерапевт ERA",
-      location: "Санкт-Петербург / Онлайн",
-      experience: "2 года практики",
-      rating: 4.8,
-      reviews: 85,
-      specialization: ["Групповые сессии", "Очищение поля", "Балансировка чакр"],
-      image: "/placeholder.svg",
-      isFeatured: false
-    }
-  ];
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+
+  // Получаем все уникальные города
+  const allCities = useMemo(() => {
+    const citiesSet = new Set<string>();
+    mockMasters.forEach(master => {
+      master.cities.forEach(city => citiesSet.add(city));
+    });
+    return Array.from(citiesSet).sort();
+  }, []);
+
+  // Фильтруем мастеров по выбранному городу
+  const filteredMasters = useMemo(() => {
+    if (!selectedCity) return mockMasters;
+    return mockMasters.filter(master => master.cities.includes(selectedCity));
+  }, [selectedCity]);
+
+  const handleCityClick = (city: string) => {
+    setSelectedCity(selectedCity === city ? null : city);
+  };
 
   return (
     <div className="min-h-screen">
@@ -68,26 +53,66 @@ const Masters = () => {
           </div>
         </section>
 
+        {/* Map Section */}
+        <section className="py-12 bg-muted/30">
+          <div className="container mx-auto px-4 sm:px-6">
+            <h2 className="text-3xl font-serif font-bold mb-6 text-center">
+              География наших специалистов
+            </h2>
+            <MastersMap 
+              cities={allCities} 
+              selectedCity={selectedCity}
+              onCityClick={handleCityClick}
+            />
+          </div>
+        </section>
+
+        {/* City Filter */}
+        <section className="py-8 bg-background border-b border-border">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Filter className="w-5 h-5 text-accent" />
+              <h3 className="text-lg font-semibold">Фильтр по городам:</h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant={selectedCity === null ? "default" : "outline"}
+                onClick={() => setSelectedCity(null)}
+                className="text-sm"
+              >
+                Все города
+              </Button>
+              {allCities.map((city) => (
+                <Button
+                  key={city}
+                  variant={selectedCity === city ? "default" : "outline"}
+                  onClick={() => handleCityClick(city)}
+                  className="text-sm"
+                >
+                  {city}
+                </Button>
+              ))}
+            </div>
+            {selectedCity && (
+              <p className="text-sm text-muted-foreground mt-4">
+                Показано мастеров: {filteredMasters.length}
+              </p>
+            )}
+          </div>
+        </section>
+
         {/* Masters Grid */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {masters.map((master) => (
+              {filteredMasters.map((master) => (
                 <Card 
                   key={master.id} 
-                  className={`p-6 shadow-soft border-border/50 hover:shadow-gold transition-all ${
-                    master.isFeatured ? 'ring-2 ring-accent' : ''
-                  }`}
+                  className="p-6 shadow-soft border-border/50 hover:shadow-gold transition-all"
                 >
-                  {master.isFeatured && (
-                    <Badge className="mb-4 bg-accent text-accent-foreground">
-                      Основатель метода
-                    </Badge>
-                  )}
-                  
                   <div className="aspect-square bg-muted rounded-xl mb-4 overflow-hidden">
                     <img 
-                      src={master.image} 
+                      src={master.photo} 
                       alt={master.name}
                       className="w-full h-full object-cover"
                     />
@@ -96,28 +121,36 @@ const Masters = () => {
                   <h3 className="text-2xl font-serif font-bold mb-1">
                     {master.name}
                   </h3>
-                  <p className="text-muted-foreground mb-3">{master.title}</p>
+                  <p className="text-muted-foreground mb-3">{master.description}</p>
 
                   <div className="flex items-center gap-2 mb-3">
                     <MapPin className="w-4 h-4 text-accent" />
-                    <span className="text-sm text-foreground/80">{master.location}</span>
+                    <span className="text-sm text-foreground/80">
+                      {master.cities.join(', ')}
+                    </span>
                   </div>
 
                   <div className="flex items-center gap-4 mb-4">
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-accent text-accent" />
-                      <span className="font-semibold">{master.rating}</span>
-                      <span className="text-sm text-muted-foreground">({master.reviews})</span>
+                      <span className="font-semibold">
+                        {master.pulse.reviews.length > 0 ? '5.0' : '—'}
+                      </span>
+                      <span className="text-sm text-muted-foreground">
+                        ({master.pulse.reviews.length})
+                      </span>
                     </div>
-                    <span className="text-sm text-muted-foreground">{master.experience}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {master.pulse.sessionsMonth} сессий/мес
+                    </span>
                   </div>
 
                   <div className="mb-4">
-                    <p className="text-sm font-semibold mb-2">Специализация:</p>
+                    <p className="text-sm font-semibold mb-2">Отзывы:</p>
                     <div className="flex flex-wrap gap-2">
-                      {master.specialization.map((spec, index) => (
+                      {master.pulse.reviews.slice(0, 5).map((review, index) => (
                         <Badge key={index} variant="outline" className="text-xs">
-                          {spec}
+                          {review}
                         </Badge>
                       ))}
                     </div>
