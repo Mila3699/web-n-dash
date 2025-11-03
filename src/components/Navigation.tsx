@@ -67,7 +67,7 @@ const Navigation = () => {
               <img 
                 src={logo} 
                 alt="ERA - Energy Realization Academy" 
-                className="h-20 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105"
+                className="h-14 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105"
               />
               <span className="absolute inset-0 bg-accent/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>

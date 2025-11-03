@@ -47,45 +47,43 @@ export const SessionsSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 mb-20">
-          <div className="space-y-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="glass rounded-3xl p-10 shadow-float border border-border/50 interactive-card">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-6">
-                <Brain className="w-7 h-7 text-accent" />
+        <div className="grid lg:grid-cols-2 gap-20 mb-24">
+          <div className="space-y-10 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <div className="glass rounded-3xl p-12 shadow-float border border-border/50 interactive-card hover:border-accent/30">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-8">
+                <Brain className="w-8 h-8 text-accent" />
               </div>
-              <h3 className="text-3xl font-serif font-semibold mb-6">
-                Что такое Энергосессия?
+              <h3 className="text-4xl font-serif font-semibold mb-8 leading-tight">
+                Что такое<br/>Энергосессия?
               </h3>
-              <div className="space-y-4 text-lg text-foreground/70 leading-relaxed">
+              <div className="space-y-6 text-lg text-foreground/70 leading-relaxed">
                 <p>
-                  Это не физическая практика и не массаж. Это процесс активации вашей собственной 
-                  внутренней энергии через поле мастера-проводника.
+                  Это активация вашей внутренней энергии через поле мастера-проводника.
                 </p>
                 <p>
-                  Вы просто лежите, расслабляетесь под музыку и позволяете энергии работать, 
-                  высвобождая блоки, снимая напряжение и наполняя вас ресурсом.
+                  Вы лежите, расслабляетесь под музыку — энергия работает сама, высвобождая блоки и наполняя ресурсом.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="space-y-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <h3 className="text-3xl font-serif font-semibold mb-8">
-              Что вы можете почувствовать?
+          <div className="space-y-5 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+            <h3 className="text-4xl font-serif font-semibold mb-10 leading-tight">
+              Что вы<br/>почувствуете?
             </h3>
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <Card 
                   key={index} 
-                  className="p-6 shadow-soft border-border/50 hover:shadow-gold interactive-card bg-card/50 backdrop-blur-sm group"
+                  className="p-7 shadow-soft border-border/50 hover:shadow-float interactive-card bg-white/80 backdrop-blur-sm group hover:border-accent/30"
                   style={{ animationDelay: `${0.4 + index * 0.05}s` }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-6 h-6 text-accent" />
+                  <div className="flex items-start gap-5">
+                    <div className="p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                      <Icon className="w-7 h-7 text-accent" />
                     </div>
-                    <p className="text-foreground flex-1 pt-2 text-lg leading-relaxed">{benefit.title}</p>
+                    <p className="text-foreground flex-1 pt-3 text-lg leading-relaxed font-light">{benefit.title}</p>
                   </div>
                 </Card>
               );
@@ -95,16 +93,13 @@ export const SessionsSection = () => {
 
         <div className="text-center animate-slide-up" style={{ animationDelay: '0.5s' }}>
           <Link to="/masters">
-            <Button 
-              size="lg"
-              className="group relative bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold hover:shadow-float text-xl px-12 py-8 overflow-hidden transition-all duration-300 hover:scale-105"
-            >
+            <button className="group relative bg-accent hover:bg-accent/90 text-white font-semibold text-xl px-14 py-7 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_15px_40px_-10px_rgba(180,160,104,0.4)] hover:shadow-[0_20px_60px_-10px_rgba(180,160,104,0.6)]">
               <span className="relative z-10 flex items-center gap-3">
                 Записаться к энерготерапевту
-                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                <span className="inline-block transition-transform group-hover:translate-x-1 text-2xl">→</span>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-            </Button>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+            </button>
           </Link>
         </div>
       </div>
