@@ -55,7 +55,7 @@ const Masters = () => {
         {/* Hero Section */}
         <section className="relative py-20 bg-brand-green">
           <div className="container mx-auto px-4 sm:px-6 text-center">
-            <Badge className="mb-6 bg-accent/20 text-accent-foreground border-accent">
+            <Badge className="mb-6 bg-accent/10 text-accent border border-accent/20">
               Наши энерготерапевты
             </Badge>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
