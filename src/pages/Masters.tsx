@@ -51,7 +51,7 @@ const Masters = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 gradient-hero">
+        <section className="relative py-20 bg-brand-green">
           <div className="container mx-auto px-4 sm:px-6 text-center">
             <Badge className="mb-6 bg-accent/20 text-accent-foreground border-accent">
               Наши энерготерапевты

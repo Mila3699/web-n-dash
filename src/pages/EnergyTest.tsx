@@ -234,20 +234,26 @@ const EnergyTest = () => {
     <div className="min-h-screen">
       <Navigation />
       
-      <main className="py-20 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <Badge className="mb-4 bg-accent/20 text-accent-foreground border-accent">
+      <main>
+        <section className="bg-brand-green py-20">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl mx-auto text-center">
+              <Badge className="mb-4 bg-white/20 text-white border-white/30">
                 Тест энергосистемы
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
+              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">
                 Анализ состояния вашей энергосистемы
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-white/90">
                 Ответьте на {questions.length} вопросов, чтобы узнать уровень потенциала вашей энергосистемы
               </p>
             </div>
+          </div>
+        </section>
+        
+        <div className="py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-3xl mx-auto">
 
             <Card className="p-8 shadow-soft border-border/50">
               <div className="mb-6">
@@ -301,6 +307,7 @@ const EnergyTest = () => {
                 </Button>
               </div>
             </Card>
+            </div>
           </div>
         </div>
       </main>

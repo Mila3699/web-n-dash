@@ -57,7 +57,7 @@ const Transformation = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center justify-center gradient-hero">
+        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green">
           <div className="container mx-auto px-4 sm:px-6 py-20 text-center">
             <Badge className="mb-6 bg-accent/20 text-accent-foreground border-accent">
               8-недельный практикум
