@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Check } from "lucide-react";
+import { Check, Sparkles, ArrowRight, ArrowLeft, Trophy } from "lucide-react";
 import { testQuestions } from "@/data/testQuestions";
 import confetti from "canvas-confetti";
 
@@ -180,84 +180,136 @@ const EnergyTest = () => {
     const result = getResultInterpretation(score);
 
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
         <Navigation />
         
-        <main className="py-20 bg-background">
+        <main className="py-20">
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-3xl mx-auto">
-              <Card className="p-8 shadow-soft border-border/50 animate-scale-in">
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/10 mb-4">
-                    <span className="text-3xl font-bold text-accent">{score}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-2">баллов из 57</p>
-                  <h2 className={`text-3xl font-serif font-bold mb-4 ${result.color}`}>
-                    {result.level}
-                  </h2>
-                  <p className="text-lg text-foreground/80 mb-4">
-                    {result.description}
-                  </p>
-                  {result.details && (
-                    <p className="text-foreground/70 mb-6">
-                      {result.details}
-                    </p>
-                  )}
+            <div className="max-w-4xl mx-auto">
+              {/* Celebration Header */}
+              <div className="text-center mb-12 animate-fade-in">
+                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-accent via-accent/80 to-accent/60 mb-6 shadow-gold animate-scale-in">
+                  <Trophy className="w-12 h-12 text-white" />
                 </div>
+                <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
+                  Ваш результат
+                </h1>
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent"></div>
+                  <span className="text-6xl font-bold text-accent animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                    {score}
+                  </span>
+                  <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent"></div>
+                </div>
+                <p className="text-sm text-muted-foreground">из 57 баллов</p>
+              </div>
 
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Рекомендации:</h3>
-                    <ul className="space-y-3 mb-6">
-                      {result.recommendations.map((rec, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                          <span className="text-foreground/80">{rec}</span>
-                        </li>
-                      ))}
-                    </ul>
+              {/* Result Card */}
+              <Card className="overflow-hidden border-0 shadow-2xl animate-scale-in" style={{ animationDelay: '0.3s' }}>
+                <div className={`h-2 bg-gradient-to-r ${
+                  score <= 19 ? 'from-red-500 to-orange-500' :
+                  score <= 32 ? 'from-orange-500 to-yellow-500' :
+                  score <= 43 ? 'from-yellow-500 to-green-500' :
+                  score <= 51 ? 'from-green-500 to-blue-500' :
+                  'from-blue-500 to-purple-500'
+                }`}></div>
+                
+                <div className="p-8 md:p-12">
+                  {/* Status Badge */}
+                  <div className="flex justify-center mb-8">
+                    <Badge className={`${result.color} text-lg px-6 py-2 shadow-lg`}>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      {result.level}
+                    </Badge>
+                  </div>
 
-                    {result.links && result.links.length > 0 && (
-                      <div className="space-y-3 mb-6">
-                        {result.links.map((link, index) => (
-                          <a
-                            key={index}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block"
-                          >
-                            <Button
-                              variant="outline"
-                              className="w-full hover:bg-accent/10"
-                            >
-                              {link.text} →
-                            </Button>
-                          </a>
-                        ))}
+                  {/* Description */}
+                  <div className="space-y-4 mb-8">
+                    <div className="bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl p-6 backdrop-blur">
+                      <p className="text-lg leading-relaxed text-foreground/90">
+                        {result.description}
+                      </p>
+                    </div>
+                    {result.details && (
+                      <div className="bg-accent/5 rounded-2xl p-6 border border-accent/10">
+                        <p className="text-foreground/80 leading-relaxed">
+                          {result.details}
+                        </p>
                       </div>
                     )}
+                  </div>
 
-                    <div className="p-4 bg-muted/30 rounded-lg">
-                      <p className="text-sm text-center text-muted-foreground italic">
-                        Напоминаем: тест даёт лишь ориентир. Чтобы точно понять свой уровень - приходите хотя бы на одну энергосессию и получите обратную связь от Анастасии.
-                      </p>
+                  {/* Recommendations */}
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2">
+                      <div className="w-1 h-8 bg-accent rounded-full"></div>
+                      Персональные рекомендации
+                    </h3>
+                    <div className="space-y-3">
+                      {result.recommendations.map((rec, index) => (
+                        <div 
+                          key={index} 
+                          className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-background to-muted/30 border border-border/50 hover:border-accent/30 transition-all duration-300 animate-fade-in"
+                          style={{ animationDelay: `${0.1 * index}s` }}
+                        >
+                          <div className="flex-shrink-0 mt-1">
+                            <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
+                              <Check className="w-4 h-4 text-accent" />
+                            </div>
+                          </div>
+                          <span className="text-foreground/90 leading-relaxed">{rec}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  {/* Action Links */}
+                  {result.links && result.links.length > 0 && (
+                    <div className="space-y-3 mb-8">
+                      {result.links.map((link, index) => (
+                        <a
+                          key={index}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block group"
+                        >
+                          <div className="p-5 rounded-xl bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-gold">
+                            <div className="flex items-center justify-between">
+                              <span className="font-semibold text-lg">{link.text}</span>
+                              <ArrowRight className="w-5 h-5 text-accent group-hover:translate-x-1 transition-transform" />
+                            </div>
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Info Note */}
+                  <div className="bg-gradient-to-br from-muted/80 to-muted/50 rounded-2xl p-6 backdrop-blur border border-border/50">
+                    <p className="text-sm text-center text-muted-foreground leading-relaxed italic">
+                      💫 Напоминаем: тест даёт лишь ориентир. Чтобы точно понять свой уровень - приходите хотя бы на одну энергосессию и получите обратную связь от Анастасии.
+                    </p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-8">
                     <Button
                       onClick={restartTest}
                       variant="outline"
-                      className="flex-1"
+                      size="lg"
+                      className="flex-1 h-14 text-lg border-2 hover:border-accent/50 hover:bg-accent/5"
                     >
+                      <ArrowLeft className="w-5 h-5 mr-2" />
                       Пройти тест заново
                     </Button>
                     <Button
                       onClick={() => window.location.href = '/masters'}
-                      className="flex-1 bg-accent hover:bg-accent/90"
+                      size="lg"
+                      className="flex-1 h-14 text-lg bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 shadow-gold"
                     >
                       Выбрать энерготерапевта
+                      <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
                   </div>
                 </div>
@@ -272,98 +324,153 @@ const EnergyTest = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-background via-muted/10 to-background">
       <Navigation />
       
       <main>
-        <section className="bg-brand-green py-20">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-3xl mx-auto text-center">
-              <Badge className="mb-4 bg-white/20 text-white border-white/30">
-                Тест энергосистемы
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-brand-green via-brand-green to-[#0f2820] py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(180,160,104,0.1),transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(180,160,104,0.08),transparent_50%)]"></div>
+          
+          <div className="container mx-auto px-4 sm:px-6 relative">
+            <div className="max-w-4xl mx-auto text-center">
+              <Badge className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur text-sm px-4 py-2 animate-fade-in">
+                <Sparkles className="w-3 h-3 mr-1 inline" />
+                Диагностика энергосистемы
               </Badge>
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">
-                Анализ состояния вашей энергосистемы
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white animate-fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
+                Анализ состояния<br />вашей энергосистемы
               </h1>
-              <p className="text-xl text-white/90 mb-4">
-                Уровень её потенциала
+              <p className="text-xl md:text-2xl text-white/90 mb-4 animate-fade-in font-light" style={{ animationDelay: '0.2s' }}>
+                Узнайте уровень её потенциала
               </p>
-              <p className="text-lg text-white/80">
-                Ответьте на {questions.length} вопросов по шкале от 0 до 3
+              <p className="text-lg text-white/70 animate-fade-in max-w-2xl mx-auto" style={{ animationDelay: '0.3s' }}>
+                Пройдите тест из {questions.length} вопросов и получите персональные рекомендации
               </p>
             </div>
           </div>
         </section>
         
-        <div className="py-20 bg-background">
+        {/* Test Section */}
+        <div className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-3xl mx-auto">
-
-            <Card className="p-8 shadow-soft border-border/50">
-              <div className="mb-6">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-sm text-muted-foreground">
-                    Вопрос {currentQuestion + 1} из {questions.length}
+            <div className="max-w-4xl mx-auto">
+              {/* Progress Header */}
+              <div className="mb-8">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-sm font-medium text-muted-foreground">
+                    Вопрос <span className="text-foreground font-semibold">{currentQuestion + 1}</span> из {questions.length}
                   </span>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm font-semibold text-accent">
                     {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
                   </span>
                 </div>
-                <Progress value={((currentQuestion + 1) / questions.length) * 100} className="mb-6" />
-              </div>
-
-              <div className="mb-6 p-4 bg-muted/30 rounded-lg">
-                <p className="text-sm text-center font-medium">
-                  Отвечайте по шкале:
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 text-xs text-muted-foreground">
-                  <div className="text-center">0 — нет, не про меня</div>
-                  <div className="text-center">1 — иногда так бывает</div>
-                  <div className="text-center">2 — часто замечаю</div>
-                  <div className="text-center">3 — это про меня постоянно</div>
+                <div className="relative h-2 bg-muted rounded-full overflow-hidden">
+                  <div 
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent to-accent/70 transition-all duration-500 ease-out rounded-full"
+                    style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                  >
+                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                  </div>
                 </div>
               </div>
 
-              <h3 className="text-xl font-semibold mb-8 animate-fade-in">
-                {questions[currentQuestion]}
-              </h3>
+              {/* Question Card */}
+              <Card className="overflow-hidden border-0 shadow-2xl backdrop-blur">
+                <div className="h-1 bg-gradient-to-r from-accent via-accent/80 to-accent"></div>
+                
+                <div className="p-8 md:p-12">
+                  {/* Scale Guide */}
+                  <div className="mb-8 p-6 bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl border border-border/50">
+                    <p className="text-sm text-center font-semibold mb-4 text-foreground/90">
+                      Оцените утверждение по шкале:
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                      {[
+                        { num: 0, text: 'Нет, не про меня' },
+                        { num: 1, text: 'Иногда так бывает' },
+                        { num: 2, text: 'Часто замечаю' },
+                        { num: 3, text: 'Про меня постоянно' }
+                      ].map((item) => (
+                        <div key={item.num} className="text-center p-3 bg-background/50 rounded-xl border border-border/30">
+                          <div className="font-bold text-accent text-lg mb-1">{item.num}</div>
+                          <div className="text-muted-foreground leading-tight">{item.text}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                {[0, 1, 2, 3].map((value, index) => (
-                  <Button
-                    key={value}
-                    onClick={() => handleAnswer(value)}
-                    variant={answers[currentQuestion] === value ? "default" : "outline"}
-                    className={`h-auto py-6 text-lg font-bold transition-all duration-300 hover-scale ${
-                      answers[currentQuestion] === value 
-                        ? "bg-accent hover:bg-accent/90 shadow-gold" 
-                        : ""
-                    }`}
-                    style={{ animationDelay: `${0.1 + index * 0.05}s` }}
-                  >
-                    {value}
-                  </Button>
-                ))}
-              </div>
+                  {/* Question */}
+                  <div className="mb-10">
+                    <h3 className="text-2xl md:text-3xl font-serif font-semibold leading-relaxed text-foreground/95 animate-fade-in">
+                      {questions[currentQuestion]}
+                    </h3>
+                  </div>
 
-              <div className="flex gap-4">
-                <Button
-                  onClick={handlePrevious}
-                  variant="outline"
-                  disabled={currentQuestion === 0}
-                  className="flex-1"
-                >
-                  Назад
-                </Button>
-                <Button
-                  onClick={handleNext}
-                  disabled={answers[currentQuestion] === undefined}
-                  className="flex-1 bg-accent hover:bg-accent/90"
-                >
-                  {currentQuestion === questions.length - 1 ? "Показать результат" : "Далее"}
-                </Button>
-              </div>
-            </Card>
+                  {/* Answer Buttons */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                    {[0, 1, 2, 3].map((value, index) => (
+                      <Button
+                        key={value}
+                        onClick={() => handleAnswer(value)}
+                        variant={answers[currentQuestion] === value ? "default" : "outline"}
+                        className={`group relative h-24 text-2xl font-bold transition-all duration-300 overflow-hidden ${
+                          answers[currentQuestion] === value 
+                            ? "bg-gradient-to-br from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-white border-0 shadow-gold scale-105" 
+                            : "hover:border-accent/50 hover:bg-accent/5 border-2"
+                        }`}
+                        style={{ 
+                          animationDelay: `${0.1 + index * 0.05}s`,
+                          transform: answers[currentQuestion] === value ? 'scale(1.05)' : 'scale(1)'
+                        }}
+                      >
+                        <span className="relative z-10">{value}</span>
+                        {answers[currentQuestion] === value && (
+                          <div className="absolute inset-0 bg-white/10 animate-pulse"></div>
+                        )}
+                      </Button>
+                    ))}
+                  </div>
+
+                  {/* Navigation */}
+                  <div className="flex gap-4">
+                    <Button
+                      onClick={handlePrevious}
+                      variant="outline"
+                      disabled={currentQuestion === 0}
+                      size="lg"
+                      className="flex-1 h-14 text-lg border-2 hover:border-accent/50 disabled:opacity-30"
+                    >
+                      <ArrowLeft className="w-5 h-5 mr-2" />
+                      Назад
+                    </Button>
+                    <Button
+                      onClick={handleNext}
+                      disabled={answers[currentQuestion] === undefined}
+                      size="lg"
+                      className="flex-1 h-14 text-lg bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 disabled:opacity-50 shadow-gold"
+                    >
+                      {currentQuestion === questions.length - 1 ? (
+                        <>
+                          Показать результат
+                          <Trophy className="w-5 h-5 ml-2" />
+                        </>
+                      ) : (
+                        <>
+                          Далее
+                          <ArrowRight className="w-5 h-5 ml-2" />
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Encouragement Text */}
+              <p className="text-center text-sm text-muted-foreground mt-8 animate-fade-in">
+                ✨ Отвечайте интуитивно, первое что приходит в голову
+              </p>
             </div>
           </div>
         </div>
