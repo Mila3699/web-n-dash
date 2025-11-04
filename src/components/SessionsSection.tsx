@@ -34,35 +34,32 @@ export const SessionsSection = () => {
   ];
 
   return (
-    <section id="sessions" className="py-40 bg-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full gradient-radial pointer-events-none"></div>
-      
+    <section id="sessions" className="py-32 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6 animate-fade-in">
+        <div className="text-center mb-24">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8 animate-fade-in">
             <Sparkles className="w-4 h-4 text-accent" />
             <span className="text-sm font-medium text-accent">Метод энергосессий</span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
+          <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6 animate-slide-up">
             Энергосессии<br/>
             <span className="text-accent">Кундалини ERA</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
             Прямая передача жизненной энергии для вашей активации и глубокой трансформации
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-20 mb-24">
-          <div className="space-y-10 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="glass rounded-3xl p-12 shadow-float border border-border/50 interactive-card hover:border-accent/30">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center mb-8">
-                <Brain className="w-8 h-8 text-accent" />
+        <div className="grid lg:grid-cols-2 gap-16 mb-24">
+          <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            <div className="glass rounded-3xl p-10 shadow-soft border border-border/50">
+              <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
+                <Brain className="w-7 h-7 text-accent" />
               </div>
-              <h3 className="text-4xl font-serif font-semibold mb-8 leading-tight">
+              <h3 className="text-3xl font-serif font-semibold mb-6 leading-tight">
                 Что такое<br/>Энергосессия?
               </h3>
-              <div className="space-y-6 text-lg text-foreground/70 leading-relaxed">
+              <div className="space-y-4 text-lg text-foreground/60 leading-relaxed">
                 <p>
                   Это активация вашей внутренней энергии через поле мастера-проводника.
                 </p>
@@ -73,8 +70,8 @@ export const SessionsSection = () => {
             </div>
           </div>
 
-          <div className="space-y-5 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <h3 className="text-4xl font-serif font-semibold mb-10 leading-tight">
+          <div className="space-y-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+            <h3 className="text-3xl font-serif font-semibold mb-8 leading-tight">
               Что вы<br/>почувствуете?
             </h3>
             {benefits.map((benefit, index) => {
@@ -82,14 +79,14 @@ export const SessionsSection = () => {
               return (
                 <Card 
                   key={index} 
-                  className="p-7 shadow-soft border-border/50 hover:shadow-float interactive-card bg-white/80 backdrop-blur-sm group hover:border-accent/30"
+                  className="p-6 shadow-soft border-border/50 bg-white/80 backdrop-blur-sm group hover:border-accent/20 transition-all duration-200"
                   style={{ animationDelay: `${0.4 + index * 0.05}s` }}
                 >
-                  <div className="flex items-start gap-5">
-                    <div className="p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      <Icon className="w-7 h-7 text-accent" />
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-xl bg-accent/10 flex-shrink-0">
+                      <Icon className="w-6 h-6 text-accent" />
                     </div>
-                    <p className="text-foreground flex-1 pt-3 text-lg leading-relaxed font-light">{benefit.title}</p>
+                    <p className="text-foreground/70 flex-1 pt-2 text-base leading-relaxed">{benefit.title}</p>
                   </div>
                 </Card>
               );
@@ -105,13 +102,12 @@ export const SessionsSection = () => {
           }}>
             <button 
               disabled={isBlocked}
-              className="group relative bg-accent hover:bg-accent/90 text-white font-semibold text-xl px-14 py-7 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_15px_40px_-10px_rgba(180,160,104,0.4)] hover:shadow-[0_20px_60px_-10px_rgba(180,160,104,0.6)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="group relative bg-accent text-white font-semibold text-lg px-12 py-5 rounded-2xl transition-all duration-200 hover:scale-[1.01] shadow-[0_4px_16px_rgba(180,160,104,0.2)] hover:shadow-[0_8px_24px_rgba(180,160,104,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="relative z-10 flex items-center gap-3">
+              <span className="flex items-center gap-2.5">
                 Записаться к энерготерапевту
-                <span className="inline-block transition-transform group-hover:translate-x-1 text-2xl">→</span>
+                <span className="inline-block transition-transform group-hover:translate-x-0.5 text-xl">→</span>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
             </button>
           </Link>
         </div>

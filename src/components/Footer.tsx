@@ -28,19 +28,19 @@ export const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a href="https://instagram.com/era.academy" target="_blank" rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
+                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-200">
                 <Instagram className="w-5 h-5" />
               </a>
               <a href="https://vk.com/era_academy" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
+                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-200">
                 <span className="font-bold text-sm">VK</span>
               </a>
               <a href="https://youtube.com/@era_academy" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
+                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-200">
                 <Youtube className="w-5 h-5" />
               </a>
               <a href="https://t.me/era_academy" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-300 hover:scale-110">
+                className="w-10 h-10 rounded-full bg-accent/10 hover:bg-accent hover:text-accent-foreground flex items-center justify-center transition-all duration-200">
                 <span className="font-bold text-xs">TG</span>
               </a>
             </div>

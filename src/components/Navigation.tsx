@@ -67,9 +67,8 @@ const Navigation = () => {
               <img 
                 src={logo} 
                 alt="ERA - Energy Realization Academy" 
-                className="h-14 w-auto relative z-10 transition-transform duration-300 group-hover:scale-105"
+                className="h-14 w-auto transition-opacity duration-200 group-hover:opacity-90"
               />
-              <span className="absolute inset-0 bg-accent/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
 
           <div className="hidden md:flex items-center space-x-1">
@@ -122,7 +121,7 @@ const Navigation = () => {
             {!userRole ? (
               <Button 
                 onClick={() => navigate('/login')} 
-                className="ml-4 bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold hover:shadow-float transition-all duration-300 hover:scale-105"
+                className="ml-4 bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold transition-all duration-200"
               >
                 Войти
               </Button>
