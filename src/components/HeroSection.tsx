@@ -47,7 +47,7 @@ export const HeroSection = () => {
           <span className="text-accent inline-block mt-4">свой потенциал</span>
         </h1>
         
-        <p className="text-xl sm:text-2xl md:text-3xl text-white/95 mb-20 max-w-2xl mx-auto animate-slide-up font-light leading-relaxed" style={{ animationDelay: '0.1s' }}>
+        <p className="text-2xl sm:text-3xl md:text-4xl text-white mb-20 max-w-2xl mx-auto animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
           Трансформация через энергию
         </p>
 
