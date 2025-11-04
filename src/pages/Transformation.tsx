@@ -7,6 +7,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ArrowDown, Users, Brain, Sparkles, Target } from "lucide-react";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { safeOpenLink } from "@/lib/sanitize";
+import sessionImage3 from "@/assets/session-2.jpg";
+import sessionImage5 from "@/assets/session-5.jpg";
 
 const Transformation = () => {
   const { checkLimit } = useRateLimit({
@@ -196,6 +198,18 @@ const Transformation = () => {
               <p className="text-xl text-center text-foreground/80 mb-12">
                 Это не просто серия энергосессий, это системная работа с вашей энергоструктурой.
               </p>
+
+              {/* Image */}
+              <div className="mb-12">
+                <div className="rounded-2xl overflow-hidden shadow-gold">
+                  <img 
+                    src={sessionImage3} 
+                    alt="Процесс энергетической сессии"
+                    className="w-full h-[350px] object-cover"
+                  />
+                </div>
+              </div>
+
               <p className="text-lg text-center text-foreground/70 mb-12">
                 Метод энерготерапии ERA объединяет четыре ключевых элемента:
               </p>
@@ -260,6 +274,18 @@ const Transformation = () => {
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-8">
                 Ускорение ваших трансформаций
               </h2>
+
+              {/* Image */}
+              <div className="mb-12">
+                <div className="rounded-2xl overflow-hidden shadow-gold">
+                  <img 
+                    src={sessionImage5} 
+                    alt="Результаты энергетических сессий"
+                    className="w-full h-[350px] object-cover"
+                  />
+                </div>
+              </div>
+
               <Card className="p-8 shadow-soft border-border/50">
                 <p className="text-xl font-semibold text-center mb-8">
                   Энергопрактикум работает как катализатор, он многократно ускоряет процессы изменений в вашей жизни:

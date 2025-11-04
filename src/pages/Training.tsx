@@ -16,6 +16,8 @@ import {
   Globe
 } from "lucide-react";
 import { safeOpenLink } from "@/lib/sanitize";
+import sessionImage1 from "@/assets/session-1.jpg";
+import sessionImage2 from "@/assets/session-4.jpg";
 
 const Training = () => {
   const forWhoPoints = [
@@ -160,6 +162,17 @@ const Training = () => {
               </p>
             </div>
 
+            {/* Image */}
+            <div className="max-w-3xl mx-auto mb-12">
+              <div className="rounded-2xl overflow-hidden shadow-gold">
+                <img 
+                  src={sessionImage1} 
+                  alt="Энергетическая сессия ERA"
+                  className="w-full h-[400px] object-cover"
+                />
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {methodElements.map((element, index) => {
                 const Icon = element.icon;
@@ -211,6 +224,17 @@ const Training = () => {
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
+              {/* Image before text */}
+              <div className="mb-12">
+                <div className="rounded-2xl overflow-hidden shadow-gold">
+                  <img 
+                    src={sessionImage2} 
+                    alt="Сообщество мастеров ERA"
+                    className="w-full h-[350px] object-cover"
+                  />
+                </div>
+              </div>
+
               <Card className="p-8 md:p-12 shadow-soft border-border/50">
                 <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-center">
                   Что такое ERA

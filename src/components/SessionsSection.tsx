@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Sparkles, Heart, Zap, Brain, Sun } from "lucide-react";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { safeOpenLink } from "@/lib/sanitize";
+import sessionImage from "@/assets/session-3.jpg";
 
 export const SessionsSection = () => {
   const { checkLimit, isBlocked } = useRateLimit({
@@ -52,6 +53,17 @@ export const SessionsSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 mb-24">
           <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            {/* Image */}
+            <div className="mb-8">
+              <div className="rounded-2xl overflow-hidden shadow-gold">
+                <img 
+                  src={sessionImage} 
+                  alt="Энергосессия Кундалини ERA"
+                  className="w-full h-[300px] object-cover"
+                />
+              </div>
+            </div>
+
             <div className="glass rounded-3xl p-10 shadow-soft border border-border/50">
               <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
                 <Brain className="w-7 h-7 text-accent" />
