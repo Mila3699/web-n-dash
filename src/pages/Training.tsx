@@ -101,7 +101,7 @@ const Training = () => {
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6 animate-fade-in"
               style={{ animationDelay: '0.4s' }}
             >
-              Записаться на обучение в Telegram
+              Узнать подробности
             </Button>
 
             {/* Author Info */}
@@ -254,7 +254,7 @@ const Training = () => {
               }}
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
             >
-              Записаться на обучение в Telegram
+              Узнать подробности
             </Button>
           </div>
         </section>
