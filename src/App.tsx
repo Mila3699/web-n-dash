@@ -11,6 +11,7 @@ import Masters from "./pages/Masters";
 import Training from "./pages/Training";
 import Transformation from "./pages/Transformation";
 import MasterPublic from "./pages/MasterPublic";
+import MasterStandalone from "./pages/MasterStandalone";
 import Login from "./pages/Login";
 import MasterDashboard from "./pages/MasterDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/test" element={<EnergyTest />} />
           <Route path="/masters" element={<Masters />} />
           <Route path="/master/:id" element={<MasterPublic />} />
+          <Route path="/master-standalone/:id" element={<MasterStandalone />} />
           <Route path="/training" element={<Training />} />
           <Route path="/transformation" element={<Transformation />} />
           <Route path="/login" element={<Login />} />

@@ -88,12 +88,20 @@ const MasterDashboard = () => {
               >
                 Статистика
               </button>
-              <button
-                onClick={() => navigate(`/master/${master.id}`)}
-                className="ml-auto px-6 py-4 text-brand-gold hover:bg-gray-50"
-              >
-                Посмотреть мою страницу →
-              </button>
+              <div className="ml-auto flex gap-2">
+                <button
+                  onClick={() => navigate(`/master/${master.id}`)}
+                  className="px-6 py-4 text-brand-green hover:bg-gray-50 border border-brand-green rounded"
+                >
+                  Внутренняя страница →
+                </button>
+                <button
+                  onClick={() => navigate(`/master-standalone/${master.id}`)}
+                  className="px-6 py-4 bg-brand-gold text-white hover:bg-brand-gold/90 rounded"
+                >
+                  Автономная страница →
+                </button>
+              </div>
             </div>
 
             <div className="p-8">
