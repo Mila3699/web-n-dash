@@ -177,16 +177,14 @@ const Masters = () => {
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Пройдите обучение и присоединитесь к нашему сообществу профессиональных энерготерапевтов
             </p>
-            <Button 
-              size="lg"
-              onClick={(e) => {
-                e.preventDefault();
-                safeOpenLink('https://t.me/era_academy');
-              }}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
-            >
-              Узнать об обучении в Telegram
-            </Button>
+            <Link to="/training">
+              <Button 
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
+              >
+                Узнать подробнее
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
