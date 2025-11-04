@@ -41,7 +41,7 @@ const MasterStandalone = () => {
                 className="w-48 h-48 rounded-full object-cover mx-auto md:mx-0"
               />
               <div className="flex-1">
-                <h1 className="font-serif text-4xl font-bold mb-2 text-brand-green">{master.name}</h1>
+                <h1 className="font-serif text-3xl md:text-4xl font-bold mb-2 text-brand-green">{master.name}</h1>
                 <p className="text-brand-gold mb-4">{master.cities.join(', ')}</p>
                 
                 <div className="mb-6">

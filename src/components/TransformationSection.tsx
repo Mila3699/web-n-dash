@@ -38,7 +38,7 @@ export const TransformationSection = () => {
             <Target className="w-4 h-4 text-accent" />
             <span className="text-sm font-medium text-accent">8-недельная программа</span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
             Энергопрактикум<br/>
             <span className="text-accent">"Трансформация"</span>
           </h2>

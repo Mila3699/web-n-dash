@@ -42,7 +42,7 @@ export const HeroSection = () => {
           <span className="text-sm text-primary-foreground/80">Метод энерготерапии ERA</span>
         </div>
         
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-serif font-bold text-white mb-6 animate-slide-up leading-[1.05] tracking-tight">
+        <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-bold text-white mb-6 animate-slide-up leading-[1.05] tracking-tight">
           Раскройте<br/>
           <span className="text-accent inline-block mt-2">свой потенциал</span>
         </h1>
@@ -75,7 +75,7 @@ export const HeroSection = () => {
                   <span className="text-3xl">✨</span>
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-brand-green leading-tight">
+                <h2 className="text-2xl md:text-4xl font-serif font-bold mb-4 text-brand-green leading-tight">
                   Анализ вашей энергосистемы
                 </h2>
                 

@@ -41,7 +41,7 @@ export const SessionsSection = () => {
             <Sparkles className="w-4 h-4 text-accent" />
             <span className="text-sm font-medium text-accent">Метод энергосессий</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6 animate-slide-up">
+          <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 animate-slide-up">
             Энергосессии<br/>
             <span className="text-accent">Кундалини ERA</span>
           </h2>

@@ -43,7 +43,7 @@ const Masters = () => {
             <Badge className="mb-6 bg-accent/10 text-accent border border-accent/20">
               Наши энерготерапевты
             </Badge>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
               Выберите своего энерготерапевта ERA
             </h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>

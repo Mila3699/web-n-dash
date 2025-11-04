@@ -88,7 +88,7 @@ const MasterDashboard = () => {
       
       <main className="pt-20 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h1 className="font-serif text-4xl font-bold mb-8 text-brand-green">
+          <h1 className="font-serif text-3xl md:text-4xl font-bold mb-8 text-brand-green">
             Личный кабинет Мастера
           </h1>
 

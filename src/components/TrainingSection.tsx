@@ -38,7 +38,7 @@ export const TrainingSection = () => {
             <Award className="w-4 h-4 text-accent" />
             <span className="text-sm font-medium text-accent">Профессиональное обучение</span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
             Станьте<br/>
             <span className="text-accent">Фасилитатором</span><br/>
             Кундалини ERA

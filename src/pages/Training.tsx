@@ -84,7 +84,7 @@ const Training = () => {
             <Badge className="mb-6 bg-accent/20 text-accent-foreground border-accent">
               Обучение энерготерапии
             </Badge>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
               Обучение методу энерготерапии ERA
             </h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>

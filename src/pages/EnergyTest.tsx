@@ -211,12 +211,12 @@ const EnergyTest = () => {
                 <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-accent mb-12 animate-scale-in">
                   <Trophy className="w-12 h-12 text-white" />
                 </div>
-                <h1 className="text-5xl md:text-6xl font-serif font-light mb-8 text-foreground">
+                <h1 className="text-4xl md:text-6xl font-serif font-light mb-8 text-foreground">
                   Ваш результат
                 </h1>
                 <div className="flex items-center justify-center gap-8 mb-6">
                   <div className="h-px w-16 bg-border"></div>
-                  <span className="text-7xl md:text-8xl font-light text-accent">
+                  <span className="text-6xl md:text-8xl font-light text-accent">
                     {score}
                   </span>
                   <div className="h-px w-16 bg-border"></div>
@@ -374,7 +374,7 @@ const EnergyTest = () => {
                 <Sparkles className="w-3 h-3 mr-1 inline" />
                 Диагностика энергосистемы
               </Badge>
-              <h1 className="text-5xl md:text-6xl font-serif font-light mb-8 text-white animate-fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
+              <h1 className="text-3xl md:text-6xl font-serif font-light mb-8 text-white animate-fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
                 Анализ состояния<br /><span className="text-brand-gold">вашей энергосистемы</span>
               </h1>
               <p className="text-xl text-white/80 mb-4 animate-fade-in font-light" style={{ animationDelay: '0.2s' }}>
