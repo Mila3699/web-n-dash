@@ -125,6 +125,16 @@ const MasterDashboard = () => {
                 Статистика
               </button>
               <button
+                onClick={() => setActiveTab('payment')}
+                className={`px-6 py-4 font-medium ${
+                  activeTab === 'payment'
+                    ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                Оплата
+              </button>
+              <button
                 onClick={() => setActiveTab('crm')}
                 className={`px-6 py-4 font-medium ${
                   activeTab === 'crm'
@@ -335,6 +345,88 @@ const MasterDashboard = () => {
                         </tbody>
                       </table>
                     </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'payment' && (
+                <div className="space-y-6">
+                  <h2 className="font-serif text-2xl font-semibold text-brand-green">
+                    Интеграция с Prodamus
+                  </h2>
+
+                  <div className="bg-accent/10 border border-accent/20 p-6 rounded-lg">
+                    <h3 className="font-semibold mb-4 text-brand-green">Настройка платежной системы</h3>
+                    <p className="text-gray-700 mb-6">
+                      Подключите Prodamus для приема платежей за сессии. После настройки кнопка "Оплатить" на вашей странице будет автоматически создавать платежные ссылки.
+                    </p>
+
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block mb-2 text-sm font-medium">Secret Key от Prodamus</label>
+                        <Input
+                          type="password"
+                          placeholder="Введите ваш Secret Key"
+                          className="font-mono"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          Получите Secret Key в личном кабинете Prodamus
+                        </p>
+                      </div>
+
+                      <div>
+                        <label className="block mb-2 text-sm font-medium">Стоимость сессии (₽)</label>
+                        <Input
+                          type="number"
+                          defaultValue="10000"
+                          placeholder="10000"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block mb-2 text-sm font-medium">Описание платежа</label>
+                        <Input
+                          defaultValue="Оплата энергетической сессии"
+                          placeholder="Описание для клиента"
+                        />
+                      </div>
+                    </div>
+
+                    <Button className="bg-accent hover:bg-accent/90 text-white mt-6">
+                      Сохранить настройки
+                    </Button>
+                  </div>
+
+                  <div className="bg-brand-bg p-6 rounded-lg">
+                    <h3 className="font-semibold mb-4 text-brand-green">Как это работает</h3>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex gap-3">
+                        <span className="text-accent font-bold">1.</span>
+                        <span>Клиент нажимает кнопку "Оплатить сессию" на вашей странице</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-accent font-bold">2.</span>
+                        <span>Автоматически генерируется уникальная платежная ссылка Prodamus</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-accent font-bold">3.</span>
+                        <span>Клиент оплачивает удобным способом через защищенную форму</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <span className="text-accent font-bold">4.</span>
+                        <span>Вы получаете уведомление об успешной оплате в разделе "Статистика"</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                    <h3 className="font-semibold mb-3 text-brand-green">Тестовая ссылка</h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Проверьте, как будет выглядеть платежная форма для ваших клиентов
+                    </p>
+                    <Button variant="outline" className="w-full">
+                      Создать тестовый платеж
+                    </Button>
                   </div>
                 </div>
               )}

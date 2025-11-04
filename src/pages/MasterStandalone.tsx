@@ -143,7 +143,7 @@ const MasterStandalone = () => {
               </div>
             </div>
 
-            <div className="bg-brand-green text-white p-8 rounded-lg">
+            <div className="bg-brand-green text-white p-8 rounded-lg mb-6">
               <h3 className="font-serif text-2xl font-semibold mb-6">Записаться на сессию</h3>
               
               <div className="mb-4">
@@ -172,6 +172,14 @@ const MasterStandalone = () => {
 
               <Button className="w-full bg-brand-gold hover:bg-brand-gold/90 text-white">
                 Отправить заявку
+              </Button>
+            </div>
+
+            <div className="bg-accent/10 border border-accent/20 p-8 rounded-lg text-center">
+              <h3 className="font-serif text-2xl font-semibold mb-4 text-brand-green">Оплата сессии</h3>
+              <p className="text-gray-700 mb-6">Стоимость сессии: <span className="text-2xl font-bold text-accent">10 000 ₽</span></p>
+              <Button className="w-full bg-accent hover:bg-accent/90 text-white py-6 text-lg">
+                Оплатить сессию
               </Button>
             </div>
           </div>
