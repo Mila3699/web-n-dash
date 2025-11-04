@@ -381,7 +381,7 @@ const EnergyTest = () => {
                 Узнайте уровень её потенциала
               </p>
               <p className="text-base text-white/60 animate-fade-in max-w-xl mx-auto font-light" style={{ animationDelay: '0.3s' }}>
-                Пройдите тест из {questions.length} вопросов и получите персональные рекомендации
+                Пройдите тест за 3 минуты и получите персональные рекомендации
               </p>
             </div>
           </div>
