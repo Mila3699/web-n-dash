@@ -14,21 +14,21 @@ export const GallerySection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-background to-accent/5">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-accent/5">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">
+        <div className="text-center mb-12 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-3">
             Атмосфера <span className="text-accent">наших сессий</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Погрузитесь в пространство трансформации и энергетического роста
           </p>
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+        <div className="hidden md:grid md:grid-cols-3 gap-4 max-w-5xl mx-auto animate-slide-up" style={{ animationDelay: '0.1s' }}>
           {/* Large image spanning 2 rows */}
-          <div className="md:col-span-2 md:row-span-2 group overflow-hidden rounded-3xl shadow-soft">
+          <div className="md:col-span-2 md:row-span-2 group overflow-hidden rounded-2xl shadow-soft h-[400px]">
             <img 
               src={images[0].src} 
               alt={images[0].alt}
@@ -37,7 +37,7 @@ export const GallerySection = () => {
           </div>
 
           {/* Top right image */}
-          <div className="group overflow-hidden rounded-3xl shadow-soft">
+          <div className="group overflow-hidden rounded-2xl shadow-soft h-[196px]">
             <img 
               src={images[1].src} 
               alt={images[1].alt}
@@ -46,7 +46,7 @@ export const GallerySection = () => {
           </div>
 
           {/* Bottom right image */}
-          <div className="group overflow-hidden rounded-3xl shadow-soft">
+          <div className="group overflow-hidden rounded-2xl shadow-soft h-[196px]">
             <img 
               src={images[2].src} 
               alt={images[2].alt}
@@ -55,15 +55,15 @@ export const GallerySection = () => {
           </div>
 
           {/* Bottom row - 2 images */}
-          <div className="md:col-span-2 grid grid-cols-2 gap-6 lg:gap-8">
-            <div className="group overflow-hidden rounded-3xl shadow-soft">
+          <div className="md:col-span-2 grid grid-cols-2 gap-4">
+            <div className="group overflow-hidden rounded-2xl shadow-soft h-[180px]">
               <img 
                 src={images[3].src} 
                 alt={images[3].alt}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
-            <div className="group overflow-hidden rounded-3xl shadow-soft">
+            <div className="group overflow-hidden rounded-2xl shadow-soft h-[180px]">
               <img 
                 src={images[4].src} 
                 alt={images[4].alt}
@@ -74,11 +74,11 @@ export const GallerySection = () => {
         </div>
 
         {/* Mobile Grid - Simple 2 column layout */}
-        <div className="grid grid-cols-2 gap-3 md:hidden animate-slide-up" style={{ animationDelay: '0.1s' }}>
+        <div className="grid grid-cols-2 gap-2 md:hidden animate-slide-up" style={{ animationDelay: '0.1s' }}>
           {images.map((image, index) => (
             <div 
               key={index}
-              className={`group overflow-hidden rounded-2xl shadow-soft ${index === 0 ? 'col-span-2' : ''}`}
+              className={`group overflow-hidden rounded-xl shadow-soft ${index === 0 ? 'col-span-2 h-[200px]' : 'h-[140px]'}`}
             >
               <img 
                 src={image.src} 
