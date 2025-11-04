@@ -200,71 +200,64 @@ const EnergyTest = () => {
     const result = getResultInterpretation(score);
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
+      <div className="min-h-screen bg-background">
         <Navigation />
         
-        <main className="py-20">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-5xl mx-auto">
+        <main className="py-32">
+          <div className="container mx-auto px-6 sm:px-8">
+            <div className="max-w-4xl mx-auto">
               {/* Celebration Header */}
-              <div className="text-center mb-12 animate-fade-in">
-                <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-accent via-accent/90 to-accent/70 mb-8 shadow-2xl animate-scale-in relative">
-                  <Trophy className="w-16 h-16 text-white relative z-10" />
-                  <div className="absolute inset-0 rounded-full bg-white/20 animate-pulse"></div>
-                  <div className="absolute -inset-4 rounded-full border-4 border-accent/20 animate-ping"></div>
+              <div className="text-center mb-20 animate-fade-in">
+                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-accent mb-12 animate-scale-in">
+                  <Trophy className="w-12 h-12 text-white" />
                 </div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+                <h1 className="text-5xl md:text-6xl font-serif font-light mb-8 text-foreground">
                   Ваш результат
                 </h1>
-                <div className="flex items-center justify-center gap-6 mb-4">
-                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-accent to-accent"></div>
-                  <div className="relative">
-                    <span className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-accent via-accent/90 to-accent/70 bg-clip-text text-transparent animate-scale-in" style={{ animationDelay: '0.2s' }}>
-                      {score}
-                    </span>
-                    <div className="absolute -inset-2 bg-accent/5 blur-2xl rounded-full -z-10"></div>
-                  </div>
-                  <div className="h-px w-20 bg-gradient-to-l from-transparent via-accent to-accent"></div>
+                <div className="flex items-center justify-center gap-8 mb-6">
+                  <div className="h-px w-16 bg-border"></div>
+                  <span className="text-7xl md:text-8xl font-light text-accent">
+                    {score}
+                  </span>
+                  <div className="h-px w-16 bg-border"></div>
                 </div>
-                <p className="text-lg text-muted-foreground font-medium">из 57 баллов</p>
+                <p className="text-base text-muted-foreground font-light">из 57 баллов</p>
               </div>
 
               {/* Result Card */}
-              <Card className="overflow-hidden border-0 shadow-2xl backdrop-blur-xl bg-background/95 animate-scale-in mb-8" style={{ animationDelay: '0.3s' }}>
+              <Card className="overflow-hidden border mb-12 animate-scale-in" style={{ animationDelay: '0.2s' }}>
                 {/* Color Status Bar */}
-                <div className={`h-2 bg-gradient-to-r relative ${
-                  score <= 19 ? 'from-red-500 via-red-400 to-orange-500' :
-                  score <= 32 ? 'from-orange-500 via-yellow-400 to-yellow-500' :
-                  score <= 43 ? 'from-yellow-500 via-green-400 to-green-500' :
-                  score <= 51 ? 'from-green-500 via-blue-400 to-blue-500' :
-                  'from-blue-500 via-purple-400 to-purple-500'
-                }`}>
-                  <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
-                </div>
+                <div className={`h-1 ${
+                  score <= 19 ? 'bg-red-500' :
+                  score <= 32 ? 'bg-orange-500' :
+                  score <= 43 ? 'bg-yellow-500' :
+                  score <= 51 ? 'bg-green-500' :
+                  'bg-blue-500'
+                }`}></div>
                 
-                <div className="p-8 md:p-16">
+                <div className="p-12 md:p-16">
                   {/* Status Badge with Icon */}
-                  <div className="flex justify-center mb-10">
-                    <Badge className={`${result.color} text-xl px-8 py-3 shadow-2xl backdrop-blur border-0 gap-2`}>
-                      {score <= 19 ? <Zap className="w-5 h-5" /> :
-                       score <= 32 ? <Heart className="w-5 h-5" /> :
-                       score <= 43 ? <Brain className="w-5 h-5" /> :
-                       score <= 51 ? <Sparkles className="w-5 h-5" /> :
-                       <Star className="w-5 h-5" />}
+                  <div className="flex justify-center mb-12">
+                    <Badge className={`${result.color} text-lg px-6 py-2 gap-2 font-light border-0`}>
+                      {score <= 19 ? <Zap className="w-4 h-4" /> :
+                       score <= 32 ? <Heart className="w-4 h-4" /> :
+                       score <= 43 ? <Brain className="w-4 h-4" /> :
+                       score <= 51 ? <Sparkles className="w-4 h-4" /> :
+                       <Star className="w-4 h-4" />}
                       {result.level}
                     </Badge>
                   </div>
 
                   {/* Description */}
-                  <div className="space-y-6 mb-12">
-                    <div className="bg-gradient-to-br from-muted/60 via-muted/40 to-muted/20 rounded-3xl p-8 backdrop-blur border border-border/50 shadow-inner">
-                      <p className="text-xl md:text-2xl leading-relaxed text-foreground/90 font-light text-center">
+                  <div className="space-y-8 mb-16">
+                    <div className="bg-muted/30 rounded-2xl p-10 border border-border/50">
+                      <p className="text-xl leading-relaxed text-foreground/80 font-light text-center">
                         {result.description}
                       </p>
                     </div>
                     {result.details && (
-                      <div className="bg-gradient-to-br from-accent/10 via-accent/5 to-transparent rounded-3xl p-8 border border-accent/20 shadow-lg">
-                        <p className="text-lg md:text-xl text-foreground/80 leading-relaxed font-light text-center">
+                      <div className="bg-accent/5 rounded-2xl p-10 border border-accent/10">
+                        <p className="text-lg text-foreground/70 leading-relaxed font-light text-center">
                           {result.details}
                         </p>
                       </div>
@@ -272,26 +265,23 @@ const EnergyTest = () => {
                   </div>
 
                   {/* Recommendations */}
-                  <div className="mb-12">
-                    <div className="flex items-center gap-4 mb-8">
-                      <div className="w-2 h-12 bg-gradient-to-b from-accent to-accent/50 rounded-full"></div>
-                      <h3 className="text-3xl md:text-4xl font-serif font-bold">
-                        Персональные рекомендации
-                      </h3>
-                    </div>
-                    <div className="grid gap-4">
+                  <div className="mb-16">
+                    <h3 className="text-3xl font-serif font-light mb-10 text-foreground">
+                      Персональные рекомендации
+                    </h3>
+                    <div className="space-y-4">
                       {result.recommendations.map((rec, index) => (
                         <div 
                           key={index} 
-                          className="group flex items-start gap-5 p-6 rounded-2xl bg-gradient-to-r from-background via-muted/20 to-background border border-border/50 hover:border-accent/30 hover:shadow-xl transition-all duration-500 animate-fade-in cursor-default"
+                          className="flex items-start gap-6 p-8 rounded-xl bg-background border border-border hover:border-accent/30 transition-all duration-300 animate-fade-in"
                           style={{ animationDelay: `${0.1 * index}s` }}
                         >
-                          <div className="flex-shrink-0 mt-1.5">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <span className="text-white font-bold text-sm">{index + 1}</span>
+                          <div className="flex-shrink-0 mt-1">
+                            <div className="w-7 h-7 rounded-full bg-accent flex items-center justify-center">
+                              <span className="text-white font-light text-sm">{index + 1}</span>
                             </div>
                           </div>
-                          <span className="text-lg text-foreground/90 leading-relaxed font-light flex-1">{rec}</span>
+                          <span className="text-base text-foreground/80 leading-relaxed font-light flex-1">{rec}</span>
                         </div>
                       ))}
                     </div>
@@ -299,7 +289,7 @@ const EnergyTest = () => {
 
                   {/* Action Links */}
                   {result.links && result.links.length > 0 && (
-                    <div className="grid md:grid-cols-2 gap-4 mb-12">
+                    <div className="grid md:grid-cols-2 gap-4 mb-16">
                       {result.links.map((link, index) => (
                         <a
                           key={index}
@@ -308,11 +298,10 @@ const EnergyTest = () => {
                           rel="noopener noreferrer"
                           className="block group"
                         >
-                          <div className="relative p-8 rounded-2xl bg-gradient-to-br from-accent/15 via-accent/10 to-accent/5 border-2 border-accent/20 hover:border-accent/50 transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20 overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div className="relative flex items-center justify-between">
-                              <span className="font-semibold text-xl">{link.text}</span>
-                              <ArrowRight className="w-6 h-6 text-accent group-hover:translate-x-2 transition-transform duration-500" />
+                          <div className="p-8 rounded-xl bg-accent/5 border border-accent/20 hover:border-accent/40 transition-all duration-300">
+                            <div className="flex items-center justify-between">
+                              <span className="font-light text-lg">{link.text}</span>
+                              <ArrowRight className="w-5 h-5 text-accent group-hover:translate-x-1 transition-transform duration-300" />
                             </div>
                           </div>
                         </a>
@@ -321,33 +310,31 @@ const EnergyTest = () => {
                   )}
 
                   {/* Info Note */}
-                  <div className="relative overflow-hidden bg-gradient-to-br from-muted/90 via-muted/70 to-muted/50 rounded-3xl p-8 backdrop-blur border border-border/50 mb-10">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl"></div>
-                    <p className="text-base md:text-lg text-center text-muted-foreground leading-relaxed italic relative z-10">
-                      ✨ Тест даёт общий ориентир для понимания вашего текущего состояния. Для точной диагностики и персональных рекомендаций приходите на энергосессию и получите профессиональную обратную связь от Анастасии.
+                  <div className="bg-muted/20 rounded-xl p-8 border border-border/50 mb-12">
+                    <p className="text-sm text-center text-muted-foreground leading-relaxed font-light">
+                      Тест даёт общий ориентир для понимания вашего текущего состояния. Для точной диагностики и персональных рекомендаций приходите на энергосессию и получите профессиональную обратную связь от Анастасии.
                     </p>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <Button
                       onClick={restartTest}
                       variant="outline"
                       size="lg"
-                      className="h-16 text-lg border-2 hover:border-accent/50 hover:bg-accent/5 transition-all duration-300 group"
+                      className="h-14 text-base font-light group"
                     >
-                      <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                      <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                       Пройти тест заново
                     </Button>
                     <Button
                       onClick={() => window.location.href = '/masters'}
                       size="lg"
-                      className="h-16 text-lg bg-gradient-to-r from-accent via-accent/90 to-accent/80 hover:from-accent/95 hover:via-accent/85 hover:to-accent/75 shadow-2xl shadow-accent/20 group relative overflow-hidden"
+                      className="h-14 text-base font-light bg-accent hover:bg-accent/90 group"
                     >
-                      <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                      <span className="relative flex items-center">
+                      <span className="flex items-center">
                         Выбрать энерготерапевта
-                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </Button>
                   </div>
@@ -355,13 +342,13 @@ const EnergyTest = () => {
               </Card>
 
               {/* Social Proof */}
-              <div className="text-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                <p className="text-sm text-muted-foreground mb-2">
+              <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <p className="text-sm text-muted-foreground font-light mb-2">
                   Более 7000 человек уже прошли этот тест
                 </p>
                 <div className="flex justify-center gap-1">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-4 h-4 fill-accent text-accent" />
+                    <Star key={star} className="w-3 h-3 fill-accent text-accent" />
                   ))}
                 </div>
               </div>
@@ -375,28 +362,25 @@ const EnergyTest = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-muted/10 to-background">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       <main>
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-brand-green via-brand-green to-[#0f2820] py-24">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(180,160,104,0.1),transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(180,160,104,0.08),transparent_50%)]"></div>
-          
-          <div className="container mx-auto px-4 sm:px-6 relative">
-            <div className="max-w-4xl mx-auto text-center">
-              <Badge className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur text-sm px-4 py-2 animate-fade-in">
+        <section className="relative overflow-hidden bg-brand-green py-32">
+          <div className="container mx-auto px-6 sm:px-8 relative">
+            <div className="max-w-3xl mx-auto text-center">
+              <Badge className="mb-8 bg-white/10 text-white border-white/20 text-sm px-4 py-1.5 font-light animate-fade-in">
                 <Sparkles className="w-3 h-3 mr-1 inline" />
                 Диагностика энергосистемы
               </Badge>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-white animate-fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
+              <h1 className="text-5xl md:text-6xl font-serif font-light mb-8 text-white animate-fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
                 Анализ состояния<br />вашей энергосистемы
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 mb-4 animate-fade-in font-light" style={{ animationDelay: '0.2s' }}>
+              <p className="text-xl text-white/80 mb-4 animate-fade-in font-light" style={{ animationDelay: '0.2s' }}>
                 Узнайте уровень её потенциала
               </p>
-              <p className="text-lg text-white/70 animate-fade-in max-w-2xl mx-auto" style={{ animationDelay: '0.3s' }}>
+              <p className="text-base text-white/60 animate-fade-in max-w-xl mx-auto font-light" style={{ animationDelay: '0.3s' }}>
                 Пройдите тест из {questions.length} вопросов и получите персональные рекомендации
               </p>
             </div>
@@ -404,87 +388,80 @@ const EnergyTest = () => {
         </section>
         
         {/* Test Section */}
-        <div className="py-16 md:py-24">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-4xl mx-auto">
+        <div className="py-24 md:py-32">
+          <div className="container mx-auto px-6 sm:px-8">
+            <div className="max-w-3xl mx-auto">
               {/* Progress Header */}
-              <div className="mb-10">
-                <div className="flex justify-between items-center mb-4">
+              <div className="mb-16">
+                <div className="flex justify-between items-center mb-6">
                   <div>
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-sm font-light text-muted-foreground">
                       Вопрос 
                     </span>
-                    <span className="text-2xl font-bold text-foreground mx-2">{currentQuestion + 1}</span>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-2xl font-light text-foreground mx-2">{currentQuestion + 1}</span>
+                    <span className="text-sm font-light text-muted-foreground">
                       из {questions.length}
                     </span>
                   </div>
                   <div className="text-right">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">
+                    <div className="text-2xl font-light text-accent">
                       {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
                     </div>
-                    <div className="text-xs text-muted-foreground">выполнено</div>
                   </div>
                 </div>
-                <div className="relative h-3 bg-gradient-to-r from-muted to-muted/50 rounded-full overflow-hidden shadow-inner">
+                <div className="relative h-1 bg-muted rounded-full overflow-hidden">
                   <div 
-                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-accent via-accent/90 to-accent/70 transition-all duration-700 ease-out rounded-full shadow-lg relative"
+                    className="absolute inset-y-0 left-0 bg-accent transition-all duration-700 ease-out rounded-full"
                     style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent animate-pulse"></div>
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-lg -mr-3 animate-pulse"></div>
-                  </div>
+                  ></div>
                 </div>
               </div>
 
               {/* Question Card */}
-              <Card className="overflow-hidden border-0 shadow-2xl backdrop-blur-xl bg-background/95 transition-all duration-500">
-                <div className="h-1.5 bg-gradient-to-r from-accent via-accent/80 to-accent relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent animate-pulse"></div>
-                </div>
+              <Card className="overflow-hidden border mb-8">
+                <div className="h-0.5 bg-accent"></div>
                 
-                <div className="p-8 md:p-12 lg:p-16">
+                <div className="p-10 md:p-14">
                   {/* Scale Guide */}
-                  <div className="mb-10 p-8 bg-gradient-to-br from-muted/60 via-muted/40 to-muted/20 rounded-3xl border border-border/50 shadow-inner">
-                    <p className="text-base text-center font-semibold mb-6 text-foreground/90">
+                  <div className="mb-12 p-8 bg-muted/20 rounded-xl border border-border/50">
+                    <p className="text-sm text-center font-light mb-6 text-foreground/80">
                       Оцените утверждение по шкале от 0 до 3
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {[
-                        { num: 0, text: 'Нет, не про меня', color: 'from-red-500/10 to-red-500/5' },
-                        { num: 1, text: 'Иногда так бывает', color: 'from-yellow-500/10 to-yellow-500/5' },
-                        { num: 2, text: 'Часто замечаю', color: 'from-green-500/10 to-green-500/5' },
-                        { num: 3, text: 'Про меня постоянно', color: 'from-blue-500/10 to-blue-500/5' }
+                        { num: 0, text: 'Нет, не про меня' },
+                        { num: 1, text: 'Иногда так бывает' },
+                        { num: 2, text: 'Часто замечаю' },
+                        { num: 3, text: 'Про меня постоянно' }
                       ].map((item) => (
                         <div 
                           key={item.num} 
-                          className={`text-center p-4 bg-gradient-to-br ${item.color} rounded-2xl border border-border/30 transition-all duration-300 ${
-                            hoveredValue === item.num ? 'scale-105 shadow-lg' : ''
+                          className={`text-center p-4 bg-background rounded-lg border border-border/30 transition-all duration-200 ${
+                            hoveredValue === item.num ? 'border-accent/30' : ''
                           }`}
                           onMouseEnter={() => setHoveredValue(item.num)}
                           onMouseLeave={() => setHoveredValue(null)}
                         >
-                          <div className="font-bold text-accent text-2xl mb-2">{item.num}</div>
-                          <div className="text-muted-foreground text-sm leading-tight">{item.text}</div>
+                          <div className="font-light text-accent text-xl mb-2">{item.num}</div>
+                          <div className="text-muted-foreground text-xs leading-tight font-light">{item.text}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Question */}
-                  <div className={`mb-12 transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
-                    <div className="inline-block px-4 py-2 bg-accent/10 rounded-full mb-6">
-                      <span className="text-sm font-medium text-accent">Вопрос {currentQuestion + 1}</span>
+                  <div className={`mb-16 transition-all duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
+                    <div className="inline-block px-3 py-1 bg-accent/5 rounded-full mb-6">
+                      <span className="text-xs font-light text-accent">Вопрос {currentQuestion + 1}</span>
                     </div>
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-serif font-semibold leading-relaxed text-foreground mb-4">
+                    <h3 className="text-2xl md:text-3xl font-serif font-light leading-relaxed text-foreground">
                       {questions[currentQuestion]}
                     </h3>
-                    <div className="h-1 w-24 bg-gradient-to-r from-accent to-transparent rounded-full"></div>
                   </div>
 
                   {/* Answer Buttons */}
-                  <div className={`grid grid-cols-2 md:grid-cols-4 gap-5 mb-12 transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
-                    {[0, 1, 2, 3].map((value, index) => {
+                  <div className={`grid grid-cols-4 gap-3 mb-12 transition-all duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
+                    {[0, 1, 2, 3].map((value) => {
                       const isSelected = answers[currentQuestion] === value;
                       const isHovered = hoveredValue === value;
                       
@@ -495,33 +472,17 @@ const EnergyTest = () => {
                           onMouseEnter={() => setHoveredValue(value)}
                           onMouseLeave={() => setHoveredValue(null)}
                           variant={isSelected ? "default" : "outline"}
-                          className={`group relative h-32 text-3xl font-bold transition-all duration-500 overflow-hidden ${
+                          className={`relative h-24 text-2xl font-light transition-all duration-200 ${
                             isSelected
-                              ? "bg-gradient-to-br from-accent via-accent/90 to-accent/80 text-white border-0 shadow-2xl shadow-accent/30 scale-105" 
+                              ? "bg-accent text-white border-0" 
                               : isHovered
-                              ? "border-accent/60 bg-accent/10 border-2 scale-105 shadow-xl"
-                              : "hover:border-accent/40 hover:bg-accent/5 border-2 hover:scale-105 shadow-lg"
+                              ? "border-accent/50 bg-accent/5"
+                              : ""
                           }`}
-                          style={{ 
-                            animationDelay: `${0.1 + index * 0.05}s`
-                          }}
                         >
-                          <span className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-                            {value}
-                          </span>
+                          <span>{value}</span>
                           
-                          {isSelected && (
-                            <>
-                              <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                              <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-transparent animate-shimmer"></div>
-                            </>
-                          )}
-                          
-                          {isHovered && !isSelected && (
-                            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          )}
-                          
-                          <div className={`absolute bottom-2 left-1/2 -translate-x-1/2 text-xs font-medium transition-opacity duration-300 ${
+                          <div className={`absolute bottom-2 left-1/2 -translate-x-1/2 text-xs font-light transition-opacity duration-200 ${
                             isHovered || isSelected ? 'opacity-100' : 'opacity-0'
                           }`}>
                             {['Нет', 'Иногда', 'Часто', 'Постоянно'][value]}
@@ -532,37 +493,36 @@ const EnergyTest = () => {
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex gap-6">
+                  <div className="flex gap-4">
                     <Button
                       onClick={handlePrevious}
                       variant="outline"
                       disabled={currentQuestion === 0}
                       size="lg"
-                      className="flex-1 h-16 text-lg border-2 hover:border-accent/50 hover:bg-accent/5 disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-300 group"
+                      className="flex-1 h-12 text-sm font-light disabled:opacity-20 group"
                     >
-                      <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                      <span className="hidden sm:inline">Предыдущий вопрос</span>
+                      <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-0.5 transition-transform" />
+                      <span className="hidden sm:inline">Предыдущий</span>
                       <span className="sm:hidden">Назад</span>
                     </Button>
                     <Button
                       onClick={handleNext}
                       disabled={answers[currentQuestion] === undefined}
                       size="lg"
-                      className="flex-1 h-16 text-lg bg-gradient-to-r from-accent via-accent/90 to-accent/80 hover:from-accent/95 hover:via-accent/85 hover:to-accent/75 disabled:opacity-40 disabled:cursor-not-allowed shadow-2xl shadow-accent/20 transition-all duration-300 group relative overflow-hidden"
+                      className="flex-1 h-12 text-sm font-light bg-accent hover:bg-accent/90 disabled:opacity-40 group"
                     >
-                      <div className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-                      <span className="relative flex items-center">
+                      <span className="flex items-center">
                         {currentQuestion === questions.length - 1 ? (
                           <>
-                            <Trophy className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                            <Trophy className="w-4 h-4 mr-2" />
                             <span className="hidden sm:inline">Показать результат</span>
                             <span className="sm:hidden">Результат</span>
                           </>
                         ) : (
                           <>
-                            <span className="hidden sm:inline">Следующий вопрос</span>
+                            <span className="hidden sm:inline">Следующий</span>
                             <span className="sm:hidden">Далее</span>
-                            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
                           </>
                         )}
                       </span>
