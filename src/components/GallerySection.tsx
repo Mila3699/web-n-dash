@@ -3,6 +3,7 @@ import session2 from "@/assets/session-2.jpg";
 import session3 from "@/assets/session-3.jpg";
 import session4 from "@/assets/session-4.jpg";
 import session5 from "@/assets/session-5.jpg";
+import session6 from "@/assets/session-6.jpg";
 
 export const GallerySection = () => {
   const images = [
@@ -11,6 +12,7 @@ export const GallerySection = () => {
     { src: session3, alt: "Мастер проводит энергетическую сессию" },
     { src: session4, alt: "Глубокая трансформация через энергию" },
     { src: session5, alt: "Индивидуальная энергосессия" },
+    { src: session6, alt: "Коллективная энергетическая практика" },
   ];
 
   return (
@@ -54,8 +56,8 @@ export const GallerySection = () => {
             />
           </div>
 
-          {/* Bottom row - 2 images */}
-          <div className="md:col-span-2 grid grid-cols-2 gap-4">
+          {/* Bottom row - 3 images */}
+          <div className="md:col-span-3 grid grid-cols-3 gap-4">
             <div className="group overflow-hidden rounded-2xl shadow-soft h-[180px]">
               <img 
                 src={images[3].src} 
@@ -67,6 +69,13 @@ export const GallerySection = () => {
               <img 
                 src={images[4].src} 
                 alt={images[4].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="group overflow-hidden rounded-2xl shadow-soft h-[180px]">
+              <img 
+                src={images[5].src} 
+                alt={images[5].alt}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
