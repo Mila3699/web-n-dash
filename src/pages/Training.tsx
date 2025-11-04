@@ -99,35 +99,38 @@ const Training = () => {
               очищение и восстановление энергоструктуры человека. Наша цель – помочь вам 
               пробудить ваш внутренний ресурс и стать сильными проводниками трансформации для других.
             </p>
-            <Button 
-              size="lg"
-              onClick={(e) => {
-                e.preventDefault();
-                safeOpenLink('https://t.me/era_academy');
-              }}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6 animate-fade-in"
-              style={{ animationDelay: '0.4s' }}
-            >
-              Узнать подробности
-            </Button>
+            <div className="flex justify-center mb-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <Button 
+                size="lg"
+                onClick={(e) => {
+                  e.preventDefault();
+                  safeOpenLink('https://t.me/era_academy');
+                }}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
+              >
+                Узнать подробности
+              </Button>
+            </div>
 
             {/* Author Info */}
-            <div className="mt-16 inline-block bg-card/90 backdrop-blur-sm rounded-2xl shadow-soft p-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              <p className="text-sm text-muted-foreground mb-2">Автор программы:</p>
-              <h3 className="text-2xl font-serif font-bold mb-4">Анастасия Соло</h3>
-              <div className="space-y-2 text-left">
-                <p className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground/80">Энерготерапевт-фасилитатор, мастер кундалини активационного процесса</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground/80">Получила опыт <strong>полного пробуждения</strong> энергии Кундалини у мастера Venant Wong</span>
-                </p>
-                <p className="flex items-start gap-2">
-                  <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground/80">Успешно активировала более <strong>7000 человек</strong></span>
-                </p>
+            <div className="mt-8 flex justify-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              <div className="bg-card/90 backdrop-blur-sm rounded-2xl shadow-soft p-8 max-w-2xl w-full">
+                <p className="text-sm text-muted-foreground mb-2 text-center">Автор программы:</p>
+                <h3 className="text-2xl font-serif font-bold mb-4 text-center">Анастасия Соло</h3>
+                <div className="space-y-2 text-left">
+                  <p className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground/80">Энерготерапевт-фасилитатор, мастер кундалини активационного процесса</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground/80">Получила опыт <strong>полного пробуждения</strong> энергии Кундалини у мастера Venant Wong</span>
+                  </p>
+                  <p className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground/80">Успешно активировала более <strong>7000 человек</strong></span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
