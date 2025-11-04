@@ -83,7 +83,7 @@ const Training = () => {
         {/* Hero Section */}
         <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green">
           <div className="container mx-auto px-4 sm:px-6 py-20 text-center">
-            <Badge className="mb-6 bg-accent/20 text-accent-foreground border-accent">
+            <Badge className="mb-6 bg-accent text-accent-foreground border-accent">
               Обучение энерготерапии
             </Badge>
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
