@@ -58,6 +58,56 @@ const MasterPublic = () => {
               </p>
             </div>
 
+            <div className="mb-8 bg-gradient-to-br from-brand-bg to-brand-gold/5 p-6 rounded-lg border border-brand-gold/20">
+              <h3 className="font-serif text-2xl font-semibold mb-4 text-brand-green">
+                Как работает метод энерготерапии ERA. Какие дает результаты
+              </h3>
+              <div className="space-y-4 text-gray-700">
+                <div>
+                  <h4 className="font-semibold text-brand-green mb-2">Как работает:</h4>
+                  <ul className="space-y-2 ml-4">
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Прямая передача энергии от Мастера активирует вашу собственную энергетическую систему</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Работа происходит на уровне тонких энергий, запуская естественные процессы самоисцеления</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Метод не требует физического контакта - сессии проводятся онлайн или очно</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-brand-green mb-2">Результаты метода:</h4>
+                  <ul className="space-y-2 ml-4">
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Освобождение от энергетических блоков и застарелых паттернов</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Повышение уровня энергии и жизненной силы</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Глубокое расслабление и снятие стресса</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Улучшение эмоционального состояния и ясность мышления</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-brand-gold mt-1">•</span>
+                      <span>Раскрытие творческого потенциала и внутренних ресурсов</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             <div className="mb-8">
               <h3 className="font-serif text-2xl font-semibold mb-4 text-brand-green">О Мастере</h3>
               <p className="text-gray-700 leading-relaxed">{master.description}</p>
