@@ -375,7 +375,7 @@ const EnergyTest = () => {
                 Диагностика энергосистемы
               </Badge>
               <h1 className="text-5xl md:text-6xl font-serif font-light mb-8 text-white animate-fade-in leading-tight" style={{ animationDelay: '0.1s' }}>
-                Анализ состояния<br />вашей энергосистемы
+                Анализ состояния<br /><span className="text-brand-gold">вашей энергосистемы</span>
               </h1>
               <p className="text-xl text-white/80 mb-4 animate-fade-in font-light" style={{ animationDelay: '0.2s' }}>
                 Узнайте уровень её потенциала
