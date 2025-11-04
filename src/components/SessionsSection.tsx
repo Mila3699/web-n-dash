@@ -36,6 +36,9 @@ export const SessionsSection = () => {
 
   return (
     <section id="sessions" className="py-32 bg-background relative overflow-hidden">
+      {/* Subtle Energy Grid */}
+      <div className="energy-grid opacity-50"></div>
+      
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-24">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8 animate-fade-in">

@@ -16,8 +16,13 @@ export const GallerySection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-accent/5">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-accent/5 relative overflow-hidden">
+      {/* Subtle Energy Waves */}
+      <div className="energy-waves opacity-40">
+        <div className="energy-wave"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-3">
             Атмосфера <span className="text-accent">наших сессий</span>

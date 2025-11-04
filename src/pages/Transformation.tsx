@@ -134,8 +134,18 @@ const Transformation = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green">
-          <div className="container mx-auto px-4 sm:px-6 py-20 text-center">
+        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green overflow-hidden">
+          {/* Energy Flow Lines */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="energy-flow"></div>
+            <div className="energy-flow"></div>
+            <div className="energy-flow"></div>
+          </div>
+          
+          {/* Energy Spiral */}
+          <div className="energy-spiral absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30"></div>
+          
+          <div className="container mx-auto px-4 sm:px-6 py-20 text-center relative z-10">
             <p className="text-white/90 mb-2">Энергопрактикум с Анастасией Соло</p>
             <p className="text-white/90 mb-6">Онлайн 02.12 - 23.12</p>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-accent mb-6 animate-fade-in">

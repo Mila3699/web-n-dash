@@ -200,10 +200,13 @@ const EnergyTest = () => {
     const result = getResultInterpretation(score);
 
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background relative overflow-hidden">
+        {/* Subtle Energy Grid */}
+        <div className="energy-grid opacity-30"></div>
+        
         <Navigation />
         
-        <main className="py-32">
+        <main className="py-32 relative z-10">
           <div className="container mx-auto px-6 sm:px-8">
             <div className="max-w-4xl mx-auto">
               {/* Celebration Header */}
@@ -368,7 +371,22 @@ const EnergyTest = () => {
       <main>
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-brand-green py-32">
-          <div className="container mx-auto px-6 sm:px-8 relative">
+          {/* Energy Particles */}
+          <div className="energy-particles">
+            {[...Array(8)].map((_, i) => (
+              <div 
+                key={i}
+                className="energy-particle"
+                style={{
+                  left: `${(i * 12.5)}%`,
+                  animationDelay: `${i * 1.5}s`,
+                  animationDuration: `${13 + i * 0.7}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          <div className="container mx-auto px-6 sm:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <Badge className="mb-8 bg-white/10 text-white border-white/20 text-sm px-4 py-1.5 font-light animate-fade-in">
                 <Sparkles className="w-3 h-3 mr-1 inline" />

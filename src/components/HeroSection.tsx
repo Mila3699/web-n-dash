@@ -35,6 +35,13 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-brand-green/96 via-brand-green/94 to-brand-green/96" />
       </div>
 
+      {/* Energy Waves - Scientific Pattern */}
+      <div className="energy-waves">
+        <div className="energy-wave"></div>
+        <div className="energy-wave"></div>
+        <div className="energy-wave"></div>
+      </div>
+
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-32 text-center">
         {/* Simple badge */}

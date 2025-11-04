@@ -17,8 +17,14 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-brand-green text-primary-foreground py-20 mt-32">
-      <div className="container mx-auto px-4 sm:px-6">
+    <footer className="bg-brand-green text-primary-foreground py-20 mt-32 relative overflow-hidden">
+      {/* Subtle Energy Waves */}
+      <div className="energy-waves opacity-20">
+        <div className="energy-wave"></div>
+        <div className="energy-wave"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Logo & Description */}
           <div className="md:col-span-2">

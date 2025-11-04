@@ -38,8 +38,23 @@ const Masters = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 bg-brand-green">
-          <div className="container mx-auto px-4 sm:px-6 text-center">
+        <section className="relative py-20 bg-brand-green overflow-hidden">
+          {/* Energy Particles */}
+          <div className="energy-particles">
+            {[...Array(12)].map((_, i) => (
+              <div 
+                key={i}
+                className="energy-particle"
+                style={{
+                  left: `${(i * 8.33)}%`,
+                  animationDelay: `${i * 1.25}s`,
+                  animationDuration: `${12 + i * 0.5}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
             <Badge className="mb-6 bg-accent/10 text-accent border border-accent/20">
               Наши энерготерапевты
             </Badge>

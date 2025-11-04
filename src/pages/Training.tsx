@@ -81,8 +81,13 @@ const Training = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green">
-          <div className="container mx-auto px-4 sm:px-6 py-20 text-center">
+        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green overflow-hidden">
+          {/* Energy Grid Pattern */}
+          <div className="energy-grid"></div>
+          <div className="energy-orb"></div>
+          <div className="energy-orb"></div>
+          
+          <div className="container mx-auto px-4 sm:px-6 py-20 text-center relative z-10">
             <Badge className="mb-6 bg-accent text-accent-foreground border-accent">
               Обучение энерготерапии
             </Badge>
