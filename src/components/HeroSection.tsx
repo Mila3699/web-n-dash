@@ -66,7 +66,7 @@ export const HeroSection = () => {
               className="w-full group relative bg-white text-brand-green font-semibold text-base px-10 py-4 rounded-2xl transition-all duration-200 hover:scale-[1.01] shadow-[0_8px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_12px_32px_rgba(255,255,255,0.3)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               <span className="flex items-center justify-center gap-2">
-                {isNavigating ? 'Переход...' : 'Пройти Трансформацию'}
+                {isNavigating ? 'Переход...' : 'Записаться на сессию'}
                 {!isNavigating && <span className="inline-block transition-transform group-hover:translate-x-0.5">→</span>}
               </span>
             </button>

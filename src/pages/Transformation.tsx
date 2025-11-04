@@ -165,7 +165,7 @@ const Transformation = () => {
               className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6 animate-fade-in"
               style={{ animationDelay: '0.4s' }}
             >
-              Записаться в Telegram
+              Пройти Трансформацию
             </Button>
           </div>
         </section>
