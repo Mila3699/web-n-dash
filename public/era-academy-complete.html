@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERA Academy - Академия Энерготерапии</title>
+    <meta name="description" content="Метод энерготерапии ERA - раскройте свой потенциал через энергию Кундалини. Сертифицированные мастера, обучение, энергосессии.">
+    
+    <style>
+        /* Базовые стили и переменные */
+        :root {
+            --brand-green: hsl(25, 35%, 20%);
+            --brand-gold: hsl(42, 26%, 55%);
+            --brand-bg: hsl(46, 62%, 98%);
+            --background: hsl(46, 62%, 98%);
+            --foreground: hsl(25, 35%, 20%);
+            --accent: hsl(42, 26%, 55%);
+            --border: hsl(42, 26%, 85%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        
+        /* Навигация */
+        .nav-fixed {
+            position: fixed;
+            top: 1rem;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 1rem;
+        }
+        
+        .nav-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            box-shadow: 0 4px 16px rgba(25, 60, 46, 0.08);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            height: 3.5rem;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 0.25rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--brand-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--brand-gold);
+            background: rgba(180, 160, 104, 0.05);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 1rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--brand-gold);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--brand-green);
+            border: 2px solid var(--brand-green);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--brand-green) 0%, hsl(25, 35%, 15%) 100%);
+            color: white;
+            padding-top: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .accent-text {
+            color: var(--brand-gold);
+        }
+        
+        .hero p {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            background: white;
+            color: var(--brand-green);
+            padding: 1.25rem 2.5rem;
+            font-size: 1.125rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Energy Animations */
+        .energy-waves {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .energy-wave {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid var(--brand-gold);
+            opacity: 0.1;
+            animation: pulse-wave 8s ease-in-out infinite;
+        }
+        
+        .energy-wave:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -150px;
+        }
+        
+        .energy-wave:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            bottom: 5%;
+            right: -250px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes pulse-wave {
+            0%, 100% { transform: scale(1); opacity: 0.05; }
+            50% { transform: scale(1.2); opacity: 0.15; }
+        }
+        
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            box-shadow: 0 2px 12px rgba(180, 160, 104, 0.15);
+        }
+        
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .section-alt {
+            background: hsl(46, 62%, 95%);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--brand-green);
+            color: white;
+            padding: 5rem 0 2rem;
+            margin-top: 5rem;
+        }
+        
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--brand-gold);
+        }
+        
+        /* Masters Grid */
+        .master-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+        
+        .master-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+        
+        .master-info {
+            padding: 1.5rem;
+        }
+        
+        /* Test Styles */
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .test-options {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .test-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .test-option:hover {
+            border-color: var(--brand-gold);
+            transform: scale(1.1);
+        }
+        
+        .test-option.selected {
+            background: var(--brand-gold);
+            color: white;
+            border-color: var(--brand-gold);
+        }
+        
+        /* Form Styles */
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--brand-gold);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard-stats {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--brand-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+        
+        .tab:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--brand-gold);
+            color: var(--brand-gold);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-fixed">
+        <div class="nav-container">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Ctext x='10' y='40' font-family='Playfair Display, serif' font-size='32' font-weight='bold' fill='%23193c2e'%3EERA%3C/text%3E%3C/svg%3E" alt="ERA Academy" class="logo" onclick="navigateTo('home')">
+            <div class="nav-links">
+                <a class="nav-link" onclick="navigateTo('home')">Главная</a>
+                <a class="nav-link" onclick="navigateTo('test')">Тест</a>
+                <a class="nav-link" onclick="navigateTo('masters')">Мастера</a>
+                <a class="nav-link" onclick="navigateTo('training')">Обучение</a>
+                <button class="btn btn-primary" onclick="navigateTo('login')">Войти</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главная страница -->
+    <div id="page-home" class="page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="energy-waves">
+                <div class="energy-wave"></div>
+                <div class="energy-wave"></div>
+            </div>
+            <div class="container hero-content">
+                <div class="mb-6">
+                    <span style="display: inline-block; padding: 0.75rem 1.5rem; background: rgba(255, 255, 255, 0.1); border-radius: 2rem; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        Метод энерготерапии ERA
+                    </span>
+                </div>
+                <h1 class="animate-fade-in">
+                    Раскройте<br/>
+                    <span class="accent-text">свой потенциал</span>
+                </h1>
+                <p class="animate-fade-in">Трансформация через энергию</p>
+                <button class="btn hero-cta" onclick="navigateTo('masters')">
+                    Записаться на сессию →
+                </button>
+                
+                <div style="margin-top: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <div style="background: white; border-radius: 2rem; padding: 2.5rem; box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);">
+                        <div style="font-size: 3rem; margin-bottom: 1.5rem;">✨</div>
+                        <h2 style="color: var(--brand-green); font-size: 2rem; margin-bottom: 1rem;">
+                            Анализ вашей энергосистемы
+                        </h2>
+                        <p style="color: #666; margin-bottom: 2rem;">
+                            Узнайте уровень потенциала за 5 минут
+                        </p>
+                        <button class="btn btn-primary" onclick="navigateTo('test')" style="width: 100%; padding: 1.25rem;">
+                            Пройти бесплатный тест →
+                        </button>
+                        <p style="color: #999; font-size: 0.875rem; margin-top: 1rem;">
+                            Более 7 000 человек уже прошли этот тест
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sessions Section -->
+        <section id="sessions">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <div class="mb-6">
+                        <span style="display: inline-block; padding: 0.5rem 1rem; background: rgba(180, 160, 104, 0.1); border-radius: 2rem; border: 1px solid rgba(180, 160, 104, 0.2); color: var(--brand-gold);">
+                            Метод энергосессий
+                        </span>
+                    </div>
+                    <h2>
+                        Энергосессии<br/>
+                        <span class="accent-text">Кундалини ERA</span>
+                    </h2>
+                    <p style="font-size: 1.25rem; color: #666; max-width: 600px; margin: 0 auto;">
+                        Прямая передача жизненной энергии для вашей активации и глубокой трансформации
+                    </p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🧠</div>
+                        <h3 style="margin-bottom: 1rem;">Что такое Энергосессия?</h3>
+                        <p style="color: #666;">
+                            Это активация вашей внутренней энергии через поле мастера-проводника. 
+                            Вы лежите, расслабляетесь под музыку — энергия работает сама, высвобождая блоки и наполняя ресурсом.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="mb-6">Что вы почувствуете?</h3>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div class="card">
+                                <p>🧘 Глубокое медитативное состояние и расслабление</p>
+                            </div>
+                            <div class="card">
+                                <p>❤️ Освобождение от эмоциональных блоков</p>
+                            </div>
+                            <div class="card">
+                                <p>⚡ Прилив жизненных сил, тепла или вибраций в теле</p>
+                            </div>
+                            <div class="card">
+                                <p>✨ Состояние ясности, инсайтов и связи с собой</p>
+                            </div>
+                            <div class="card">
+                                <p>☀️ Ощущение безусловной любви и принятия</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <button class="btn btn-primary" onclick="navigateTo('masters')" style="padding: 1.25rem 3rem; font-size: 1.125rem;">
+                        Записаться к энерготерапевту →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section-alt">
+            <div class="container">
+                <div class="text-center mb-8">
+                    <h2>Атмосфера <span class="accent-text">наших сессий</span></h2>
+                    <p style="color: #666;">Погрузитесь в пространство трансформации и энергетического роста</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400" alt="Энергетическая практика">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400" alt="Групповая сессия">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=400" alt="Медитация">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=400" alt="Трансформация">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transformation Section -->
+        <section id="transformation">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <div class="mb-6">
+                        <span style="display: inline-block; padding: 0.5rem 1rem; background: rgba(180, 160, 104, 0.1); border-radius: 2rem; border: 1px solid rgba(180, 160, 104, 0.2); color: var(--brand-gold);">
+                            8-недельная программа
+                        </span>
+                    </div>
+                    <h2>
+                        Энергопрактикум<br/>
+                        <span class="accent-text">"Трансформация"</span>
+                    </h2>
+                    <p style="font-size: 1.25rem; color: #666; max-width: 800px; margin: 0 auto;">
+                        Раскрытие твоего потенциала через активацию кундалини энергии, очищение энергополя и восстановление твоей энергосистемы
+                    </p>
+                </div>
+
+                <div class="card mb-8" style="max-width: 900px; margin: 0 auto;">
+                    <h3 class="mb-4">О практикуме</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">
+                        Это системная работа с вашей энергоструктурой. Метод энерготерапии ERA объединяет 
+                        активацию кундалини, чтение и очищение энергополя, а также восстановление 
+                        энергосистемы для глубинных трансформаций.
+                    </p>
+                    <p style="color: #666;">
+                        Энергопрактикум работает как катализатор — многократно ускоряет процессы изменений 
+                        в вашей жизни. События начинают происходить быстрее, возможности раскрываются, 
+                        нужные люди и ресурсы притягиваются естественным образом.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-secondary" onclick="navigateTo('transformation')" style="padding: 1.25rem 2.5rem; font-size: 1.125rem;">
+                        Узнать подробнее →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Training Section -->
+        <section id="training" class="section-alt">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <div class="mb-6">
+                        <span style="display: inline-block; padding: 0.5rem 1rem; background: rgba(180, 160, 104, 0.1); border-radius: 2rem; border: 1px solid rgba(180, 160, 104, 0.2); color: var(--brand-gold);">
+                            Профессиональное обучение
+                        </span>
+                    </div>
+                    <h2>
+                        Станьте<br/>
+                        <span class="accent-text">Фасилитатором</span><br/>
+                        Кундалини ERA
+                    </h2>
+                    <p style="font-size: 1.25rem; color: #666; max-width: 800px; margin: 0 auto;">
+                        Метод энерготерапии ERA – системная работа через активацию кундалини, очищение и восстановление энергоструктуры человека
+                    </p>
+                </div>
+
+                <div class="grid grid-2" style="max-width: 900px; margin: 0 auto 3rem;">
+                    <div class="card">
+                        <h3 class="mb-4">Об обучении</h3>
+                        <p style="color: #666; margin-bottom: 1rem;">
+                            Наша цель – помочь вам пробудить ваш внутренний ресурс и стать сильными 
+                            проводниками трансформации для других.
+                        </p>
+                        <p style="color: #666;">
+                            Это новое пространство для глубокого изучения энергии Кундалини и развития 
+                            уникальных навыков энерготерапевта-фасилитатора.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mb-4">Что вы получите?</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.75rem;">🏆 Сертификат международного образца</li>
+                            <li style="margin-bottom: 0.75rem;">👥 Доступ в сообщество мастеров ERA</li>
+                            <li style="margin-bottom: 0.75rem;">🎥 Навыки проведения онлайн и офлайн сессий</li>
+                            <li style="margin-bottom: 0.75rem;">📚 Глубокая личная трансформация</li>
+                            <li style="margin-bottom: 0.75rem;">🌐 Собственная страница на сайте</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-secondary" onclick="navigateTo('training')" style="padding: 1.25rem 2.5rem; font-size: 1.125rem;">
+                        Узнать об обучении →
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница Мастера -->
+    <div id="page-masters" class="page hidden">
+        <section style="padding-top: 8rem;">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <div class="mb-6">
+                        <span style="display: inline-block; padding: 0.5rem 1rem; background: rgba(180, 160, 104, 0.1); border-radius: 2rem; border: 1px solid rgba(180, 160, 104, 0.2); color: var(--brand-gold);">
+                            Наши энерготерапевты
+                        </span>
+                    </div>
+                    <h1>Выберите своего энерготерапевта ERA</h1>
+                    <p style="color: #666; font-size: 1.125rem;">
+                        Все наши специалисты прошли сертификацию и обладают глубокими знаниями метода энерготерапии ERA
+                    </p>
+                </div>
+
+                <div class="grid grid-3" id="masters-list"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница Теста -->
+    <div id="page-test" class="page hidden">
+        <section style="padding-top: 8rem;">
+            <div class="container test-container">
+                <div id="test-content"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница Обучения -->
+    <div id="page-training" class="page hidden">
+        <section style="padding-top: 8rem; background: var(--brand-green); color: white; min-height: 50vh;">
+            <div class="container text-center">
+                <div class="mb-6">
+                    <span style="display: inline-block; padding: 0.5rem 1rem; background: rgba(180, 160, 104, 0.2); border-radius: 2rem; border: 1px solid rgba(180, 160, 104, 0.3); color: var(--brand-gold);">
+                        Обучение энерготерапии
+                    </span>
+                </div>
+                <h1 style="color: white;">Обучение методу энерготерапии ERA</h1>
+                <p style="font-size: 1.125rem; max-width: 800px; margin: 0 auto 2rem;">
+                    Метод энерготерапии ERA – это системная работа через активацию кундалини, 
+                    очищение и восстановление энергоструктуры человека.
+                </p>
+                <button class="btn btn-primary" onclick="window.open('https://t.me/era_academy', '_blank')" style="padding: 1.25rem 2.5rem;">
+                    Узнать подробности
+                </button>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Это обучение для вас, если</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 class="mb-4">1. Хотите глубоко изучить энергию Кундалини</h3>
+                        <p style="color: #666;">
+                            Вы хотите стать энерготерапевтом-фасилитатором с осознанным подходом и поддержкой сообщества
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mb-4">2. Готовы к трансформациям</h3>
+                        <p style="color: #666;">
+                            Вы готовы к серьёзным внутренним изменениям и желаете развивать эмпатию и энергетическую проводимость
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mb-4">3. Ищете экологичный подход</h3>
+                        <p style="color: #666;">
+                            Вы ищите безопасный путь работы с энергией, без эзотерических ритуалов и с научным подходом
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mb-4">4. Хотите получать доход</h3>
+                        <p style="color: #666;">
+                            Вы хотите работать с энергией профессионально и получать стабильный доход
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница Трансформации -->
+    <div id="page-transformation" class="page hidden">
+        <section style="padding-top: 8rem; background: var(--brand-green); color: white; min-height: 50vh;">
+            <div class="container text-center">
+                <p style="margin-bottom: 0.5rem;">Энергопрактикум с Анастасией Соло</p>
+                <p style="margin-bottom: 1.5rem;">Онлайн 02.12 - 23.12</p>
+                <h1 style="color: var(--brand-gold); font-size: clamp(2.5rem, 8vw, 5rem);">ТРАНСФОРМАЦИЯ</h1>
+                <p style="font-size: 1.125rem; max-width: 800px; margin: 0 auto 2rem;">
+                    Раскрытие твоего потенциала через активацию кундалини энергии, очищение энергополя и восстановление твоей энергосистемы
+                </p>
+                <button class="btn btn-primary" onclick="window.open('https://t.me/era_academy', '_blank')" style="padding: 1.25rem 2.5rem;">
+                    Пройти Трансформацию
+                </button>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Для кого этот энергопрактикум</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3 class="mb-4">Вы "застряли", ничего не происходит</h3>
+                        <p style="color: #666;">
+                            Если в вашей жизни сейчас застой, ничего не происходит, вам непонятно что делать дальше. 
+                            Чувствуете аппатию, потерянность, нехватку энергии.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mb-4">Ищите глубину и контакт с собой</h3>
+                        <p style="color: #666;">
+                            Хотите найти внутреннюю опору, стать увереннее и спокойнее. Находитесь в поиске духовного пути.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mb-4">Работаете с людьми и выгораете</h3>
+                        <p style="color: #666;">
+                            Вы помогающий практик, чувствуете, что быстро устаете, не хватает ресурса, хотите глубже чувствовать людей.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mb-4">Готовы к трансформациям</h3>
+                        <p style="color: #666;">
+                            Ощущаете, что назрели большие перемены. Хотите перейти на новый уровень в работе, отношениях, жизни.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница Входа -->
+    <div id="page-login" class="page hidden">
+        <section style="padding-top: 8rem;">
+            <div class="container" style="max-width: 500px;">
+                <div class="card">
+                    <h1 class="mb-6 text-center">Вход в систему</h1>
+                    <div class="mb-4">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" id="login-email">
+                    </div>
+                    <div class="mb-6">
+                        <label>Пароль</label>
+                        <input type="password" placeholder="••••••••" id="login-password">
+                    </div>
+                    <button class="btn btn-primary mb-4" onclick="loginAsMaster()" style="width: 100%;">
+                        Войти (Мастер)
+                    </button>
+                    <button class="btn btn-secondary" onclick="loginAsAdmin()" style="width: 100%;">
+                        Войти (Администратор)
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Личный кабинет Мастера -->
+    <div id="page-master-dashboard" class="page hidden">
+        <section style="padding-top: 6rem;">
+            <div class="container">
+                <h1 class="mb-8">Личный кабинет Мастера</h1>
+                
+                <div class="card mb-8">
+                    <div class="tabs" id="dashboard-tabs">
+                        <div class="tab active" onclick="switchTab('profile')">Профиль</div>
+                        <div class="tab" onclick="switchTab('schedule')">Расписание</div>
+                        <div class="tab" onclick="switchTab('statistics')">Статистика</div>
+                        <div class="tab" onclick="switchTab('crm')">CRM и бот</div>
+                    </div>
+
+                    <div id="tab-content-profile">
+                        <h2 class="mb-6">Редактировать профиль</h2>
+                        <div class="grid grid-2 mb-4">
+                            <div>
+                                <label>Имя</label>
+                                <input type="text" value="Елена">
+                            </div>
+                            <div>
+                                <label>Фамилия</label>
+                                <input type="text" value="Волкова">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label>Описание (макс. 500 символов)</label>
+                            <textarea rows="4" placeholder="Расскажите о себе...">Проводник с 5-летним опытом. Мягко и бережно проведу вас к вашему ресурсу.</textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label>Города (через запятую)</label>
+                            <input type="text" value="Москва, Онлайн">
+                        </div>
+                        <button class="btn btn-primary" onclick="alert('Данные сохранены!')">
+                            Сохранить изменения
+                        </button>
+                    </div>
+
+                    <div id="tab-content-schedule" class="hidden">
+                        <h2 class="mb-6">Управление расписанием</h2>
+                        <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                            <input type="datetime-local" style="flex: 1;">
+                            <button class="btn btn-primary">Добавить</button>
+                        </div>
+                        <h3 class="mb-4">Активные даты:</h3>
+                        <div class="card mb-4">
+                            <p>10 ноября 2025, 19:00</p>
+                        </div>
+                        <div class="card mb-4">
+                            <p>12 ноября 2025, 19:00</p>
+                        </div>
+                    </div>
+
+                    <div id="tab-content-statistics" class="hidden">
+                        <h2 class="mb-6">Статистика оплат</h2>
+                        <div class="dashboard-stats mb-8">
+                            <div class="stat-card">
+                                <div class="stat-value">14</div>
+                                <div class="stat-label">Сессий в этом месяце</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">140 000 ₽</div>
+                                <div class="stat-label">Доход в этом месяце</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">5.0</div>
+                                <div class="stat-label">Средняя оценка</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-content-crm" class="hidden">
+                        <h2 class="mb-6">CRM и Telegram-бот</h2>
+                        <div class="card mb-6" style="background: rgba(180, 160, 104, 0.1);">
+                            <h3 class="mb-4">Telegram-бот для клиентов</h3>
+                            <p style="color: #666; margin-bottom: 1rem;">
+                                Автоматизируйте работу с клиентами через Telegram-бот. Клиенты смогут записываться на сессии, оплачивать и получать напоминания.
+                            </p>
+                            <button class="btn btn-primary">Настроить бот</button>
+                        </div>
+                        <h3 class="mb-4">База клиентов</h3>
+                        <div class="card mb-4">
+                            <strong>@client_one</strong> - Анна Иванова (5 сессий)
+                        </div>
+                        <div class="card mb-4">
+                            <strong>@client_two</strong> - Мария Петрова (1 сессия)
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary" onclick="logout()">Выйти</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Админ-панель -->
+    <div id="page-admin-dashboard" class="page hidden">
+        <section style="padding-top: 6rem;">
+            <div class="container">
+                <h1 class="mb-8">Панель Администратора</h1>
+                
+                <div class="dashboard-stats mb-8">
+                    <div class="stat-card">
+                        <div class="stat-value">4</div>
+                        <div class="stat-label">Активных Мастеров</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">94</div>
+                        <div class="stat-label">Сессий за месяц</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">940 000 ₽</div>
+                        <div class="stat-label">Оборот за месяц</div>
+                    </div>
+                </div>
+
+                <div class="card mb-8">
+                    <h2 class="mb-6">Данные по Мастерам</h2>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--brand-bg);">
+                                <th style="padding: 1rem; text-align: left;">Мастер</th>
+                                <th style="padding: 1rem; text-align: left;">Город</th>
+                                <th style="padding: 1rem; text-align: left;">Сессий</th>
+                                <th style="padding: 1rem; text-align: left;">Доход</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 1rem;">Анастасия Соло</td>
+                                <td style="padding: 1rem;">Москва, Онлайн</td>
+                                <td style="padding: 1rem;">50</td>
+                                <td style="padding: 1rem;">500 000 ₽</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 1rem;">Елена Волкова</td>
+                                <td style="padding: 1rem;">Москва, Онлайн</td>
+                                <td style="padding: 1rem;">14</td>
+                                <td style="padding: 1rem;">140 000 ₽</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 1rem;">Михаил Светлов</td>
+                                <td style="padding: 1rem;">Санкт-Петербург</td>
+                                <td style="padding: 1rem;">22</td>
+                                <td style="padding: 1rem;">220 000 ₽</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 1rem;">Анна Луч</td>
+                                <td style="padding: 1rem;">Сочи</td>
+                                <td style="padding: 1rem;">8</td>
+                                <td style="padding: 1rem;">80 000 ₽</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="btn btn-secondary" onclick="logout()">Выйти</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="grid grid-3 mb-8">
+                <div>
+                    <h3 class="mb-4" style="color: white;">ERA Academy</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        Единая экосистема для вашего роста, трансформации и обретения баланса через метод энерготерапии ERA
+                    </p>
+                </div>
+                <div>
+                    <h4 class="mb-4" style="color: white;">Быстрые ссылки</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <a onclick="navigateTo('home')">Главная</a>
+                        <a onclick="navigateTo('test')">Пройти тест</a>
+                        <a onclick="navigateTo('masters')">Каталог Мастеров</a>
+                        <a onclick="navigateTo('training')">Обучение</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="mb-4" style="color: white;">Контакты</h4>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <a href="mailto:hello@era-academy.ru">hello@era-academy.ru</a>
+                        <a href="tel:+79999999999">+7 (999) 999-99-99</a>
+                        <a href="https://t.me/era_academy" target="_blank">Telegram-канал</a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <p style="color: rgba(255, 255, 255, 0.5); font-size: 0.875rem;">
+                    © 2025 Единая Сеть Мастеров ERA. Все права защищены.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные мастеров
+        const masters = [
+            {
+                id: 0,
+                name: "Анастасия Соло",
+                cities: ["Москва", "Онлайн", "Весь Мир"],
+                description: "Проводник с 5-летним опытом. Мягко и бережно проведу вас к вашему ресурсу.",
+                photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
+                sessions: 50,
+                reviews: ["основатель", "глубина", "мощь", "любовь", "трансформация"]
+            },
+            {
+                id: 1,
+                name: "Елена Волкова",
+                cities: ["Москва", "Онлайн"],
+                description: "Проводник с 5-летним опытом. Помогаю снять тревогу и обрести ясность.",
+                photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
+                sessions: 14,
+                reviews: ["мощно", "расслабление", "глубоко", "слёзы", "тепло"]
+            },
+            {
+                id: 2,
+                name: "Михаил Светлов",
+                cities: ["Санкт-Петербург", "Онлайн"],
+                description: "Специализируюсь на работе с финансовыми блоками и отношениями.",
+                photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
+                sessions: 22,
+                reviews: ["трансформация", "прорыв", "ясно", "огонь"]
+            },
+            {
+                id: 3,
+                name: "Анна Луч",
+                cities: ["Сочи"],
+                description: "Мастер по работе с телом и поиском ресурса.",
+                photo: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400",
+                sessions: 8,
+                reviews: ["нежно", "глубоко", "спокойно", "наполнение"]
+            }
+        ];
+
+        // Вопросы для теста
+        const testQuestions = [
+            "Чувствуете ли вы, что в теле как будто идёт ток, тепло, вибрация?",
+            "Бывают ли у вас спонтанные движения тела?",
+            "Испытываете ли вы приливы энергии без видимой причины?",
+            "Замечали ли вы вспышки интуиции, ясного знания или предчувствия?",
+            "Есть ли у вас повышенная чувствительность к звукам, запахам, вибрациям других людей?",
+            "Чувствуете ли вы, что эмоционально проживаете чужие состояния, как свои?",
+            "Бывает ли у вас резкий подъём энергии во время практик?",
+            "Снятся ли вам яркие, символичные сны?",
+            "Испытывали ли вы расширенные состояния сознания?",
+            "Есть ли у вас периоды апатии после эмоциональных перегрузок?",
+            "Замечали ли вы, что ваши желания исполняются быстрее?",
+            "Ощущаете ли вы внутренние блоки в теле?",
+            "Есть ли у вас тяга к духовным практикам?",
+            "Чувствуете ли вы связь с природой?",
+            "Возникают ли у вас внезапные инсайты?",
+            "Менялось ли ваше питание само по себе?",
+            "Чувствуешь ли ты, что энергия в теле поднимается сама?",
+            "Бывает ли чувство сильной связи с пространством?",
+            "Есть ли потребность делиться энергией с другими?",
+            "Насколько вы чувствительны к энергии других людей?"
+        ];
+
+        // Состояние приложения
+        let currentPage = 'home';
+        let currentUser = null;
+        let testAnswers = [];
+        let currentQuestion = 0;
+
+        // Навигация
+        function navigateTo(page) {
+            // Скрыть все страницы
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            
+            // Показать нужную страницу
+            const pageElement = document.getElementById('page-' + page);
+            if (pageElement) {
+                pageElement.classList.remove('hidden');
+                currentPage = page;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Инициализация страницы
+                if (page === 'masters') {
+                    renderMasters();
+                } else if (page === 'test') {
+                    startTest();
+                }
+            }
+        }
+
+        // Отрисовка мастеров
+        function renderMasters() {
+            const container = document.getElementById('masters-list');
+            container.innerHTML = masters.map(master => `
+                <div class="master-card">
+                    <img src="${master.photo}" alt="${master.name}" class="master-photo">
+                    <div class="master-info">
+                        <h3 style="margin-bottom: 0.5rem;">${master.name}</h3>
+                        <p style="color: var(--brand-gold); margin-bottom: 0.5rem;">${master.cities.join(', ')}</p>
+                        <p style="color: #666; font-size: 0.875rem; margin-bottom: 1rem;">${master.description}</p>
+                        <div style="margin-bottom: 1rem;">
+                            <strong style="font-size: 1.5rem; color: var(--brand-gold);">${master.sessions}</strong>
+                            <span style="color: #999; font-size: 0.875rem;"> сессий/мес</span>
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                            ${master.reviews.slice(0, 3).map(r => `
+                                <span style="background: rgba(180, 160, 104, 0.1); padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.875rem; color: var(--brand-gold);">
+                                    ${r}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/era_academy', '_blank')" style="width: 100%;">
+                            Записаться на сессию
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Тест
+        function startTest() {
+            testAnswers = [];
+            currentQuestion = 0;
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const container = document.getElementById('test-content');
+            
+            if (currentQuestion >= testQuestions.length) {
+                showTestResult();
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="card">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <span style="color: #999;">Вопрос ${currentQuestion + 1} из ${testQuestions.length}</span>
+                    </div>
+                    <h2 style="text-align: center; margin-bottom: 2rem;">
+                        ${testQuestions[currentQuestion]}
+                    </h2>
+                    <div class="test-options">
+                        ${[0, 1, 2, 3].map(value => `
+                            <div class="test-option" onclick="answerQuestion(${value})">
+                                ${value}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div style="text-align: center; color: #999; font-size: 0.875rem;">
+                        0 = нет, 3 = да, абсолютно
+                    </div>
+                    ${currentQuestion > 0 ? `
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <button class="btn btn-secondary" onclick="previousQuestion()">
+                                ← Назад
+                            </button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function answerQuestion(value) {
+            testAnswers[currentQuestion] = value;
+            currentQuestion++;
+            setTimeout(renderQuestion, 300);
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function showTestResult() {
+            const score = testAnswers.reduce((sum, answer) => sum + answer, 0);
+            const container = document.getElementById('test-content');
+            
+            let result = {
+                level: '',
+                description: '',
+                color: ''
+            };
+
+            if (score <= 19) {
+                result = {
+                    level: 'Кундалини пока «спит»',
+                    description: 'У вас огромный потенциал, который практически не раскрыт. Активировав энергию кундалини, вы сможете запустить большие изменения во всех сферах жизни.',
+                    color: '#dc2626'
+                };
+            } else if (score <= 32) {
+                result = {
+                    level: 'Частичная чувствительность',
+                    description: 'У вас уже есть определённая чувствительность и движение энергии, но есть большой потенциал в раскрытии способностей.',
+                    color: '#ea580c'
+                };
+            } else if (score <= 43) {
+                result = {
+                    level: 'Кундалини частично активирована',
+                    description: 'Вы уже проходили внутренние трансформации, но ваш потенциал гораздо больше. Вы можете значительно расширить свой энергоканал.',
+                    color: '#ca8a04'
+                };
+            } else if (score <= 51) {
+                result = {
+                    level: 'Кундалини активно проявлена',
+                    description: 'Канал работает, поток сильный. Вы готовы к следующему шагу в раскрытии потенциала.',
+                    color: '#16a34a'
+                };
+            } else {
+                result = {
+                    level: 'Вы живёте в потоке',
+                    description: 'У вас прокаченный энергоканал, вы сильный проводник. Возможно, пора обучиться на энерготерапевта.',
+                    color: '#2563eb'
+                };
+            }
+
+            container.innerHTML = `
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🏆</div>
+                    <h1 style="margin-bottom: 1rem;">Ваш результат</h1>
+                    <div style="font-size: 4rem; font-weight: bold; color: var(--brand-gold); margin-bottom: 0.5rem;">
+                        ${score}
+                    </div>
+                    <p style="color: #999;">из 57 баллов</p>
+                </div>
+
+                <div class="card" style="border-top: 4px solid ${result.color};">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <span style="background: ${result.color}; color: white; padding: 0.5rem 1.5rem; border-radius: 2rem; font-size: 1.125rem;">
+                            ${result.level}
+                        </span>
+                    </div>
+                    <p style="font-size: 1.125rem; text-align: center; color: #666; line-height: 1.8; margin-bottom: 2rem;">
+                        ${result.description}
+                    </p>
+                    <div style="text-align: center;">
+                        <button class="btn btn-primary" onclick="window.open('https://t.me/era_academy', '_blank')" style="margin-bottom: 1rem;">
+                            Записаться на энергосессию
+                        </button>
+                        <br>
+                        <button class="btn btn-secondary" onclick="startTest()">
+                            Пройти тест заново
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Вход в систему
+        function loginAsMaster() {
+            currentUser = { role: 'master', name: 'Елена Волкова' };
+            navigateTo('master-dashboard');
+        }
+
+        function loginAsAdmin() {
+            currentUser = { role: 'admin', name: 'Администратор' };
+            navigateTo('admin-dashboard');
+        }
+
+        function logout() {
+            currentUser = null;
+            navigateTo('home');
+        }
+
+        // Переключение вкладок в дашборде
+        function switchTab(tabName) {
+            // Убрать активный класс со всех вкладок
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            
+            // Добавить активный класс на нужную вкладку
+            event.target.classList.add('active');
+            
+            // Скрыть весь контент
+            document.querySelectorAll('[id^="tab-content-"]').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Показать нужный контент
+            document.getElementById('tab-content-' + tabName).classList.remove('hidden');
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            navigateTo('home');
+        });
+    </script>
+</body>
+</html>
