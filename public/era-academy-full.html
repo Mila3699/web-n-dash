@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академия ERA - Раскрытие вашего потенциала</title>
+    <meta name="description" content="Единая экосистема для роста, трансформации и обретения баланса. Метод энерготерапии ERA - прямая передача жизненной энергии для активации и глубокой трансформации.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap&subset=latin,cyrillic,cyrillic-ext" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: 27 58 46;
+            --primary-foreground: 240 5% 96%;
+            --secondary: 42 87 69;
+            --secondary-foreground: 27 58 46;
+            --accent: 212 156 106;
+            --accent-foreground: 27 58 46;
+            --background: 240 5% 96%;
+            --foreground: 27 58 46;
+            --card: 0 0% 100%;
+            --card-foreground: 27 58 46;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: hsla(var(--background), 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: hsl(var(--primary));
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: hsl(var(--foreground));
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: hsl(var(--accent));
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, hsl(var(--primary)) 100%);
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .cta-section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+            box-shadow: 0 10px 30px -10px hsla(var(--accent), 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px -10px hsla(var(--accent), 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: hsl(var(--primary));
+        }
+
+        /* Energy Animations */
+        .energy-waves {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .energy-wave {
+            position: absolute;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            animation: pulse-wave 4s ease-out infinite;
+        }
+
+        .energy-wave:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .energy-wave:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.2);
+            animation-delay: 1s;
+        }
+
+        .energy-wave:nth-child(3) {
+            width: 700px;
+            height: 700px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.1);
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse-wave {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: hsl(var(--primary));
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Sessions Grid */
+        .sessions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .session-card {
+            background: hsl(var(--card));
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .session-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: hsl(var(--primary));
+        }
+
+        .session-card p {
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 1rem;
+        }
+
+        .session-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .session-card li {
+            padding: 0.5rem 0;
+            color: hsl(var(--foreground));
+        }
+
+        .session-card li::before {
+            content: "✓ ";
+            color: hsl(var(--accent));
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: hsl(var(--muted));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: hsl(var(--primary));
+        }
+
+        .feature-card p {
+            color: hsl(var(--muted-foreground));
+        }
+
+        /* Footer */
+        footer {
+            background: hsl(var(--primary));
+            color: white;
+            padding: 3rem 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: hsl(var(--accent));
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Energy Grid */
+        .energy-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(212, 156, 106, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 156, 106, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Energy Orbs */
+        .energy-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, hsl(var(--accent)) 0%, transparent 70%);
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float-orb 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .energy-orb:nth-child(1) {
+            top: -200px;
+            left: -200px;
+        }
+
+        .energy-orb:nth-child(2) {
+            bottom: -200px;
+            right: -200px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float-orb {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(50px, -50px);
+            }
+            50% {
+                transform: translate(-30px, 30px);
+            }
+            75% {
+                transform: translate(30px, 50px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .sessions-grid,
+            .gallery-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Test Section */
+        .test-section {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .test-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .test-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="#home" class="logo">ERA</a>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#sessions">Сессии</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+                <li><a href="#transformation">Трансформация</a></li>
+                <li><a href="#training">Обучение</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="energy-waves">
+            <div class="energy-wave"></div>
+            <div class="energy-wave"></div>
+            <div class="energy-wave"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Раскройте свой потенциал с методом ERA</h1>
+            <p>Единая экосистема для роста, трансформации и обретения баланса через прямую передачу жизненной энергии</p>
+            
+            <div class="cta-section">
+                <div>
+                    <a href="https://t.me/era_academy" class="btn btn-primary" target="_blank">
+                        Записаться на сессию
+                    </a>
+                </div>
+                
+                <div class="test-section" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 1rem;">
+                    <h2 style="font-size: 1.5rem;">Тест энергетической системы</h2>
+                    <p>Узнайте состояние своей энергетики и получите персональные рекомендации</p>
+                    <a href="https://t.me/era_academy" class="btn btn-outline" target="_blank">
+                        Пройти тест
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sessions Section -->
+    <section id="sessions">
+        <div class="energy-grid"></div>
+        <div class="container">
+            <h2 class="section-title">Наши сессии</h2>
+            <p class="section-subtitle">
+                Выберите формат работы, который подходит именно вам
+            </p>
+            
+            <div class="sessions-grid">
+                <div class="session-card">
+                    <h3>Индивидуальная сессия</h3>
+                    <p>Глубокая работа один-на-один с мастером для раскрытия вашего потенциала</p>
+                    <ul>
+                        <li>Персональный подход</li>
+                        <li>Активация энергии</li>
+                        <li>Проработка блоков</li>
+                        <li>Восстановление баланса</li>
+                    </ul>
+                </div>
+                
+                <div class="session-card">
+                    <h3>Групповая сессия</h3>
+                    <p>Коллективная трансформация в поддерживающей атмосфере</p>
+                    <ul>
+                        <li>Энергия группы</li>
+                        <li>Обмен опытом</li>
+                        <li>Коллективное поле</li>
+                        <li>Поддержка единомышленников</li>
+                    </ul>
+                </div>
+                
+                <div class="session-card">
+                    <h3>Онлайн сессия</h3>
+                    <p>Работа с энергией на расстоянии через цифровое пространство</p>
+                    <ul>
+                        <li>Удобный формат</li>
+                        <li>Доступность</li>
+                        <li>Запись сессии</li>
+                        <li>Индивидуальный график</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" style="background: hsl(var(--muted));">
+        <div class="container">
+            <h2 class="section-title">Галерея</h2>
+            <p class="section-subtitle">
+                Моменты трансформации и роста наших участников
+            </p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">Сессия 1</div>
+                <div class="gallery-item">Сессия 2</div>
+                <div class="gallery-item">Сессия 3</div>
+                <div class="gallery-item">Сессия 4</div>
+                <div class="gallery-item">Сессия 5</div>
+                <div class="gallery-item">Сессия 6</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation Section -->
+    <section id="transformation">
+        <div class="energy-orb"></div>
+        <div class="energy-orb"></div>
+        
+        <div class="container">
+            <h2 class="section-title">Практикум Трансформация</h2>
+            <p class="section-subtitle">
+                Погрузитесь в глубокий процесс трансформации и раскрытия потенциала
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Активация энергии</h3>
+                    <p>Пробуждение внутренних ресурсов и жизненной силы через практики ERA</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3>Раскрытие потенциала</h3>
+                    <p>Обнаружение и развитие скрытых способностей и талантов</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Обретение баланса</h3>
+                    <p>Гармонизация всех аспектов жизни через энергетическую работу</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🧘</div>
+                    <h3>Глубокая практика</h3>
+                    <p>Систематическая работа с энергетической структурой</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://t.me/era_academy" class="btn btn-primary" target="_blank">
+                    Пройти Трансформацию
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Section -->
+    <section id="training" style="background: hsl(var(--muted));">
+        <div class="energy-grid"></div>
+        
+        <div class="container">
+            <h2 class="section-title">Обучение мастеров ERA</h2>
+            <p class="section-subtitle">
+                Станьте проводником трансформации для других людей
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Глубокие знания</h3>
+                    <p>Изучение основ энерготерапии и методов активации Кундалини</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Практический опыт</h3>
+                    <p>Работа под руководством опытных мастеров</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Сообщество</h3>
+                    <p>Поддержка и обмен опытом с единомышленниками</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Сертификация</h3>
+                    <p>Получение квалификации мастера ERA</p>
+                </div>
+            </div>
+            
+            <div style="background: hsl(var(--card)); border-radius: 1rem; padding: 3rem; margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center;">
+                <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 0.5rem;">Автор программы:</p>
+                <h3 style="font-size: 1.75rem; margin-bottom: 1.5rem;">Анастасия Соло</h3>
+                <div style="text-align: left; margin-bottom: 2rem;">
+                    <p style="margin-bottom: 0.75rem;">✓ Энерготерапевт-фасилитатор, мастер кундалини активационного процесса</p>
+                    <p style="margin-bottom: 0.75rem;">✓ Получила опыт полного пробуждения энергии Кундалини у мастера Venant Wong</p>
+                    <p>✓ Успешно активировала более 7000 человек</p>
+                </div>
+                <a href="https://t.me/era_academy" class="btn btn-primary" target="_blank">
+                    Узнать подробности
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="energy-waves">
+            <div class="energy-wave"></div>
+            <div class="energy-wave"></div>
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Академия ERA</h3>
+                <p>Единая экосистема для роста, трансформации и обретения баланса</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Навигация</h3>
+                <a href="#home">Главная</a>
+                <a href="#sessions">Сессии</a>
+                <a href="#gallery">Галерея</a>
+                <a href="#transformation">Трансформация</a>
+                <a href="#training">Обучение</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <a href="https://t.me/era_academy" target="_blank">Telegram</a>
+                <a href="mailto:info@era-academy.com">Email: info@era-academy.com</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Информация</h3>
+                <a href="#">О методе ERA</a>
+                <a href="#">Вопросы и ответы</a>
+                <a href="#">Отзывы</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Академия ERA. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.session-card, .feature-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
