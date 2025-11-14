@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowDown, Users, Brain, Sparkles, Target } from "lucide-react";
 import { useRateLimit } from "@/hooks/useRateLimit";
+import { useContent } from "@/hooks/useContent";
 import { safeOpenLink } from "@/lib/sanitize";
 import sessionImage3 from "@/assets/session-2.jpg";
 import sessionImage5 from "@/assets/session-5.jpg";
@@ -15,61 +16,62 @@ const Transformation = () => {
     key: 'transformation_cta',
     preset: 'externalLink',
   });
+  const { getBlockContent } = useContent('transformation');
 
   const targetAudience = [
     {
       icon: ArrowDown,
-      title: 'Вы "застряли", ничего не происходит',
-      description: 'Если в вашей жизни сейчас застой, ничего не происходит, вам непонятно что делать дальше, куда двигаться.',
-      details: 'Чувствуете аппатию, потерянность, нехватку энергии. Хочется найти новые смыслы, прокачать энергию, увидеть свой потенциал'
+      title: getBlockContent('transformation-target-1-title') || 'Вы "застряли", ничего не происходит',
+      description: getBlockContent('transformation-target-1-desc') || 'Если в вашей жизни сейчас застой, ничего не происходит, вам непонятно что делать дальше, куда двигаться.',
+      details: getBlockContent('transformation-target-1-details') || 'Чувствуете аппатию, потерянность, нехватку энергии. Хочется найти новые смыслы, прокачать энергию, увидеть свой потенциал'
     },
     {
       icon: Brain,
-      title: 'Ищите глубину и контакт с собой',
-      description: 'Если вы хотите найти внутреннюю опору, стать увереннее и спокойнее. Чувствуете усталость, неуверенность, потерю радости или вдохновения.',
-      details: 'Находитесь в поиске духовного пути и новых практик, которые помогут соединиться с собой и раскрыть ваш потенциал'
+      title: getBlockContent('transformation-target-2-title') || 'Ищите глубину и контакт с собой',
+      description: getBlockContent('transformation-target-2-desc') || 'Если вы хотите найти внутреннюю опору, стать увереннее и спокойнее. Чувствуете усталость, неуверенность, потерю радости или вдохновения.',
+      details: getBlockContent('transformation-target-2-details') || 'Находитесь в поиске духовного пути и новых практик, которые помогут соединиться с собой и раскрыть ваш потенциал'
     },
     {
       icon: Users,
-      title: 'Работаете с людьми и выгораете',
-      description: 'Если вы помогающий практик, работаете с людьми, чувствуете, что быстро устаете, не хватает ресурса, не можете брать больше клиентов из-за выгорания.',
-      details: 'Хотите глубже чувствовать людей, "читать" их поле, помогать им быстрее и при этом оставаться наполненными энергией'
+      title: getBlockContent('transformation-target-3-title') || 'Работаете с людьми и выгораете',
+      description: getBlockContent('transformation-target-3-desc') || 'Если вы помогающий практик, работаете с людьми, чувствуете, что быстро устаете, не хватает ресурса, не можете брать больше клиентов из-за выгорания.',
+      details: getBlockContent('transformation-target-3-details') || 'Хотите глубже чувствовать людей, "читать" их поле, помогать им быстрее и при этом оставаться наполненными энергией'
     },
     {
       icon: Sparkles,
-      title: 'Готовы к трансформациям',
-      description: 'Если вы ощущаете, что назрели большие перемены.',
-      details: 'Есть большое желание перейти на новый уровень - в работе, в отношениях, в жизни в целом, но не хватает энергии и толчка, чтобы сделать этот шаг. Вы чувствуете, что вы уже на пороге важных изменений в жизни'
+      title: getBlockContent('transformation-target-4-title') || 'Готовы к трансформациям',
+      description: getBlockContent('transformation-target-4-desc') || 'Если вы ощущаете, что назрели большие перемены.',
+      details: getBlockContent('transformation-target-4-details') || 'Есть большое желание перейти на новый уровень - в работе, в отношениях, в жизни в целом, но не хватает энергии и толчка, чтобы сделать этот шаг. Вы чувствуете, что вы уже на пороге важных изменений в жизни'
     }
   ];
 
   const methodElements = [
     {
-      title: 'Активация кундалини',
-      description: 'Пробуждение внутреннего ресурса, энергии жизни, которая раскрывает потенциал и запускает глубинные трансформации. Раскрытие сверхспособностей - яснознание, ясновидение и др'
+      title: getBlockContent('transformation-method-1-title') || 'Активация кундалини',
+      description: getBlockContent('transformation-method-1-desc') || 'Пробуждение внутреннего ресурса, энергии жизни, которая раскрывает потенциал и запускает глубинные трансформации. Раскрытие сверхспособностей - яснознание, ясновидение и др'
     },
     {
-      title: 'Чтение поля',
-      description: 'Чтение поля - работа с невидимыми слоями информации. Вы начинаете лучше чувствовать себя и других, понимать корни проблем и видеть больше, чем разум способен объяснить.'
+      title: getBlockContent('transformation-method-2-title') || 'Чтение поля',
+      description: getBlockContent('transformation-method-2-desc') || 'Чтение поля - работа с невидимыми слоями информации. Вы начинаете лучше чувствовать себя и других, понимать корни проблем и видеть больше, чем разум способен объяснить.'
     },
     {
-      title: 'Очищение поля',
-      description: 'Очищение поля — снятие энергетических и эмоциональных блоков, зажимов, устаревших программ, которые мешают двигаться вперёд. Уходят обиды, страхи, боль, сомнения.'
+      title: getBlockContent('transformation-method-3-title') || 'Очищение поля',
+      description: getBlockContent('transformation-method-3-desc') || 'Очищение поля — снятие энергетических и эмоциональных блоков, зажимов, устаревших программ, которые мешают двигаться вперёд. Уходят обиды, страхи, боль, сомнения.'
     },
     {
-      title: 'Восстановление энергосистемы',
-      description: 'Восстановление энергосистемы — балансировка всех уровней: от тела до сознания. Это даёт ясность, лёгкость, новые силы и ощущение внутренней опоры, уверенность. Открывается сердце, появляется внутренняя гармония, состояние счастья. При этом, восстанавливается баланс духовного и материального.'
+      title: getBlockContent('transformation-method-4-title') || 'Восстановление энергосистемы',
+      description: getBlockContent('transformation-method-4-desc') || 'Восстановление энергосистемы — балансировка всех уровней: от тела до сознания. Это даёт ясность, лёгкость, новые силы и ощущение внутренней опоры, уверенность. Открывается сердце, появляется внутренняя гармония, состояние счастья. При этом, восстанавливается баланс духовного и материального.'
     }
   ];
 
   const results = [
-    'Энергия вернётся - усталость, апатия и внутренний «туман» уйдут, появится лёгкость и ясность.',
-    'Стабильное состояние - вы станете спокойнее, собраннее, будете меньше реагировать на стресс и внешние обстоятельства.',
-    'Расширение чувствительности - сможете глубже ощущать своё тело, эмоции и энергетику, а также лучше "считывать" других людей.',
-    'Соединение с собой - укрепите внутреннюю опору, самоценность, доверие к себе и своей жизни.',
-    'Прорыв в жизни - появятся силы и смелость для новых шагов, решений и проектов. Появится ясность, что и как делать.',
-    'Очищение и обновление - снизится уровень напряжения и блоков, освободится место для новых состояний и возможностей.',
-    'Раскрытие потенциала - вы почувствуете себя более цельным, наполненным и начнёте жить в большем потоке энергии.'
+    getBlockContent('transformation-result-1') || 'Энергия вернётся - усталость, апатия и внутренний «туман» уйдут, появится лёгкость и ясность.',
+    getBlockContent('transformation-result-2') || 'Стабильное состояние - вы станете спокойнее, собраннее, будете меньше реагировать на стресс и внешние обстоятельства.',
+    getBlockContent('transformation-result-3') || 'Расширение чувствительности - сможете глубже ощущать своё тело, эмоции и энергетику, а также лучше "считывать" других людей.',
+    getBlockContent('transformation-result-4') || 'Соединение с собой - укрепите внутреннюю опору, самоценность, доверие к себе и своей жизни.',
+    getBlockContent('transformation-result-5') || 'Прорыв в жизни - появятся силы и смелость для новых шагов, решений и проектов. Появится ясность, что и как делать.',
+    getBlockContent('transformation-result-6') || 'Очищение и обновление - снизится уровень напряжения и блоков, освободится место для новых состояний и возможностей.',
+    getBlockContent('transformation-result-7') || 'Раскрытие потенциала - вы почувствуете себя более цельным, наполненным и начнёте жить в большем потоке энергии.'
   ];
 
   const schedule = [
@@ -174,7 +176,7 @@ const Transformation = () => {
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center mb-16 break-words px-4">
-              Для кого этот энергопрактикум
+              {getBlockContent('transformation-for-who-title') || 'Для кого этот энергопрактикум'}
             </h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
               {targetAudience.map((item, index) => {
@@ -203,10 +205,10 @@ const Transformation = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center mb-8 break-words px-4">
-                Как работает метод энерготерапии ERA
+                {getBlockContent('transformation-method-title') || 'Как работает метод энерготерапии ERA'}
               </h2>
               <p className="text-xl text-center text-foreground/80 mb-12">
-                Это не просто серия энергосессий, это системная работа с вашей энергоструктурой.
+                {getBlockContent('transformation-method-subtitle') || 'Это не просто серия энергосессий, это системная работа с вашей энергоструктурой.'}
               </p>
 
               {/* Image */}
@@ -221,7 +223,7 @@ const Transformation = () => {
               </div>
 
               <p className="text-lg text-center text-foreground/70 mb-12">
-                Метод энерготерапии ERA объединяет четыре ключевых элемента:
+                {getBlockContent('transformation-method-intro') || 'Метод энерготерапии ERA объединяет четыре ключевых элемента:'}
               </p>
               <div className="space-y-6">
                 {methodElements.map((element, index) => (
@@ -246,7 +248,7 @@ const Transformation = () => {
                   }}
                   className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
                 >
-                  Забронировать место в Telegram
+                  {getBlockContent('transformation-method-button') || 'Забронировать место в Telegram'}
                 </Button>
               </div>
             </div>
@@ -258,7 +260,7 @@ const Transformation = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-12">
-                Результаты энергопрактикума
+                {getBlockContent('transformation-results-title') || 'Результаты энергопрактикума'}
               </h2>
               <Card className="p-8 shadow-soft border-border/50">
                 <div className="space-y-4">
@@ -282,7 +284,7 @@ const Transformation = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-8">
-                Ускорение ваших трансформаций
+                {getBlockContent('transformation-acceleration-title') || 'Ускорение ваших трансформаций'}
               </h2>
 
               {/* Image */}
@@ -298,24 +300,16 @@ const Transformation = () => {
 
               <Card className="p-8 shadow-soft border-border/50">
                 <p className="text-xl font-semibold text-center mb-8">
-                  Энергопрактикум работает как катализатор, он многократно ускоряет процессы изменений в вашей жизни:
+                  {getBlockContent('transformation-acceleration-intro') || 'Энергопрактикум работает как катализатор, он многократно ускоряет процессы изменений в вашей жизни:'}
                 </p>
                 <div className="space-y-4 mb-8">
-                  <p className="text-lg text-foreground/80">
-                    • <strong>События начинают происходить быстрее</strong> - то, на что раньше уходили месяцы или годы, может прийти за недели.
-                  </p>
-                  <p className="text-lg text-foreground/80">
-                    • <strong>Возможности раскрываются сами</strong> - нужные люди, ресурсы и ситуации притягиваются естественным образом.
-                  </p>
-                  <p className="text-lg text-foreground/80">
-                    • <strong>Трансформации происходят мягко, но глубоко</strong> - вы словно «перепрошиваете» свою энергосистему, и жизнь перестраивается под новое состояние.
-                  </p>
-                  <p className="text-lg text-foreground/80">
-                    • <strong>Вы выходите на новый уровень</strong> - быстрее начинаете реализовывать свои желания, проекты, новые смыслы.
-                  </p>
+                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-1') || '• <strong>События начинают происходить быстрее</strong> - то, на что раньше уходили месяцы или годы, может прийти за недели.' }}></p>
+                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-2') || '• <strong>Возможности раскрываются сами</strong> - нужные люди, ресурсы и ситуации притягиваются естественным образом.' }}></p>
+                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-3') || '• <strong>Трансформации происходят мягко, но глубоко</strong> - вы словно «перепрошиваете» свою энергосистему, и жизнь перестраивается под новое состояние.' }}></p>
+                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-4') || '• <strong>Вы выходите на новый уровень</strong> - быстрее начинаете реализовывать свои желания, проекты, новые смыслы.' }}></p>
                 </div>
                 <p className="text-lg font-semibold text-center">
-                  Эта практика не просто добавляет энергии, она меняет вашу траекторию, включая ускорение событийного ряда и выход на новую ветку реальности.
+                  {getBlockContent('transformation-acceleration-outro') || 'Эта практика не просто добавляет энергии, она меняет вашу траекторию, включая ускорение событийного ряда и выход на новую ветку реальности.'}
                 </p>
               </Card>
             </div>
@@ -326,7 +320,7 @@ const Transformation = () => {
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-16">
-              Программа, стоимость и условия участия
+              {getBlockContent('transformation-program-title') || 'Программа, стоимость и условия участия'}
             </h2>
             <div className="max-w-4xl mx-auto">
               <Card className="p-8 shadow-soft border-border/50 mb-8">
