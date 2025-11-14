@@ -10,6 +10,7 @@ import EnergyTest from "./pages/EnergyTest";
 import Masters from "./pages/Masters";
 import Training from "./pages/Training";
 import Transformation from "./pages/Transformation";
+import Sessions from "./pages/Sessions";
 import MasterPublic from "./pages/MasterPublic";
 import MasterStandalone from "./pages/MasterStandalone";
 import Login from "./pages/Login";
@@ -28,6 +29,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/test" element={<EnergyTest />} />
+          <Route path="/sessions" element={<Sessions />} />
           <Route path="/masters" element={<Masters />} />
           <Route path="/master/:id" element={<MasterPublic />} />
           <Route path="/master-standalone/:id" element={<MasterStandalone />} />
