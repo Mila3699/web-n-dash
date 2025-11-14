@@ -9,11 +9,20 @@ export interface User {
 
 const USERS_STORAGE_KEY = 'app_users';
 
+// Импортируем функции санитизации
+import { sanitizeString, isValidEmail } from './sanitize';
+
 export const loadUsers = (): User[] => {
   try {
     const stored = localStorage.getItem(USERS_STORAGE_KEY);
     if (stored) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+      // Валидация загруженных данных
+      if (Array.isArray(parsed)) {
+        return parsed.filter(u => 
+          u.id && u.email && u.password && u.role && u.createdAt
+        );
+      }
     }
   } catch (error) {
     console.error('Error loading users:', error);
@@ -48,27 +57,51 @@ export const saveUsers = (users: User[]): void => {
 };
 
 export const authenticateUser = (email: string, password: string): User | null => {
+  // Дополнительная санитизация на всякий случай
+  const sanitizedEmail = sanitizeString(email, 255).toLowerCase();
+  const sanitizedPassword = sanitizeString(password, 255);
+  
+  if (!isValidEmail(sanitizedEmail)) {
+    return null;
+  }
+  
   const users = loadUsers();
-  const user = users.find(u => u.email === email && u.password === password);
+  const user = users.find(u => 
+    u.email.toLowerCase() === sanitizedEmail && 
+    u.password === sanitizedPassword
+  );
   return user || null;
 };
 
 export const createMaster = (email: string, password: string, masterId: string): User => {
+  // Санитизация входных данных
+  const sanitizedEmail = sanitizeString(email, 255).toLowerCase();
+  const sanitizedPassword = sanitizeString(password, 255);
+  const sanitizedMasterId = sanitizeString(masterId, 50);
+  
+  if (!isValidEmail(sanitizedEmail)) {
+    throw new Error('Invalid email format');
+  }
+  
+  if (sanitizedPassword.length < 6) {
+    throw new Error('Password must be at least 6 characters');
+  }
+  
   const users = loadUsers();
   const userId = `user-${Date.now()}`;
   const newUser: User = {
     id: userId,
-    email,
-    password,
+    email: sanitizedEmail,
+    password: sanitizedPassword,
     role: 'master',
-    masterId,
+    masterId: sanitizedMasterId,
     createdAt: new Date().toISOString()
   };
   users.push(newUser);
   saveUsers(users);
   
   // Сохраняем userId для связи с профилем мастера
-  localStorage.setItem(`master_userId_${masterId}`, userId);
+  localStorage.setItem(`master_userId_${sanitizedMasterId}`, userId);
   
   return newUser;
 };

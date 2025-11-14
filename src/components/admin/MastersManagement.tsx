@@ -6,6 +6,7 @@ import { User, loadUsers, createMaster, deleteUser } from "@/lib/users";
 import { useToast } from "@/hooks/use-toast";
 import { Trash2, Mail, Key, UserPlus, RefreshCw, Copy, Check } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { sanitizeString, isValidEmail } from "@/lib/sanitize";
 
 export const MastersManagement = () => {
   const { toast } = useToast();
@@ -50,7 +51,10 @@ export const MastersManagement = () => {
   };
 
   const handleCreateMaster = () => {
-    if (!newEmail || !newPassword || !masterId) {
+    const sanitizedEmail = sanitizeString(newEmail, 255).toLowerCase();
+    const sanitizedMasterId = sanitizeString(masterId, 50);
+    
+    if (!sanitizedEmail || !newPassword || !sanitizedMasterId) {
       toast({
         title: "Ошибка",
         description: "Заполните все поля",
@@ -59,7 +63,25 @@ export const MastersManagement = () => {
       return;
     }
 
-    const emailExists = users.some(u => u.email === newEmail);
+    if (!isValidEmail(sanitizedEmail)) {
+      toast({
+        title: "Ошибка",
+        description: "Введите корректный email адрес",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      toast({
+        title: "Ошибка",
+        description: "Пароль должен быть минимум 6 символов",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const emailExists = users.some(u => u.email === sanitizedEmail);
     if (emailExists) {
       toast({
         title: "Ошибка",
@@ -69,19 +91,27 @@ export const MastersManagement = () => {
       return;
     }
 
-    createMaster(newEmail, newPassword, masterId);
-    setLastCreatedCredentials({ email: newEmail, password: newPassword });
-    setUsers(loadUsers());
-    
-    toast({
-      title: "Мастер создан",
-      description: "Скопируйте данные для входа и отправьте их мастеру на email",
-      duration: 5000,
-    });
+    try {
+      createMaster(sanitizedEmail, newPassword, sanitizedMasterId);
+      setLastCreatedCredentials({ email: sanitizedEmail, password: newPassword });
+      setUsers(loadUsers());
+      
+      toast({
+        title: "Мастер создан",
+        description: "Скопируйте данные для входа и отправьте их мастеру на email",
+        duration: 5000,
+      });
 
-    setNewEmail("");
-    setMasterId("");
-    generatePassword();
+      setNewEmail("");
+      setMasterId("");
+      generatePassword();
+    } catch (error) {
+      toast({
+        title: "Ошибка",
+        description: error instanceof Error ? error.message : "Не удалось создать мастера",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDeleteUser = (userId: string) => {
