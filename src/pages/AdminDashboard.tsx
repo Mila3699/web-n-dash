@@ -51,6 +51,7 @@ const AdminDashboard = () => {
       navigate('/login');
     }
     setContent(loadSiteContent());
+    setSelectedPage('masters');
   }, [navigate]);
 
   const handleSave = () => {
@@ -255,6 +256,12 @@ const AdminDashboard = () => {
 
           <Tabs value={selectedPage} onValueChange={setSelectedPage} className="w-full">
             <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-2 mb-6 h-auto bg-muted p-1">
+              <TabsTrigger value="masters" className="text-sm md:text-base">
+                Мастера
+              </TabsTrigger>
+              <TabsTrigger value="moderation" className="text-sm md:text-base">
+                Модерация
+              </TabsTrigger>
               {content.map(page => (
                 <TabsTrigger 
                   key={page.pageId} 
@@ -264,12 +271,6 @@ const AdminDashboard = () => {
                   {page.pageName}
                 </TabsTrigger>
               ))}
-              <TabsTrigger value="masters" className="text-sm md:text-base">
-                Мастера
-              </TabsTrigger>
-              <TabsTrigger value="moderation" className="text-sm md:text-base">
-                Модерация
-              </TabsTrigger>
             </TabsList>
 
             {content.map(page => {
