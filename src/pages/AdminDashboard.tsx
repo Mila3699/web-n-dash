@@ -235,14 +235,14 @@ const AdminDashboard = () => {
                 <Download className="h-4 w-4" />
                 Экспорт
               </Button>
-              <label htmlFor="import-file">
-                <Button variant="outline" className="gap-2" asChild>
-                  <span>
-                    <Upload className="h-4 w-4" />
-                    Импорт
-                  </span>
-                </Button>
-              </label>
+              <Button 
+                variant="outline" 
+                className="gap-2"
+                onClick={() => document.getElementById('import-file')?.click()}
+              >
+                <Upload className="h-4 w-4" />
+                Импорт
+              </Button>
               <input
                 id="import-file"
                 type="file"
