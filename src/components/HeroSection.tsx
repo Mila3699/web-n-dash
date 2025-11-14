@@ -28,9 +28,9 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-green">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-green pt-16 md:pt-0">
       {/* Background Image with Overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
