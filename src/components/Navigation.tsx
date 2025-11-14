@@ -39,6 +39,10 @@ const Navigation = () => {
               <span>Главная</span>
               <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
             </Link>
+            <Link to="/sessions" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/sessions' ? 'text-brand-gold' : 'text-brand-green'}`}>
+              <span>Энергосессии</span>
+              <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/sessions' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+            </Link>
             <Link to="/transformation" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/transformation' ? 'text-brand-gold' : 'text-brand-green'}`}>
               <span>Практикум</span>
               <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/transformation' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
@@ -82,11 +86,11 @@ const Navigation = () => {
           <div className="md:hidden py-6 animate-fade-in">
             <div className="flex flex-col space-y-2">
               <Link to="/" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Главная</Link>
+              <Link to="/sessions" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Энергосессии</Link>
               <Link to="/transformation" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Практикум</Link>
               <Link to="/training" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Обучение</Link>
               <Link to="/test" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Тест</Link>
               <Link to="/masters" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Мастера</Link>
-              <Link to="/masters" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Каталог Мастеров</Link>
             </div>
           </div>
         )}
