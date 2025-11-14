@@ -21,17 +21,17 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     target: [
-      'es2020',
-      'edge88',
-      'firefox78',
-      'chrome87',
-      'safari14'
+      'es2018',
+      'chrome60',
+      'firefox60',
+      'safari11',
+      'edge79'
     ],
     cssTarget: [
-      'chrome87',
-      'edge88',
-      'firefox78',
-      'safari14'
+      'chrome60',
+      'firefox60',
+      'safari11',
+      'edge79'
     ],
     minify: 'esbuild',
     rollupOptions: {
