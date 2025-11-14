@@ -137,18 +137,53 @@ export const defaultSiteContent: PageContent[] = [
         order: 15,
       },
       {
+        id: "course-structure-1",
+        type: "text",
+        title: "Структура курса - элемент 1",
+        content: "8 недель погружения",
+        order: 16,
+      },
+      {
+        id: "course-structure-2",
+        type: "text",
+        title: "Структура курса - элемент 2",
+        content: "8+ живых групповых энергосессий онлайн",
+        order: 17,
+      },
+      {
+        id: "course-structure-3",
+        type: "text",
+        title: "Структура курса - элемент 3",
+        content: "Теоретические модули в записи",
+        order: 18,
+      },
+      {
+        id: "course-structure-4",
+        type: "text",
+        title: "Структура курса - элемент 4",
+        content: "Ежедневные практики и медитации",
+        order: 19,
+      },
+      {
+        id: "course-structure-5",
+        type: "text",
+        title: "Структура курса - элемент 5",
+        content: "Чат поддержки с мастером и группой",
+        order: 20,
+      },
+      {
         id: "training-badge",
         type: "text",
         title: "Бейдж секции обучения",
         content: "Профессиональное обучение",
-        order: 16,
+        order: 21,
       },
       {
         id: "training-title",
         type: "text",
         title: "Заголовок секции обучения",
         content: "Станьте\nФасилитатором\nКундалини ERA",
-        order: 17,
+        order: 22,
       },
       {
         id: "training-subtitle",
@@ -156,7 +191,7 @@ export const defaultSiteContent: PageContent[] = [
         title: "Подзаголовок секции обучения",
         content:
           "Метод энерготерапии ERA – системная работа через активацию кундалини, очищение и восстановление энергоструктуры человека",
-        order: 18,
+        order: 23,
       },
       {
         id: "training-about",
@@ -164,7 +199,7 @@ export const defaultSiteContent: PageContent[] = [
         title: "Об обучении",
         content:
           "Наша цель – помочь вам пробудить ваш внутренний ресурс и стать сильными проводниками трансформации для других.\n\nЭто новое пространство для глубокого изучения энергии Кундалини и развития уникальных навыков энерготерапевта-фасилитатора. Здесь встречаются осознанность, наука и практика.",
-        order: 19,
+        order: 24,
       },
       {
         id: "gallery-1",
@@ -178,7 +213,7 @@ export const defaultSiteContent: PageContent[] = [
           "/src/assets/session-5.jpg",
           "/src/assets/session-6.jpg",
         ],
-        order: 20,
+        order: 25,
       },
     ],
   },
