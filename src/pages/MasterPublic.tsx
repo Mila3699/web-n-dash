@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { mockMasters } from "@/data/mockMasters";
@@ -16,8 +15,7 @@ const MasterPublic = () => {
   }
 
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navigation />
+    <Layout className="min-h-screen bg-brand-bg">
       
       <main className="pt-20 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -182,8 +180,7 @@ const MasterPublic = () => {
         </div>
       </main>
 
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

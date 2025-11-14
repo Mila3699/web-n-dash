@@ -1,5 +1,4 @@
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -132,8 +131,7 @@ const Transformation = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <Layout className="min-h-screen bg-background">
       
       <main>
         {/* Hero Section */}
@@ -462,9 +460,8 @@ const Transformation = () => {
           </div>
         </section>
       </main>
-      
-      <Footer />
-    </div>
+
+    </Layout>
   );
 };
 

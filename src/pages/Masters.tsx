@@ -1,5 +1,4 @@
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -36,8 +35,7 @@ const Masters = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <Layout className="min-h-screen">
       
       <main>
         {/* Hero Section */}
@@ -206,9 +204,8 @@ const Masters = () => {
           </div>
         </section>
       </main>
-      
-      <Footer />
-    </div>
+
+    </Layout>
   );
 };
 

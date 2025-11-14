@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -200,11 +199,9 @@ const EnergyTest = () => {
     const result = getResultInterpretation(score);
 
     return (
-      <div className="min-h-screen bg-background relative overflow-hidden">
+      <Layout className="min-h-screen bg-background relative overflow-hidden">
         {/* Subtle Energy Grid */}
         <div className="energy-grid opacity-30"></div>
-        
-        <Navigation />
         
         <main className="py-32 relative z-10">
           <div className="container mx-auto px-6 sm:px-8">
@@ -359,14 +356,12 @@ const EnergyTest = () => {
           </div>
         </main>
         
-        <Footer />
-      </div>
+      </Layout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <Layout className="min-h-screen bg-background">
       
       <main>
         {/* Hero Section */}
@@ -591,8 +586,7 @@ const EnergyTest = () => {
         </div>
       </main>
       
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

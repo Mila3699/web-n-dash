@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useRequireAuth } from "@/hooks/useRequireAuth";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -28,8 +28,8 @@ import { MastersManagement } from "@/components/admin/MastersManagement";
 import { MastersModeration } from "@/components/admin/MastersModeration";
 
 const AdminDashboard = () => {
-  const navigate = useNavigate();
   const { toast } = useToast();
+  useRequireAuth('admin');
   const [content, setContent] = useState<PageContent[]>([]);
   const [selectedPage, setSelectedPage] = useState<string>('users');
   const [editingBlock, setEditingBlock] = useState<ContentBlock | null>(null);
@@ -46,13 +46,9 @@ const AdminDashboard = () => {
   );
 
   useEffect(() => {
-    const userRole = localStorage.getItem('userRole');
-    if (userRole !== 'admin') {
-      navigate('/login');
-    }
     setContent(loadSiteContent());
     setSelectedPage('users');
-  }, [navigate]);
+  }, []);
 
   const handleSave = () => {
     saveSiteContent(content);

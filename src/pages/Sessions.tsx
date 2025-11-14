@@ -1,6 +1,5 @@
 import { useContent } from "@/hooks/useContent";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -12,8 +11,7 @@ const Sessions = () => {
   const { getBlockContent, getBlockButton } = useContent("sessions");
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <Layout className="min-h-screen bg-background">
       
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#193c2e] pt-16 md:pt-0">
@@ -222,8 +220,7 @@ const Sessions = () => {
         </div>
       </section>
 
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 
