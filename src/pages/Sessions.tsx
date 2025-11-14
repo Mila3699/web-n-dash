@@ -4,6 +4,9 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
+import session1 from "@/assets/session-1.jpg";
+import session2 from "@/assets/session-2.jpg";
+import session4 from "@/assets/session-4.jpg";
 
 const Sessions = () => {
   const { getBlockContent, getBlockButton } = useContent("sessions");
@@ -13,17 +16,17 @@ const Sessions = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20" />
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#193c2e]">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/10" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <Badge variant="outline" className="text-lg px-6 py-2 bg-background/50 backdrop-blur-sm">
+            <Badge variant="outline" className="text-lg px-6 py-2 bg-white/10 backdrop-blur-sm border-white/20 text-white">
               {getBlockContent("sessions-hero-badge") || "Метод энерготерапии ERA"}
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white">
               {getBlockContent("sessions-hero-title") || "Энергосессия ERA"}
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               {getBlockContent("sessions-hero-subtitle") || "Через мягкую и безопасную активацию Кундалини я помогу тебе раскрыть внутреннюю силу, ясность и связь с собой"}
             </p>
             <Link to={getBlockButton("sessions-cta-button").link || "/masters"}>
@@ -84,7 +87,29 @@ const Sessions = () => {
       {/* How It Works Section */}
       <section className="py-20 bg-secondary/5">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto space-y-12">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+              <div>
+                <img 
+                  src={session1} 
+                  alt="Энергосессия Кундалини ERA" 
+                  className="rounded-2xl shadow-gold w-full h-[400px] object-cover"
+                />
+              </div>
+              <div className="space-y-6">
+                <img 
+                  src={session2} 
+                  alt="Процесс энергосессии" 
+                  className="rounded-2xl shadow-gold w-full h-[250px] object-cover"
+                />
+                <img 
+                  src={session4} 
+                  alt="Трансформация через энергию" 
+                  className="rounded-2xl shadow-gold w-full h-[250px] object-cover"
+                />
+              </div>
+            </div>
+            <div className="max-w-4xl mx-auto space-y-12">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
               {getBlockContent("sessions-how-title") || "Как проходит энергосессия"}
             </h2>
@@ -123,6 +148,7 @@ const Sessions = () => {
                 </p>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
