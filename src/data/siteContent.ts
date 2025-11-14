@@ -1,11 +1,12 @@
 export interface ContentBlock {
   id: string;
-  type: 'hero' | 'text' | 'image' | 'button' | 'section';
+  type: 'hero' | 'text' | 'image' | 'button' | 'section' | 'gallery';
   title?: string;
   content?: string;
   imageUrl?: string;
   buttonText?: string;
   buttonLink?: string;
+  images?: string[]; // For gallery type
   order: number;
 }
 
@@ -34,6 +35,20 @@ export const defaultSiteContent: PageContent[] = [
         buttonText: 'Пройти тест',
         buttonLink: '/test',
         order: 2
+      },
+      {
+        id: 'gallery-1',
+        type: 'gallery',
+        title: 'Галерея',
+        images: [
+          '/src/assets/session-1.jpg',
+          '/src/assets/session-2.jpg',
+          '/src/assets/session-3.jpg',
+          '/src/assets/session-4.jpg',
+          '/src/assets/session-5.jpg',
+          '/src/assets/session-6.jpg'
+        ],
+        order: 3
       }
     ]
   },
