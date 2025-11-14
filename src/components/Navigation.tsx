@@ -35,48 +35,48 @@ const Navigation = () => {
             </Link>
 
           <div className="hidden md:flex items-center space-x-1">
-            <Link to="/" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/' ? 'text-brand-gold' : 'text-brand-green'}`}>
+            <Link to="/" className={`px-3 lg:px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group text-sm lg:text-base ${location.pathname === '/' ? 'text-brand-gold' : 'text-brand-green'}`}>
               <span>Главная</span>
-              <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+              <span className={`absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
             </Link>
-            <Link to="/sessions" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/sessions' ? 'text-brand-gold' : 'text-brand-green'}`}>
+            <Link to="/sessions" className={`px-3 lg:px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group text-sm lg:text-base ${location.pathname === '/sessions' ? 'text-brand-gold' : 'text-brand-green'}`}>
               <span>Энергосессии</span>
-              <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/sessions' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+              <span className={`absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/sessions' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
             </Link>
-            <Link to="/transformation" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/transformation' ? 'text-brand-gold' : 'text-brand-green'}`}>
+            <Link to="/transformation" className={`px-3 lg:px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group text-sm lg:text-base ${location.pathname === '/transformation' ? 'text-brand-gold' : 'text-brand-green'}`}>
               <span>Практикум</span>
-              <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/transformation' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+              <span className={`absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/transformation' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
             </Link>
-            <Link to="/test" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/test' ? 'text-brand-gold' : 'text-brand-green'}`}>
+            <Link to="/test" className={`px-3 lg:px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group text-sm lg:text-base ${location.pathname === '/test' ? 'text-brand-gold' : 'text-brand-green'}`}>
               <span>Тест</span>
-              <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/test' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+              <span className={`absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/test' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
             </Link>
-            <Link to="/masters" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/masters' ? 'text-brand-gold' : 'text-brand-green'}`}>
+            <Link to="/masters" className={`px-3 lg:px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group text-sm lg:text-base ${location.pathname === '/masters' ? 'text-brand-gold' : 'text-brand-green'}`}>
               <span>Мастера</span>
-              <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/masters' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+              <span className={`absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/masters' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
             </Link>
-            <Link to="/training" className={`px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group ${location.pathname === '/training' ? 'text-brand-gold' : 'text-brand-green'}`}>
+            <Link to="/training" className={`px-3 lg:px-4 py-2 rounded-lg hover:text-brand-gold hover:bg-accent/5 transition-all duration-300 relative group text-sm lg:text-base ${location.pathname === '/training' ? 'text-brand-gold' : 'text-brand-green'}`}>
               <span>Обучение</span>
-              <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/training' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+              <span className={`absolute bottom-0 left-3 lg:left-4 right-3 lg:right-4 h-0.5 bg-accent transition-transform duration-300 ${location.pathname === '/training' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
             </Link>
             
             {!userRole ? (
               <Button 
                 onClick={() => navigate('/login')} 
-                className="ml-4 bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold transition-all duration-200"
+                className="ml-2 lg:ml-4 bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold transition-all duration-200 text-sm lg:text-base px-4 lg:px-6"
               >
                 Войти
               </Button>
             ) : (
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 lg:gap-4">
                 <Button 
                   onClick={() => navigate(userRole === 'master' ? '/master-dashboard' : '/admin-dashboard')} 
                   variant="ghost"
-                  className={`${(location.pathname === '/master-dashboard' || location.pathname === '/admin-dashboard') ? 'text-brand-gold' : ''}`}
+                  className={`text-sm lg:text-base ${(location.pathname === '/master-dashboard' || location.pathname === '/admin-dashboard') ? 'text-brand-gold' : ''}`}
                 >
                   {userRole === 'master' ? 'Личный кабинет' : 'Админ-панель'}
                 </Button>
-                <Button onClick={handleLogout} variant="ghost">Выйти</Button>
+                <Button onClick={handleLogout} variant="ghost" className="text-sm lg:text-base">Выйти</Button>
               </div>
             )}
           </div>
