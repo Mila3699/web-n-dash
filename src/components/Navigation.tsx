@@ -22,7 +22,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border/50 md:top-4 md:px-4 md:bg-transparent md:border-b-0">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border/50 md:top-4 md:px-4 md:border-b-0">
       <div className="container mx-auto">
         <div className="md:glass md:rounded-2xl md:shadow-float md:border md:border-border/50 px-4 md:px-6">
           <div className="flex items-center justify-between h-16">
