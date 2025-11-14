@@ -45,7 +45,7 @@ export const SessionsSection = () => {
         <div className="text-center mb-24">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8 animate-fade-in">
             <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">{getBlockContent('sessions-badge') || 'Метод энергосессий'}</span>
+            <span className="text-sm font-medium text-accent">{getBlockContent('sessions-badge') || 'Активация потенциала'}</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 animate-slide-up">
             {(getBlockContent('sessions-title') || 'Энергосессии\nКундалини ERA').split('\n').map((line, i, arr) => (
