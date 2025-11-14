@@ -19,14 +19,24 @@ export const loadUsers = (): User[] => {
     console.error('Error loading users:', error);
   }
   
-  // Default admin user
-  return [{
-    id: 'admin-1',
-    email: 'dlm78@mail.ru',
-    password: '123456',
-    role: 'admin',
-    createdAt: new Date().toISOString()
-  }];
+  // Default users
+  return [
+    {
+      id: 'admin-1',
+      email: 'dlm78@mail.ru',
+      password: '123456',
+      role: 'admin',
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: 'master-1',
+      email: 'milatrade@mail.ru',
+      password: 'Master2024!',
+      role: 'master',
+      masterId: '1',
+      createdAt: new Date().toISOString()
+    }
+  ];
 };
 
 export const saveUsers = (users: User[]): void => {
