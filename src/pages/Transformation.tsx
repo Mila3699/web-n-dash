@@ -8,6 +8,7 @@ import { ArrowDown, Users, Brain, Sparkles, Target } from "lucide-react";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { useContent } from "@/hooks/useContent";
 import { safeOpenLink } from "@/lib/sanitize";
+import { SafeHtmlText } from "@/components/SafeHtmlText";
 import sessionImage3 from "@/assets/session-2.jpg";
 import sessionImage5 from "@/assets/session-5.jpg";
 
@@ -303,10 +304,22 @@ const Transformation = () => {
                   {getBlockContent('transformation-acceleration-intro') || 'Энергопрактикум работает как катализатор, он многократно ускоряет процессы изменений в вашей жизни:'}
                 </p>
                 <div className="space-y-4 mb-8">
-                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-1') || '• <strong>События начинают происходить быстрее</strong> - то, на что раньше уходили месяцы или годы, может прийти за недели.' }}></p>
-                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-2') || '• <strong>Возможности раскрываются сами</strong> - нужные люди, ресурсы и ситуации притягиваются естественным образом.' }}></p>
-                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-3') || '• <strong>Трансформации происходят мягко, но глубоко</strong> - вы словно «перепрошиваете» свою энергосистему, и жизнь перестраивается под новое состояние.' }}></p>
-                  <p className="text-lg text-foreground/80" dangerouslySetInnerHTML={{ __html: getBlockContent('transformation-acceleration-point-4') || '• <strong>Вы выходите на новый уровень</strong> - быстрее начинаете реализовывать свои желания, проекты, новые смыслы.' }}></p>
+                  <SafeHtmlText 
+                    content={getBlockContent('transformation-acceleration-point-1') || '• <strong>События начинают происходить быстрее</strong> - то, на что раньше уходили месяцы или годы, может прийти за недели.'}
+                    className="text-lg text-foreground/80"
+                  />
+                  <SafeHtmlText 
+                    content={getBlockContent('transformation-acceleration-point-2') || '• <strong>Возможности раскрываются сами</strong> - нужные люди, ресурсы и ситуации притягиваются естественным образом.'}
+                    className="text-lg text-foreground/80"
+                  />
+                  <SafeHtmlText 
+                    content={getBlockContent('transformation-acceleration-point-3') || '• <strong>Трансформации происходят мягко, но глубоко</strong> - вы словно «перепрошиваете» свою энергосистему, и жизнь перестраивается под новое состояние.'}
+                    className="text-lg text-foreground/80"
+                  />
+                  <SafeHtmlText 
+                    content={getBlockContent('transformation-acceleration-point-4') || '• <strong>Вы выходите на новый уровень</strong> - быстрее начинаете реализовывать свои желания, проекты, новые смыслы.'}
+                    className="text-lg text-foreground/80"
+                  />
                 </div>
                 <p className="text-lg font-semibold text-center">
                   {getBlockContent('transformation-acceleration-outro') || 'Эта практика не просто добавляет энергии, она меняет вашу траекторию, включая ускорение событийного ряда и выход на новую ветку реальности.'}

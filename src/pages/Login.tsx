@@ -5,20 +5,40 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authenticateUser } from "@/lib/users";
+import { sanitizeString, isValidEmail } from "@/lib/sanitize";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !password) {
+    const sanitizedEmail = sanitizeString(email, 255).toLowerCase();
+    const sanitizedPassword = sanitizeString(password, 255);
+    
+    if (!sanitizedEmail || !sanitizedPassword) {
+      toast({
+        title: "Ошибка",
+        description: "Заполните все поля",
+        variant: "destructive",
+      });
       return;
     }
 
-    const user = authenticateUser(email, password);
+    if (!isValidEmail(sanitizedEmail)) {
+      toast({
+        title: "Ошибка",
+        description: "Неверный формат email",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const user = authenticateUser(sanitizedEmail, sanitizedPassword);
     
     if (user) {
       localStorage.setItem('userRole', user.role);
@@ -33,7 +53,11 @@ const Login = () => {
         navigate('/master-dashboard');
       }
     } else {
-      alert('Неверный email или пароль');
+      toast({
+        title: "Ошибка",
+        description: "Неверный email или пароль",
+        variant: "destructive",
+      });
     }
   };
 

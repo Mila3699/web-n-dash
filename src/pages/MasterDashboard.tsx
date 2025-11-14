@@ -10,6 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Users, Send, Filter, MessageSquare } from "lucide-react";
 import { getMasterByUserId, updateMasterProfile } from "@/data/mockMasters";
 import { useToast } from "@/hooks/use-toast";
+import { sanitizeString, isValidEmail } from "@/lib/sanitize";
 
 const MasterDashboard = () => {
   const navigate = useNavigate();
@@ -85,15 +86,29 @@ const MasterDashboard = () => {
   const handleSave = () => {
     if (!userId) return;
     
+    // Санитизация всех полей перед сохранением
+    const sanitizedName = sanitizeString(formData.name, 100);
+    const sanitizedSurname = sanitizeString(formData.surname, 100);
+    const sanitizedDescription = sanitizeString(formData.description, 2000);
+    
+    if (!sanitizedName || !sanitizedSurname) {
+      toast({
+        title: "Ошибка",
+        description: "Заполните имя и фамилию",
+        variant: "destructive"
+      });
+      return;
+    }
+    
     const profileData = {
-      name: `${formData.name} ${formData.surname}`.trim(),
-      description: formData.description,
-      cities: formData.cities.split(',').map(c => c.trim()).filter(Boolean),
-      socials: formData.social.split(',').map(s => s.trim()).filter(Boolean),
-      tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+      name: `${sanitizedName} ${sanitizedSurname}`.trim(),
+      description: sanitizedDescription,
+      cities: formData.cities.split(',').map(c => sanitizeString(c.trim(), 100)).filter(Boolean),
+      socials: formData.social.split(',').map(s => sanitizeString(s.trim(), 200)).filter(Boolean),
+      tags: formData.tags.split(',').map(t => sanitizeString(t.trim(), 50)).filter(Boolean),
       pulse: {
-        sessionsMonth: parseInt(formData.pulseCount) || 0,
-        reviews: formData.pulseTags.split(',').map(t => t.trim()).filter(Boolean)
+        sessionsMonth: Math.max(0, Math.min(1000, parseInt(formData.pulseCount) || 0)),
+        reviews: formData.pulseTags.split(',').map(t => sanitizeString(t.trim(), 100)).filter(Boolean)
       },
       photo: masterProfile?.photo || '',
       telegram: masterProfile?.telegram || '',
