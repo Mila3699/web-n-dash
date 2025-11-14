@@ -47,11 +47,11 @@ export const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-32 text-center">
         {/* Simple badge */}
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-dark border border-accent/20 mb-12 animate-fade-in">
-          <span className="text-sm text-primary-foreground/80">{getBlockContent('hero-badge') || 'Метод энерготерапии ERA'}</span>
+        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-dark border border-accent/20 mb-6 md:mb-12 animate-fade-in">
+          <span className="text-sm text-primary-foreground/80">{getBlockContent('hero-badge') || 'Активация потенциала'}</span>
         </div>
         
-        <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-bold text-white mb-6 animate-slide-up leading-[1.05] tracking-tight">
+        <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-bold text-white mb-4 md:mb-6 animate-slide-up leading-[1.05] tracking-tight">
           {(getBlockContent('hero-title') || 'Раскройте\nсвой потенциал').split('\n').map((line, i, arr) => (
             <span key={i}>
               {i === arr.length - 1 ? <span className="text-accent inline-block mt-2">{line}</span> : line}
@@ -60,12 +60,12 @@ export const HeroSection = () => {
           ))}
         </h1>
         
-        <p className="text-xl sm:text-2xl text-accent mb-16 max-w-2xl mx-auto animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
+        <p className="text-xl sm:text-2xl text-accent mb-10 md:mb-16 max-w-2xl mx-auto animate-slide-up leading-relaxed" style={{ animationDelay: '0.1s' }}>
           {getBlockContent('hero-subtitle') || 'Трансформация через энергию'}
         </p>
 
         {/* CTA Button */}
-        <div className="flex justify-center animate-slide-up mb-24" style={{ animationDelay: '0.2s' }}>
+        <div className="flex justify-center animate-slide-up mb-16 md:mb-24" style={{ animationDelay: '0.2s' }}>
           <Link to={getBlockButton('hero-cta').link || '/masters'} onClick={handleMastersClick} className="w-full sm:w-auto max-w-md">
             <button 
               disabled={isBlocked || isNavigating}
