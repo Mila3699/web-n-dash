@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { useRequireAuth } from "@/hooks/useRequireAuth";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { Users, Send, Filter, MessageSquare } from "lucide-react";
 import { getMasterByUserId, updateMasterProfile } from "@/data/mockMasters";
 import { useToast } from "@/hooks/use-toast";
 import { sanitizeString, isValidEmail } from "@/lib/sanitize";
 
 const MasterDashboard = () => {
-  const navigate = useNavigate();
+  useRequireAuth('master');
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('profile');
   const [userId, setUserId] = useState<string>('');
@@ -56,13 +56,8 @@ const MasterDashboard = () => {
     : mockContacts.filter(c => c.segment === selectedSegment);
 
   useEffect(() => {
-    const userRole = localStorage.getItem('userRole');
     const storedUserId = localStorage.getItem('userId');
-    
-    if (userRole !== 'master' || !storedUserId) {
-      navigate('/login');
-      return;
-    }
+    if (!storedUserId) return;
     
     setUserId(storedUserId);
     
@@ -81,7 +76,7 @@ const MasterDashboard = () => {
         pulseTags: profile.pulse.reviews.join(', ')
       });
     }
-  }, [navigate]);
+  }, []);
 
   const handleSave = () => {
     if (!userId) return;
@@ -147,8 +142,7 @@ const MasterDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navigation />
+    <Layout className="min-h-screen bg-brand-bg">
       
       <main className="pt-20 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -217,18 +211,18 @@ const MasterDashboard = () => {
             <div className="border-b border-gray-200 p-4 flex flex-col sm:flex-row gap-2 sm:justify-end">
               {masterProfile && (
                 <>
-                  <button
-                    onClick={() => navigate(`/master/${masterProfile.id}`)}
-                    className="px-4 py-2 text-brand-green hover:bg-gray-50 border border-brand-green rounded text-sm whitespace-nowrap"
+                  <Link 
+                    to={`/master/${masterProfile.id}`}
+                    className="px-4 py-2 text-brand-green hover:bg-gray-50 border border-brand-green rounded text-sm whitespace-nowrap inline-block text-center"
                   >
                     Внутренняя страница →
-                  </button>
-                  <button
-                    onClick={() => navigate(`/master-standalone/${masterProfile.id}`)}
-                    className="px-4 py-2 bg-brand-gold text-white hover:bg-brand-gold/90 rounded text-sm whitespace-nowrap"
+                  </Link>
+                  <Link
+                    to={`/master-standalone/${masterProfile.id}`}
+                    className="px-4 py-2 bg-brand-gold text-white hover:bg-brand-gold/90 rounded text-sm whitespace-nowrap inline-block text-center"
                   >
                     Автономная страница →
-                  </button>
+                  </Link>
                 </>
               )}
             </div>
@@ -648,9 +642,8 @@ const MasterDashboard = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
-    </div>
+      
+    </Layout>
   );
 };
 

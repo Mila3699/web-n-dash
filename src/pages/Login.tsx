@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { authenticateUser } from "@/lib/users";
@@ -62,8 +61,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navigation />
+    <Layout className="min-h-screen bg-brand-bg">
       
       <main className="pt-32 pb-16">
         <div className="container mx-auto px-4 max-w-md">
@@ -105,8 +103,7 @@ const Login = () => {
         </div>
       </main>
 
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

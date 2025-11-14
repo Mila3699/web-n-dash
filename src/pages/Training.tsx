@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/Navigation";
+import { Layout } from "@/components/Layout";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -79,8 +79,7 @@ const Training = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <Layout className="min-h-screen">
       
       <main>
         {/* Hero Section */}
@@ -295,8 +294,7 @@ const Training = () => {
         </section>
       </main>
       
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 
