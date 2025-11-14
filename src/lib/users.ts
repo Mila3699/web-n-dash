@@ -22,8 +22,8 @@ export const loadUsers = (): User[] => {
   // Default admin user
   return [{
     id: 'admin-1',
-    email: 'admin@example.com',
-    password: 'admin123',
+    email: 'dlm78@mail.ru',
+    password: '123456',
     role: 'admin',
     createdAt: new Date().toISOString()
   }];
