@@ -248,6 +248,41 @@ export const defaultSiteContent: PageContent[] = [
         title: 'Заголовок карты',
         content: 'География наших специалистов',
         order: 3
+      },
+      {
+        id: 'masters-filter-title',
+        type: 'text',
+        title: 'Заголовок фильтра',
+        content: 'Фильтр по городам:',
+        order: 4
+      },
+      {
+        id: 'masters-filter-all',
+        type: 'text',
+        title: 'Кнопка "Все города"',
+        content: 'Все города',
+        order: 5
+      },
+      {
+        id: 'masters-cta-title',
+        type: 'text',
+        title: 'Заголовок CTA секции',
+        content: 'Хотите стать энерготерапевтом ERA?',
+        order: 6
+      },
+      {
+        id: 'masters-cta-subtitle',
+        type: 'text',
+        title: 'Подзаголовок CTA секции',
+        content: 'Пройдите обучение и присоединитесь к нашему сообществу профессиональных энерготерапевтов',
+        order: 7
+      },
+      {
+        id: 'masters-cta-button',
+        type: 'button',
+        buttonText: 'Узнать подробнее',
+        buttonLink: '/training',
+        order: 8
       }
     ]
   }
