@@ -93,71 +93,76 @@ const MasterDashboard = () => {
           </h1>
 
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="flex border-b border-gray-200">
-              <button
-                onClick={() => setActiveTab('profile')}
-                className={`px-6 py-4 font-medium ${
-                  activeTab === 'profile'
-                    ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                Профиль
-              </button>
-              <button
-                onClick={() => setActiveTab('schedule')}
-                className={`px-6 py-4 font-medium ${
-                  activeTab === 'schedule'
-                    ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                Расписание
-              </button>
-              <button
-                onClick={() => setActiveTab('statistics')}
-                className={`px-6 py-4 font-medium ${
-                  activeTab === 'statistics'
-                    ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                Статистика
-              </button>
-              <button
-                onClick={() => setActiveTab('payment')}
-                className={`px-6 py-4 font-medium ${
-                  activeTab === 'payment'
-                    ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                Оплата
-              </button>
-              <button
-                onClick={() => setActiveTab('crm')}
-                className={`px-6 py-4 font-medium ${
-                  activeTab === 'crm'
-                    ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                CRM и бот
-              </button>
-              <div className="ml-auto flex gap-2">
+            {/* Tabs navigation - scrollable on mobile */}
+            <div className="border-b border-gray-200 overflow-x-auto">
+              <div className="flex min-w-max">
                 <button
-                  onClick={() => navigate(`/master/${master.id}`)}
-                  className="px-6 py-4 text-brand-green hover:bg-gray-50 border border-brand-green rounded"
+                  onClick={() => setActiveTab('profile')}
+                  className={`px-4 md:px-6 py-4 font-medium whitespace-nowrap ${
+                    activeTab === 'profile'
+                      ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
                 >
-                  Внутренняя страница →
+                  Профиль
                 </button>
                 <button
-                  onClick={() => navigate(`/master-standalone/${master.id}`)}
-                  className="px-6 py-4 bg-brand-gold text-white hover:bg-brand-gold/90 rounded"
+                  onClick={() => setActiveTab('schedule')}
+                  className={`px-4 md:px-6 py-4 font-medium whitespace-nowrap ${
+                    activeTab === 'schedule'
+                      ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
                 >
-                  Автономная страница →
+                  Расписание
+                </button>
+                <button
+                  onClick={() => setActiveTab('statistics')}
+                  className={`px-4 md:px-6 py-4 font-medium whitespace-nowrap ${
+                    activeTab === 'statistics'
+                      ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Статистика
+                </button>
+                <button
+                  onClick={() => setActiveTab('payment')}
+                  className={`px-4 md:px-6 py-4 font-medium whitespace-nowrap ${
+                    activeTab === 'payment'
+                      ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Оплата
+                </button>
+                <button
+                  onClick={() => setActiveTab('crm')}
+                  className={`px-4 md:px-6 py-4 font-medium whitespace-nowrap ${
+                    activeTab === 'crm'
+                      ? 'bg-brand-bg text-brand-green border-b-2 border-brand-gold'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  CRM и бот
                 </button>
               </div>
+            </div>
+
+            {/* Page buttons - separate row on mobile, inline on desktop */}
+            <div className="border-b border-gray-200 p-4 flex flex-col sm:flex-row gap-2 sm:justify-end">
+              <button
+                onClick={() => navigate(`/master/${master.id}`)}
+                className="px-4 py-2 text-brand-green hover:bg-gray-50 border border-brand-green rounded text-sm whitespace-nowrap"
+              >
+                Внутренняя страница →
+              </button>
+              <button
+                onClick={() => navigate(`/master-standalone/${master.id}`)}
+                className="px-4 py-2 bg-brand-gold text-white hover:bg-brand-gold/90 rounded text-sm whitespace-nowrap"
+              >
+                Автономная страница →
+              </button>
             </div>
 
             <div className="p-8">

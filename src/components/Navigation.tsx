@@ -69,7 +69,11 @@ const Navigation = () => {
               </Button>
             ) : (
               <div className="flex items-center gap-4">
-                <Button onClick={() => navigate(userRole === 'master' ? '/master-dashboard' : '/admin-dashboard')} variant="ghost">
+                <Button 
+                  onClick={() => navigate(userRole === 'master' ? '/master-dashboard' : '/admin-dashboard')} 
+                  variant="ghost"
+                  className={`${(location.pathname === '/master-dashboard' || location.pathname === '/admin-dashboard') ? 'text-brand-gold' : ''}`}
+                >
                   {userRole === 'master' ? 'Личный кабинет' : 'Админ-панель'}
                 </Button>
                 <Button onClick={handleLogout} variant="ghost">Выйти</Button>
@@ -91,6 +95,25 @@ const Navigation = () => {
               <Link to="/training" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Обучение</Link>
               <Link to="/test" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Тест</Link>
               <Link to="/masters" className="px-4 py-3 rounded-lg text-brand-green hover:text-brand-gold hover:bg-accent/5 transition-all" onClick={() => setIsOpen(false)}>Мастера</Link>
+              {!userRole ? (
+                <Button 
+                  onClick={() => { navigate('/login'); setIsOpen(false); }} 
+                  className="mt-4 bg-accent hover:bg-accent/90 text-accent-foreground"
+                >
+                  Войти
+                </Button>
+              ) : (
+                <div className="flex flex-col gap-2 mt-4">
+                  <Button 
+                    onClick={() => { navigate(userRole === 'master' ? '/master-dashboard' : '/admin-dashboard'); setIsOpen(false); }}
+                    variant="ghost"
+                    className={`${(location.pathname === '/master-dashboard' || location.pathname === '/admin-dashboard') ? 'text-brand-gold' : ''}`}
+                  >
+                    {userRole === 'master' ? 'Личный кабинет' : 'Админ-панель'}
+                  </Button>
+                  <Button onClick={handleLogout} variant="ghost">Выйти</Button>
+                </div>
+              )}
             </div>
           </div>
         )}
