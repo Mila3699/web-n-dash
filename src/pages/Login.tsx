@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { authenticateUser } from "@/lib/users";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,7 +18,6 @@ const Login = () => {
       return;
     }
 
-    const { authenticateUser } = require('@/lib/users');
     const user = authenticateUser(email, password);
     
     if (user) {
