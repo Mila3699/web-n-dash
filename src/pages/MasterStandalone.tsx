@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { mockMasters } from "@/data/mockMasters";
+import logo from "@/assets/logo.png";
 
 const MasterStandalone = () => {
   const { id } = useParams();
@@ -18,16 +19,12 @@ const MasterStandalone = () => {
     <div className="min-h-screen bg-brand-bg">
       {/* Простая шапка без Navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h2 className="font-serif text-2xl font-bold text-brand-green">
-            {master.name}
-          </h2>
-          <Button 
-            onClick={() => navigate('/training')}
-            className="bg-brand-gold hover:bg-brand-gold/90 text-white"
-          >
-            Обучение методу
-          </Button>
+        <div className="container mx-auto px-4 py-4">
+          <img 
+            src={logo} 
+            alt="ERA - Energy Realization Academy" 
+            className="h-12 md:h-16 w-auto"
+          />
         </div>
       </header>
       
@@ -182,6 +179,24 @@ const MasterStandalone = () => {
                 Оплатить сессию
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* Кнопка обучения в самом низу */}
+        <div className="container mx-auto px-4 max-w-4xl mt-12 mb-8">
+          <div className="bg-gradient-to-br from-brand-green/5 to-brand-gold/5 border border-brand-green/20 p-8 rounded-lg text-center">
+            <h3 className="font-serif text-2xl font-semibold mb-4 text-brand-green">
+              Хотите стать энерготерапевтом ERA?
+            </h3>
+            <p className="text-gray-700 mb-6">
+              Пройдите обучение методу энерготерапии ERA и станьте сертифицированным мастером
+            </p>
+            <Button 
+              onClick={() => navigate('/training')}
+              className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-lg"
+            >
+              Узнать про обучение методу
+            </Button>
           </div>
         </div>
       </main>
