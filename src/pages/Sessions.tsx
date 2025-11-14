@@ -30,7 +30,7 @@ const Sessions = () => {
               {getBlockContent("sessions-hero-subtitle") || "Через мягкую и безопасную активацию Кундалини я помогу тебе раскрыть внутреннюю силу, ясность и связь с собой"}
             </p>
             <Link to={getBlockButton("sessions-cta-button").link || "/masters"}>
-              <Button size="lg" className="text-lg px-8 py-6">
+              <Button size="lg" className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground">
                 {getBlockButton("sessions-cta-button").text || "Записаться на сессию"}
               </Button>
             </Link>
@@ -212,7 +212,7 @@ const Sessions = () => {
               {getBlockContent("sessions-final-cta-desc") || "Выберите мастера и запишитесь на энергосессию"}
             </p>
             <Link to={getBlockButton("sessions-final-cta-button").link || "/masters"}>
-              <Button size="lg" className="text-lg px-8 py-6">
+              <Button size="lg" className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground">
                 {getBlockButton("sessions-final-cta-button").text || "Выбрать мастера"}
               </Button>
             </Link>
