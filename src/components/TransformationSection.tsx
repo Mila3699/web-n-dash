@@ -10,23 +10,23 @@ export const TransformationSection = () => {
   const features = [
     {
       icon: Calendar,
-      title: "8 недель погружения",
+      title: getBlockContent('course-structure-1') || "8 недель погружения",
     },
     {
       icon: Video,
-      title: "8+ живых групповых энергосессий онлайн",
+      title: getBlockContent('course-structure-2') || "8+ живых групповых энергосессий онлайн",
     },
     {
       icon: BookOpen,
-      title: "Теоретические модули в записи",
+      title: getBlockContent('course-structure-3') || "Теоретические модули в записи",
     },
     {
       icon: Target,
-      title: "Ежедневные практики и медитации",
+      title: getBlockContent('course-structure-4') || "Ежедневные практики и медитации",
     },
     {
       icon: MessageCircle,
-      title: "Чат поддержки с мастером и группой",
+      title: getBlockContent('course-structure-5') || "Чат поддержки с мастером и группой",
     },
   ];
 
