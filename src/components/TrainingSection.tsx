@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Award, Users, Video, Globe, TrendingUp } from "lucide-react";
+import { useContent } from "@/hooks/useContent";
 
 export const TrainingSection = () => {
+  const { getBlockContent } = useContent('home');
+  
   const benefits = [
     {
       icon: Award,
@@ -37,15 +40,18 @@ export const TrainingSection = () => {
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6 animate-fade-in">
             <Award className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">Профессиональное обучение</span>
+            <span className="text-sm font-medium text-accent">{getBlockContent('training-badge') || 'Профессиональное обучение'}</span>
           </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
-            Станьте<br/>
-            <span className="text-accent">Фасилитатором</span><br/>
-            Кундалини ERA
+            {(getBlockContent('training-title') || 'Станьте\nФасилитатором\nКундалини ERA').split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {i === arr.length - 2 ? <span className="text-accent">{line}</span> : line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            Метод энерготерапии ERA – системная работа через активацию кундалини, очищение и восстановление энергоструктуры человека
+            {getBlockContent('training-subtitle') || 'Метод энерготерапии ERA – системная работа через активацию кундалини, очищение и восстановление энергоструктуры человека'}
           </p>
         </div>
 
@@ -55,15 +61,9 @@ export const TrainingSection = () => {
               Об обучении
             </h3>
             <div className="space-y-4 text-lg text-foreground/80">
-              <p>
-                Наша цель – помочь вам пробудить ваш внутренний ресурс и стать сильными 
-                проводниками трансформации для других.
-              </p>
-              <p>
-                Это новое пространство для глубокого изучения энергии Кундалини и развития 
-                уникальных навыков энерготерапевта-фасилитатора. Здесь встречаются осознанность, 
-                наука и практика.
-              </p>
+              {(getBlockContent('training-about') || 'Наша цель – помочь вам пробудить ваш внутренний ресурс и стать сильными проводниками трансформации для других.\n\nЭто новое пространство для глубокого изучения энергии Кундалини и развития уникальных навыков энерготерапевта-фасилитатора. Здесь встречаются осознанность, наука и практика.').split('\n\n').map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </Card>
 

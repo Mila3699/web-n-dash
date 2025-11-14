@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, Video, BookOpen, MessageCircle, Target } from "lucide-react";
+import { useContent } from "@/hooks/useContent";
 
 export const TransformationSection = () => {
+  const { getBlockContent } = useContent('home');
+  
   const features = [
     {
       icon: Calendar,
@@ -37,14 +40,18 @@ export const TransformationSection = () => {
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-6 animate-fade-in">
             <Target className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">8-недельная программа</span>
+            <span className="text-sm font-medium text-accent">{getBlockContent('transformation-badge') || '8-недельная программа'}</span>
           </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-8 animate-slide-up">
-            Энергопрактикум<br/>
-            <span className="text-accent">"Трансформация"</span>
+            {(getBlockContent('transformation-title') || 'Энергопрактикум\n"Трансформация"').split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {i === arr.length - 1 ? <span className="text-accent">{line}</span> : line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            Раскрытие твоего потенциала через активацию кундалини энергии, очищение энергополя и восстановление твоей энергосистемы
+            {getBlockContent('transformation-subtitle') || 'Раскрытие твоего потенциала через активацию кундалини энергии, очищение энергополя и восстановление твоей энергосистемы'}
           </p>
         </div>
 
@@ -54,16 +61,9 @@ export const TransformationSection = () => {
               О практикуме
             </h3>
             <div className="space-y-4 text-lg text-foreground/80 mb-8">
-              <p>
-                Это системная работа с вашей энергоструктурой. Метод энерготерапии ERA объединяет 
-                активацию кундалини, чтение и очищение энергополя, а также восстановление 
-                энергосистемы для глубинных трансформаций.
-              </p>
-              <p>
-                Энергопрактикум работает как катализатор — многократно ускоряет процессы изменений 
-                в вашей жизни. События начинают происходить быстрее, возможности раскрываются, 
-                нужные люди и ресурсы притягиваются естественным образом.
-              </p>
+              {(getBlockContent('transformation-about') || 'Это системная работа с вашей энергоструктурой. Метод энерготерапии ERA объединяет активацию кундалини, чтение и очищение энергополя, а также восстановление энергосистемы для глубинных трансформаций.\n\nЭнергопрактикум работает как катализатор — многократно ускоряет процессы изменений в вашей жизни. События начинают происходить быстрее, возможности раскрываются, нужные люди и ресурсы притягиваются естественным образом.').split('\n\n').map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
 
             <h4 className="text-xl font-serif font-semibold mb-6">
