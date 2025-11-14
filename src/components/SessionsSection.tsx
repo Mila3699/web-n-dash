@@ -37,7 +37,7 @@ export const SessionsSection = () => {
   ];
 
   return (
-    <section id="sessions" className="py-32 bg-background relative overflow-hidden">
+    <section id="sessions" className="py-32 bg-background relative overflow-hidden scroll-mt-24">
       {/* Subtle Energy Grid */}
       <div className="energy-grid opacity-50"></div>
       
