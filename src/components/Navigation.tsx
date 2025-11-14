@@ -30,7 +30,7 @@ const Navigation = () => {
               <img 
                 src={logo} 
                 alt="ERA - Energy Realization Academy" 
-                className="h-10 md:h-14 w-auto transition-opacity duration-200 group-hover:opacity-90"
+                className="h-12 md:h-16 w-auto transition-opacity duration-200 group-hover:opacity-90"
               />
             </Link>
 

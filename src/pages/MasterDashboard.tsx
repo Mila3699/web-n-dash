@@ -22,6 +22,7 @@ const MasterDashboard = () => {
     description: '',
     cities: '',
     social: '',
+    tags: '',
     pulseCount: '',
     pulseTags: ''
   });
@@ -63,6 +64,7 @@ const MasterDashboard = () => {
       description: master.description,
       cities: master.cities.join(', '),
       social: master.socials.join(', '),
+      tags: master.tags.join(', '),
       pulseCount: master.pulse.sessionsMonth.toString(),
       pulseTags: master.pulse.reviews.join(', ')
     });
@@ -222,6 +224,20 @@ const MasterDashboard = () => {
                       value={formData.social}
                       onChange={(e) => setFormData({...formData, social: e.target.value})}
                     />
+                  </div>
+
+                  <div>
+                    <label className="block mb-2 text-sm font-medium">
+                      Работаю с запросами (через запятую)
+                    </label>
+                    <Input
+                      value={formData.tags}
+                      onChange={(e) => setFormData({...formData, tags: e.target.value})}
+                      placeholder="anxiety, resource, finance, relations"
+                    />
+                    <p className="text-sm text-gray-500 mt-1">
+                      Например: anxiety, resource, finance, relations
+                    </p>
                   </div>
 
                   <div>
