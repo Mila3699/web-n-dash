@@ -79,6 +79,7 @@ const Masters = () => {
               cities={allCities} 
               selectedCity={selectedCity}
               onCityClick={handleCityClick}
+              customMapImage={getBlockContent('masters-map-image') || ''}
             />
           </div>
         </section>

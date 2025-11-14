@@ -6,6 +6,7 @@ interface MastersMapProps {
   cities: string[];
   selectedCity: string | null;
   onCityClick: (city: string) => void;
+  customMapImage?: string; // Опциональное изображение карты
 }
 
 // Координаты городов России
@@ -17,10 +18,28 @@ const cityCoordinates: Record<string, [number, number]> = {
   'Весь Мир': [37.6173, 55.7558], // Используем координаты Москвы для "Весь Мир"
 };
 
-export const MastersMap = ({ cities, selectedCity, onCityClick }: MastersMapProps) => {
+export const MastersMap = ({ cities, selectedCity, onCityClick, customMapImage }: MastersMapProps) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const markersRef = useRef<mapboxgl.Marker[]>([]);
+
+  // Если есть пользовательское изображение карты, показываем его
+  if (customMapImage) {
+    return (
+      <div className="relative w-full h-[400px] rounded-xl overflow-hidden shadow-soft border border-border">
+        <img 
+          src={customMapImage} 
+          alt="Карта мастеров" 
+          className="w-full h-full object-contain bg-muted"
+        />
+        <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-lg">
+          <p className="text-sm font-medium text-brand-green">
+            {cities.filter(c => c !== 'Онлайн' && c !== 'Весь Мир').length} городов
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     if (!mapContainer.current) return;
