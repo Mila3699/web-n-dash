@@ -10,17 +10,30 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleMasterLogin = () => {
-    // Имитация входа мастера
-    localStorage.setItem('userRole', 'master');
-    localStorage.setItem('masterId', '1');
-    navigate('/master-dashboard');
-  };
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !password) {
+      return;
+    }
 
-  const handleAdminLogin = () => {
-    // Имитация входа администратора
-    localStorage.setItem('userRole', 'admin');
-    navigate('/admin-dashboard');
+    const { authenticateUser } = require('@/lib/users');
+    const user = authenticateUser(email, password);
+    
+    if (user) {
+      localStorage.setItem('userRole', user.role);
+      if (user.masterId) {
+        localStorage.setItem('masterId', user.masterId);
+      }
+      
+      if (user.role === 'admin') {
+        navigate('/admin-dashboard');
+      } else if (user.role === 'master') {
+        navigate('/master-dashboard');
+      }
+    } else {
+      alert('Неверный email или пароль');
+    }
   };
 
   return (
@@ -34,7 +47,7 @@ const Login = () => {
               Вход в систему
             </h1>
 
-            <div className="space-y-4 mb-6">
+            <form onSubmit={handleLogin} className="space-y-4 mb-6">
               <div>
                 <label className="block mb-2 text-sm font-medium text-brand-green">Email</label>
                 <Input
@@ -54,24 +67,15 @@ const Login = () => {
                   placeholder="••••••••"
                 />
               </div>
-            </div>
+            </form>
 
-            <div className="space-y-3">
-              <Button 
-                onClick={handleMasterLogin}
-                className="w-full bg-brand-green hover:bg-brand-green/90 text-white"
-              >
-                Войти (Мастер)
-              </Button>
-
-              <Button 
-                onClick={handleAdminLogin}
-                variant="outline"
-                className="w-full border-brand-gold text-brand-gold hover:bg-brand-gold/10"
-              >
-                Войти (Администратор)
-              </Button>
-            </div>
+            <Button
+              onClick={handleLogin}
+              className="w-full bg-brand-green hover:bg-brand-green/90 text-white"
+              type="submit"
+            >
+              Войти
+            </Button>
           </div>
         </div>
       </main>
