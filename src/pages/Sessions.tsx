@@ -20,7 +20,7 @@ const Sessions = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/10" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <Badge variant="outline" className="text-lg px-6 py-2 bg-white/10 backdrop-blur-sm border-white/20 text-white">
+            <Badge className="bg-accent text-accent-foreground border-accent">
               {getBlockContent("sessions-hero-badge") || "Метод энерготерапии ERA"}
             </Badge>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-white break-words px-4">
@@ -29,11 +29,13 @@ const Sessions = () => {
             <p className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
               {getBlockContent("sessions-hero-subtitle") || "Через мягкую и безопасную активацию Кундалини я помогу тебе раскрыть внутреннюю силу, ясность и связь с собой"}
             </p>
-            <Link to={getBlockButton("sessions-cta-button").link || "/masters"}>
-              <Button size="lg" className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground">
-                {getBlockButton("sessions-cta-button").text || "Записаться на сессию"}
-              </Button>
-            </Link>
+            <div className="pt-4">
+              <Link to={getBlockButton("sessions-cta-button").link || "/masters"}>
+                <Button size="lg" className="text-lg px-8 py-6 bg-accent hover:bg-accent/90 text-accent-foreground">
+                  {getBlockButton("sessions-cta-button").text || "Записаться на сессию"}
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
