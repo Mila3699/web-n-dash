@@ -450,6 +450,13 @@ export const defaultSiteContent: PageContent[] = [
         buttonLink: "/training",
         order: 8,
       },
+      {
+        id: "masters-map-image",
+        type: "image",
+        title: "Изображение карты",
+        imageUrl: "",
+        order: 9,
+      },
     ],
   },
   {
