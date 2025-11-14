@@ -193,7 +193,7 @@ const MasterStandalone = () => {
             </p>
             <Button 
               onClick={() => navigate('/training')}
-              className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-lg"
+              className="bg-accent hover:bg-accent/90 text-white px-8 py-6 text-lg"
             >
               Узнать про обучение методу
             </Button>
