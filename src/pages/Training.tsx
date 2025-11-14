@@ -81,7 +81,7 @@ const Training = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green overflow-hidden">
+        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green overflow-hidden pt-16 md:pt-0">
           {/* Energy Grid Pattern */}
           <div className="energy-grid"></div>
           <div className="energy-orb"></div>
@@ -91,7 +91,7 @@ const Training = () => {
             <Badge className="mb-6 bg-accent text-accent-foreground border-accent">
               Обучение энерготерапии
             </Badge>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in break-words px-4">
               Обучение методу энерготерапии ERA
             </h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -139,7 +139,7 @@ const Training = () => {
         {/* For Who Section */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center mb-16 break-words px-4">
               Это обучение для вас, если
             </h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -161,7 +161,7 @@ const Training = () => {
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6 break-words px-4">
                 В чем уникальность метода энерготерапии ERA
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -207,7 +207,7 @@ const Training = () => {
         {/* What You Get Section */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center mb-16 break-words px-4">
               Что вы получите?
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
@@ -244,7 +244,7 @@ const Training = () => {
               </div>
 
               <Card className="p-8 md:p-12 shadow-soft border-border/50">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-center">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-6 text-center break-words px-4">
                   Что такое ERA
                 </h2>
                 <div className="space-y-4 text-lg text-foreground/80 leading-relaxed">
@@ -272,7 +272,7 @@ const Training = () => {
         {/* CTA Section */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-6 break-words px-4">
               Готовы начать свой путь?
             </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">

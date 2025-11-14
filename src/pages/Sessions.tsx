@@ -16,17 +16,17 @@ const Sessions = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#193c2e]">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#193c2e] pt-16 md:pt-0">
         <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/10" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <Badge variant="outline" className="text-lg px-6 py-2 bg-white/10 backdrop-blur-sm border-white/20 text-white">
               {getBlockContent("sessions-hero-badge") || "Метод энерготерапии ERA"}
             </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight text-white break-words px-4">
               {getBlockContent("sessions-hero-title") || "Энергосессия ERA"}
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
               {getBlockContent("sessions-hero-subtitle") || "Через мягкую и безопасную активацию Кундалини я помогу тебе раскрыть внутреннюю силу, ясность и связь с собой"}
             </p>
             <Link to={getBlockButton("sessions-cta-button").link || "/masters"}>
@@ -110,7 +110,7 @@ const Sessions = () => {
               </div>
             </div>
             <div className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 break-words px-4">
               {getBlockContent("sessions-how-title") || "Как проходит энергосессия"}
             </h2>
             
@@ -157,7 +157,7 @@ const Sessions = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center break-words px-4">
               {getBlockContent("sessions-req-title") || "Что нужно чтобы прийти на сессию"}
             </h2>
             
@@ -205,7 +205,7 @@ const Sessions = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-8 p-12 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 border border-border">
-            <h2 className="text-4xl md:text-5xl font-bold">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold break-words">
               {getBlockContent("sessions-final-cta-title") || "Готовы начать свою трансформацию?"}
             </h2>
             <p className="text-xl text-muted-foreground">

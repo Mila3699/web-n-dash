@@ -134,7 +134,7 @@ const Transformation = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green overflow-hidden">
+        <section className="relative min-h-[70vh] flex items-center justify-center bg-brand-green overflow-hidden pt-16 md:pt-0">
           {/* Energy Flow Lines */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="energy-flow"></div>
@@ -148,7 +148,7 @@ const Transformation = () => {
           <div className="container mx-auto px-4 sm:px-6 py-20 text-center relative z-10">
             <p className="text-white/90 mb-2">Энергопрактикум с Анастасией Соло</p>
             <p className="text-white/90 mb-6">Онлайн 02.12 - 23.12</p>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-accent mb-6 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-accent mb-6 animate-fade-in break-words px-4">
               ТРАНСФОРМАЦИЯ
             </h1>
             <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -173,7 +173,7 @@ const Transformation = () => {
         {/* Target Audience Section */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 sm:px-6">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center mb-16 break-words px-4">
               Для кого этот энергопрактикум
             </h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
@@ -202,7 +202,7 @@ const Transformation = () => {
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-center mb-8 break-words px-4">
                 Как работает метод энерготерапии ERA
               </h2>
               <p className="text-xl text-center text-foreground/80 mb-12">
