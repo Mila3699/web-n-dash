@@ -12,6 +12,8 @@ export interface Master {
   };
   photo: string;
   telegram: string;
+  status?: 'pending' | 'approved' | 'rejected';
+  userId?: string;
 }
 
 export const mockMasters: Master[] = [
@@ -28,7 +30,8 @@ export const mockMasters: Master[] = [
       reviews: ["основатель", "глубина", "мощь", "любовь", "трансформация"]
     },
     photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
-    telegram: "@anastasia_solo_era"
+    telegram: "@anastasia_solo_era",
+    status: "approved"
   },
   {
     id: 1,
@@ -43,7 +46,8 @@ export const mockMasters: Master[] = [
       reviews: ["мощно", "расслабление", "глубоко", "слёзы", "тепло"]
     },
     photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-    telegram: "@elena_volkova_era"
+    telegram: "@elena_volkova_era",
+    status: "approved"
   },
   {
     id: 2,
@@ -58,7 +62,8 @@ export const mockMasters: Master[] = [
       reviews: ["трансформация", "прорыв", "ясно", "огонь"]
     },
     photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
-    telegram: "@michael_svetlov_era"
+    telegram: "@michael_svetlov_era",
+    status: "approved"
   },
   {
     id: 3,
@@ -73,6 +78,95 @@ export const mockMasters: Master[] = [
       reviews: ["нежно", "глубоко", "спокойно", "наполнение"]
     },
     photo: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400",
-    telegram: "@anna_luch_era"
+    telegram: "@anna_luch_era",
+    status: "approved"
   }
 ];
+
+const MASTERS_STORAGE_KEY = 'app_masters';
+
+export const loadMasters = (): Master[] => {
+  try {
+    const stored = localStorage.getItem(MASTERS_STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch (error) {
+    console.error('Error loading masters:', error);
+  }
+  return mockMasters;
+};
+
+export const saveMasters = (masters: Master[]): void => {
+  try {
+    localStorage.setItem(MASTERS_STORAGE_KEY, JSON.stringify(masters));
+  } catch (error) {
+    console.error('Error saving masters:', error);
+  }
+};
+
+export const updateMasterProfile = (userId: string, profileData: Partial<Master>): Master => {
+  const masters = loadMasters();
+  const existingMasterIndex = masters.findIndex(m => m.userId === userId);
+  
+  if (existingMasterIndex >= 0) {
+    // Обновляем существующий профиль
+    masters[existingMasterIndex] = {
+      ...masters[existingMasterIndex],
+      ...profileData,
+      status: masters[existingMasterIndex].status === 'approved' ? 'approved' : 'pending'
+    };
+    saveMasters(masters);
+    return masters[existingMasterIndex];
+  } else {
+    // Создаем новый профиль со статусом pending
+    const newMaster: Master = {
+      id: Math.max(...masters.map(m => m.id), 0) + 1,
+      name: profileData.name || '',
+      cities: profileData.cities || [],
+      description: profileData.description || '',
+      socials: profileData.socials || [],
+      schedule: profileData.schedule || [],
+      tags: profileData.tags || [],
+      pulse: profileData.pulse || { sessionsMonth: 0, reviews: [] },
+      photo: profileData.photo || '',
+      telegram: profileData.telegram || '',
+      status: 'pending',
+      userId
+    };
+    masters.push(newMaster);
+    saveMasters(masters);
+    return newMaster;
+  }
+};
+
+export const getMasterByUserId = (userId: string): Master | null => {
+  const masters = loadMasters();
+  return masters.find(m => m.userId === userId) || null;
+};
+
+export const getApprovedMasters = (): Master[] => {
+  const masters = loadMasters();
+  return masters.filter(m => m.status === 'approved');
+};
+
+export const getPendingMasters = (): Master[] => {
+  const masters = loadMasters();
+  return masters.filter(m => m.status === 'pending');
+};
+
+export const approveMaster = (masterId: number): void => {
+  const masters = loadMasters();
+  const updated = masters.map(m => 
+    m.id === masterId ? { ...m, status: 'approved' as const } : m
+  );
+  saveMasters(updated);
+};
+
+export const rejectMaster = (masterId: number): void => {
+  const masters = loadMasters();
+  const updated = masters.map(m => 
+    m.id === masterId ? { ...m, status: 'rejected' as const } : m
+  );
+  saveMasters(updated);
+};

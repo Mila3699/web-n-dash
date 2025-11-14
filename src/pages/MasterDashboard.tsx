@@ -8,12 +8,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Users, Send, Filter, MessageSquare } from "lucide-react";
-import { mockMasters } from "@/data/mockMasters";
+import { getMasterByUserId, updateMasterProfile } from "@/data/mockMasters";
+import { useToast } from "@/hooks/use-toast";
 
 const MasterDashboard = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('profile');
-  const [master, setMaster] = useState(mockMasters[1]);
+  const [userId, setUserId] = useState<string>('');
+  const [masterProfile, setMasterProfile] = useState<any>(null);
   const [showSuccess, setShowSuccess] = useState(false);
   
   const [formData, setFormData] = useState({
@@ -53,26 +56,70 @@ const MasterDashboard = () => {
 
   useEffect(() => {
     const userRole = localStorage.getItem('userRole');
-    if (userRole !== 'master') {
+    const storedUserId = localStorage.getItem('userId');
+    
+    if (userRole !== 'master' || !storedUserId) {
       navigate('/login');
+      return;
     }
     
-    // Загрузка данных мастера
-    setFormData({
-      name: master.name.split(' ')[0] || '',
-      surname: master.name.split(' ')[1] || '',
-      description: master.description,
-      cities: master.cities.join(', '),
-      social: master.socials.join(', '),
-      tags: master.tags.join(', '),
-      pulseCount: master.pulse.sessionsMonth.toString(),
-      pulseTags: master.pulse.reviews.join(', ')
-    });
-  }, [navigate, master]);
+    setUserId(storedUserId);
+    
+    // Загрузка профиля мастера
+    const profile = getMasterByUserId(storedUserId);
+    if (profile) {
+      setMasterProfile(profile);
+      setFormData({
+        name: profile.name.split(' ')[0] || '',
+        surname: profile.name.split(' ')[1] || '',
+        description: profile.description,
+        cities: profile.cities.join(', '),
+        social: profile.socials.join(', '),
+        tags: profile.tags.join(', '),
+        pulseCount: profile.pulse.sessionsMonth.toString(),
+        pulseTags: profile.pulse.reviews.join(', ')
+      });
+    }
+  }, [navigate]);
 
   const handleSave = () => {
+    if (!userId) return;
+    
+    const profileData = {
+      name: `${formData.name} ${formData.surname}`.trim(),
+      description: formData.description,
+      cities: formData.cities.split(',').map(c => c.trim()).filter(Boolean),
+      socials: formData.social.split(',').map(s => s.trim()).filter(Boolean),
+      tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+      pulse: {
+        sessionsMonth: parseInt(formData.pulseCount) || 0,
+        reviews: formData.pulseTags.split(',').map(t => t.trim()).filter(Boolean)
+      },
+      photo: masterProfile?.photo || '',
+      telegram: masterProfile?.telegram || '',
+      schedule: masterProfile?.schedule || []
+    };
+    
+    const updated = updateMasterProfile(userId, profileData);
+    setMasterProfile(updated);
+    
+    const isFirstSave = !masterProfile;
+    
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 2000);
+    
+    if (isFirstSave || updated.status === 'pending') {
+      toast({
+        title: "Отправлено на модерацию",
+        description: "Ваша карточка отправлена на проверку администратору. После одобрения она появится в разделе 'Мастера'.",
+        duration: 5000
+      });
+    } else {
+      toast({
+        title: "Сохранено",
+        description: "Изменения успешно сохранены",
+      });
+    }
   };
 
   const handleSendBroadcast = () => {
@@ -153,18 +200,22 @@ const MasterDashboard = () => {
 
             {/* Page buttons - separate row on mobile, inline on desktop */}
             <div className="border-b border-gray-200 p-4 flex flex-col sm:flex-row gap-2 sm:justify-end">
-              <button
-                onClick={() => navigate(`/master/${master.id}`)}
-                className="px-4 py-2 text-brand-green hover:bg-gray-50 border border-brand-green rounded text-sm whitespace-nowrap"
-              >
-                Внутренняя страница →
-              </button>
-              <button
-                onClick={() => navigate(`/master-standalone/${master.id}`)}
-                className="px-4 py-2 bg-brand-gold text-white hover:bg-brand-gold/90 rounded text-sm whitespace-nowrap"
-              >
-                Автономная страница →
-              </button>
+              {masterProfile && (
+                <>
+                  <button
+                    onClick={() => navigate(`/master/${masterProfile.id}`)}
+                    className="px-4 py-2 text-brand-green hover:bg-gray-50 border border-brand-green rounded text-sm whitespace-nowrap"
+                  >
+                    Внутренняя страница →
+                  </button>
+                  <button
+                    onClick={() => navigate(`/master-standalone/${masterProfile.id}`)}
+                    className="px-4 py-2 bg-brand-gold text-white hover:bg-brand-gold/90 rounded text-sm whitespace-nowrap"
+                  >
+                    Автономная страница →
+                  </button>
+                </>
+              )}
             </div>
 
             <div className="p-8">
@@ -301,19 +352,23 @@ const MasterDashboard = () => {
                   <div>
                     <h3 className="font-semibold mb-4 text-brand-green">Активные даты:</h3>
                     <div className="space-y-2">
-                      {master.schedule.map((date, idx) => (
-                        <div key={idx} className="flex items-center justify-between bg-brand-bg p-3 rounded">
-                          <span>
-                            {new Date(date).toLocaleString('ru-RU', {
-                              dateStyle: 'long',
-                              timeStyle: 'short'
-                            })}
-                          </span>
-                          <Button variant="ghost" size="sm" className="text-red-600">
-                            ✕ Удалить
-                          </Button>
-                        </div>
-                      ))}
+                      {masterProfile?.schedule && masterProfile.schedule.length > 0 ? (
+                        masterProfile.schedule.map((date, idx) => (
+                          <div key={idx} className="flex items-center justify-between bg-brand-bg p-3 rounded">
+                            <span>
+                              {new Date(date).toLocaleString('ru-RU', {
+                                dateStyle: 'long',
+                                timeStyle: 'short'
+                              })}
+                            </span>
+                            <Button variant="ghost" size="sm" className="text-red-600">
+                              ✕ Удалить
+                            </Button>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-muted-foreground">Нет активных дат</p>
+                      )}
                     </div>
                   </div>
                 </div>
