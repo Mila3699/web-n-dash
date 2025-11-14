@@ -4,12 +4,14 @@ import { Sparkles, Heart, Zap, Brain, Sun } from "lucide-react";
 import { useRateLimit } from "@/hooks/useRateLimit";
 import { safeOpenLink } from "@/lib/sanitize";
 import sessionImage from "@/assets/session-3.jpg";
+import { useContent } from "@/hooks/useContent";
 
 export const SessionsSection = () => {
   const { checkLimit, isBlocked } = useRateLimit({
     key: 'sessions_cta',
     preset: 'bookingButton',
   });
+  const { getBlockContent } = useContent('home');
 
   const benefits = [
     {
@@ -43,14 +45,18 @@ export const SessionsSection = () => {
         <div className="text-center mb-24">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8 animate-fade-in">
             <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">Метод энергосессий</span>
+            <span className="text-sm font-medium text-accent">{getBlockContent('sessions-badge') || 'Метод энергосессий'}</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 animate-slide-up">
-            Энергосессии<br/>
-            <span className="text-accent">Кундалини ERA</span>
+            {(getBlockContent('sessions-title') || 'Энергосессии\nКундалини ERA').split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {i === arr.length - 1 ? <span className="text-accent">{line}</span> : line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            Прямая передача жизненной энергии для вашей активации и глубокой трансформации
+            {getBlockContent('sessions-subtitle') || 'Прямая передача жизненной энергии для вашей активации и глубокой трансформации'}
           </p>
         </div>
 
@@ -72,22 +78,29 @@ export const SessionsSection = () => {
                 <Brain className="w-7 h-7 text-accent" />
               </div>
               <h3 className="text-3xl font-serif font-semibold mb-6 leading-tight">
-                Что такое<br/>Энергосессия?
+                {(getBlockContent('sessions-what-title') || 'Что такое\nЭнергосессия?').split('\n').map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    {i === 0 && <br />}
+                  </span>
+                ))}
               </h3>
               <div className="space-y-4 text-lg text-foreground/60 leading-relaxed">
-                <p>
-                  Это активация вашей внутренней энергии через поле мастера-проводника.
-                </p>
-                <p>
-                  Вы лежите, расслабляетесь под музыку — энергия работает сама, высвобождая блоки и наполняя ресурсом.
-                </p>
+                {(getBlockContent('sessions-what-desc') || 'Это активация вашей внутренней энергии через поле мастера-проводника.\n\nВы лежите, расслабляетесь под музыку — энергия работает сама, высвобождая блоки и наполняя ресурсом.').split('\n\n').map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
               </div>
             </div>
           </div>
 
           <div className="space-y-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
             <h3 className="text-3xl font-serif font-semibold mb-8 leading-tight">
-              Что вы<br/>почувствуете?
+              {(getBlockContent('sessions-feel-title') || 'Что вы\nпочувствуете?').split('\n').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i === 0 && <br />}
+                </span>
+              ))}
             </h3>
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
