@@ -9,9 +9,11 @@ import { safeOpenLink } from "@/lib/sanitize";
 import { mockMasters } from "@/data/mockMasters";
 import { MastersMap } from "@/components/MastersMap";
 import { useState, useMemo } from "react";
+import { useContent } from "@/hooks/useContent";
 
 const Masters = () => {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const { getBlockContent, getBlockButton } = useContent('masters');
 
   // Получаем все уникальные города
   const allCities = useMemo(() => {
@@ -56,14 +58,13 @@ const Masters = () => {
           
           <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
             <Badge className="mb-6 bg-accent/10 text-accent border border-accent/20">
-              Наши энерготерапевты
+              {getBlockContent('masters-hero-badge') || 'Наши энерготерапевты'}
             </Badge>
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-6 animate-fade-in">
-              Выберите своего энерготерапевта ERA
+              {getBlockContent('masters-hero-title') || 'Выберите своего энерготерапевта ERA'}
             </h1>
             <p className="text-lg sm:text-xl text-primary-foreground/90 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              Все наши специалисты прошли сертификацию и обладают глубокими знаниями 
-              метода энерготерапии ERA
+              {getBlockContent('masters-hero-subtitle') || 'Все наши специалисты прошли сертификацию и обладают глубокими знаниями метода энерготерапии ERA'}
             </p>
           </div>
         </section>
@@ -72,7 +73,7 @@ const Masters = () => {
         <section className="py-12 bg-muted/30">
           <div className="container mx-auto px-4 sm:px-6">
             <h2 className="text-3xl font-serif font-bold mb-6 text-center">
-              География наших специалистов
+              {getBlockContent('masters-map-title') || 'География наших специалистов'}
             </h2>
             <MastersMap 
               cities={allCities} 
@@ -87,7 +88,7 @@ const Masters = () => {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-3 mb-4">
               <Filter className="w-5 h-5 text-accent" />
-              <h3 className="text-lg font-semibold">Фильтр по городам:</h3>
+              <h3 className="text-lg font-semibold">{getBlockContent('masters-filter-title') || 'Фильтр по городам:'}</h3>
             </div>
             <div className="flex flex-wrap gap-2">
               <Button
@@ -95,7 +96,7 @@ const Masters = () => {
                 onClick={() => setSelectedCity(null)}
                 className="text-sm"
               >
-                Все города
+                {getBlockContent('masters-filter-all') || 'Все города'}
               </Button>
               {allCities.map((city) => (
                 <Button
@@ -187,17 +188,17 @@ const Masters = () => {
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
-              Хотите стать энерготерапевтом ERA?
+              {getBlockContent('masters-cta-title') || 'Хотите стать энерготерапевтом ERA?'}
             </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Пройдите обучение и присоединитесь к нашему сообществу профессиональных энерготерапевтов
+              {getBlockContent('masters-cta-subtitle') || 'Пройдите обучение и присоединитесь к нашему сообществу профессиональных энерготерапевтов'}
             </p>
-            <Link to="/training">
+            <Link to={getBlockButton('masters-cta-button').link || '/training'}>
               <Button 
                 size="lg"
                 className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-gold text-lg px-8 py-6"
               >
-                Узнать подробнее
+                {getBlockButton('masters-cta-button').text || 'Узнать подробнее'}
               </Button>
             </Link>
           </div>
