@@ -45,7 +45,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-32 text-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-20 md:py-32 text-center">
         {/* Simple badge */}
         <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-dark border border-accent/20 mb-6 md:mb-12 animate-fade-in">
           <span className="text-sm text-primary-foreground/80">{getBlockContent('hero-badge') || 'Активация потенциала'}</span>
