@@ -25,6 +25,7 @@ import {
 } from '@dnd-kit/sortable';
 import { SortableBlockItem } from "@/components/admin/SortableBlockItem";
 import { MastersManagement } from "@/components/admin/MastersManagement";
+import { MastersModeration } from "@/components/admin/MastersModeration";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -253,7 +254,7 @@ const AdminDashboard = () => {
           </div>
 
           <Tabs value={selectedPage} onValueChange={setSelectedPage} className="w-full">
-            <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6 h-auto bg-muted p-1">
+            <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-2 mb-6 h-auto bg-muted p-1">
               {content.map(page => (
                 <TabsTrigger 
                   key={page.pageId} 
@@ -265,6 +266,9 @@ const AdminDashboard = () => {
               ))}
               <TabsTrigger value="masters" className="text-sm md:text-base">
                 Мастера
+              </TabsTrigger>
+              <TabsTrigger value="moderation" className="text-sm md:text-base">
+                Модерация
               </TabsTrigger>
             </TabsList>
 
@@ -333,6 +337,10 @@ const AdminDashboard = () => {
 
             <TabsContent value="masters">
               <MastersManagement />
+            </TabsContent>
+
+            <TabsContent value="moderation">
+              <MastersModeration />
             </TabsContent>
           </Tabs>
         </div>

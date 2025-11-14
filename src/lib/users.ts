@@ -45,8 +45,9 @@ export const authenticateUser = (email: string, password: string): User | null =
 
 export const createMaster = (email: string, password: string, masterId: string): User => {
   const users = loadUsers();
+  const userId = `user-${Date.now()}`;
   const newUser: User = {
-    id: `user-${Date.now()}`,
+    id: userId,
     email,
     password,
     role: 'master',
@@ -55,6 +56,10 @@ export const createMaster = (email: string, password: string, masterId: string):
   };
   users.push(newUser);
   saveUsers(users);
+  
+  // Сохраняем userId для связи с профилем мастера
+  localStorage.setItem(`master_userId_${masterId}`, userId);
+  
   return newUser;
 };
 

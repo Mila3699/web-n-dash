@@ -22,6 +22,7 @@ const Login = () => {
     
     if (user) {
       localStorage.setItem('userRole', user.role);
+      localStorage.setItem('userId', user.id);
       if (user.masterId) {
         localStorage.setItem('masterId', user.masterId);
       }

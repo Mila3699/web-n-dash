@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Star, User, Filter } from "lucide-react";
 import { Link } from "react-router-dom";
 import { safeOpenLink } from "@/lib/sanitize";
-import { mockMasters } from "@/data/mockMasters";
+import { getApprovedMasters } from "@/data/mockMasters";
 import { MastersMap } from "@/components/MastersMap";
 import { useState, useMemo } from "react";
 import { useContent } from "@/hooks/useContent";
@@ -14,21 +14,22 @@ import { useContent } from "@/hooks/useContent";
 const Masters = () => {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const { getBlockContent, getBlockButton } = useContent('masters');
+  const approvedMasters = getApprovedMasters();
 
   // Получаем все уникальные города
   const allCities = useMemo(() => {
     const citiesSet = new Set<string>();
-    mockMasters.forEach(master => {
+    approvedMasters.forEach(master => {
       master.cities.forEach(city => citiesSet.add(city));
     });
     return Array.from(citiesSet).sort();
-  }, []);
+  }, [approvedMasters]);
 
   // Фильтруем мастеров по выбранному городу
   const filteredMasters = useMemo(() => {
-    if (!selectedCity) return mockMasters;
-    return mockMasters.filter(master => master.cities.includes(selectedCity));
-  }, [selectedCity]);
+    if (!selectedCity) return approvedMasters;
+    return approvedMasters.filter(master => master.cities.includes(selectedCity));
+  }, [selectedCity, approvedMasters]);
 
   const handleCityClick = (city: string) => {
     setSelectedCity(selectedCity === city ? null : city);
