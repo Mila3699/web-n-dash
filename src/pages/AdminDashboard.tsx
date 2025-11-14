@@ -31,7 +31,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [content, setContent] = useState<PageContent[]>([]);
-  const [selectedPage, setSelectedPage] = useState<string>('home');
+  const [selectedPage, setSelectedPage] = useState<string>('users');
   const [editingBlock, setEditingBlock] = useState<ContentBlock | null>(null);
 
   const sensors = useSensors(
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
       navigate('/login');
     }
     setContent(loadSiteContent());
-    setSelectedPage('masters');
+    setSelectedPage('users');
   }, [navigate]);
 
   const handleSave = () => {
@@ -256,8 +256,8 @@ const AdminDashboard = () => {
 
           <Tabs value={selectedPage} onValueChange={setSelectedPage} className="w-full">
             <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-2 mb-6 h-auto bg-muted p-1">
-              <TabsTrigger value="masters" className="text-sm md:text-base">
-                Мастера
+              <TabsTrigger value="users" className="text-sm md:text-base">
+                Пользователи
               </TabsTrigger>
               <TabsTrigger value="moderation" className="text-sm md:text-base">
                 Модерация
@@ -336,7 +336,7 @@ const AdminDashboard = () => {
               );
             })}
 
-            <TabsContent value="masters">
+            <TabsContent value="users">
               <MastersManagement />
             </TabsContent>
 
