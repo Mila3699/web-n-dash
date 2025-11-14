@@ -4,19 +4,16 @@
 # Last 2 major versions of all browsers
 last 2 versions
 
-# Firefox ESR (Extended Support Release)
-Firefox ESR
-
-# Devices and browsers from last 7 years
+# Devices and browsers from last 6-7 years
 since 2018
 
-# Explicitly include older but still widely used browsers
-Chrome >= 60
-Firefox >= 60
-Safari >= 11
+# Explicitly include browsers that support ES2020 (BigInt support)
+Chrome >= 67
+Firefox >= 68
+Safari >= 14
 Edge >= 79
-iOS >= 11
-Android >= 5
+iOS >= 14
+Android >= 67
 
 # Exclude dead browsers and IE
 not dead

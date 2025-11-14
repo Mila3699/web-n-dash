@@ -21,16 +21,16 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     target: [
-      'es2018',
-      'chrome60',
-      'firefox60',
-      'safari11',
+      'es2020',
+      'chrome67',
+      'firefox68',
+      'safari14',
       'edge79'
     ],
     cssTarget: [
-      'chrome60',
-      'firefox60',
-      'safari11',
+      'chrome67',
+      'firefox68',
+      'safari14',
       'edge79'
     ],
     minify: 'esbuild',
